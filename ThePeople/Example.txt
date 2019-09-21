@@ -1,0 +1,5 @@
+Slack: Name
+Primary: Programmer
+Secondary: Music
+My goal is to learn about game dev
+and get comfortable with unity.
