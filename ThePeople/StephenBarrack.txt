@@ -1,0 +1,4 @@
+Slack: Stephen
+Primary: Programmer
+Secondary: SFX, Music, 2-D art, UI, 3-D art
+My goal is to (1) make a complete game with my peers, (2) have fun doing it, (3) and not have merge conflicts.
