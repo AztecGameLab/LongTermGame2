@@ -3,4 +3,4 @@ Github: Kainkun
 Primary: Programmer
 Secondary: 3D Artist
 My goal is to lead the team to make a complete game
-that we can all be proud of
+that we can all be proud of.
