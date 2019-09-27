@@ -1,4 +1,5 @@
 Slack: Kainkun
+Github: Kainkun
 Primary: Programmer
 Secondary: 3D Artist
 My goal is to lead the team to make a complete game
