@@ -27,11 +27,5 @@ public class TimothyLWireLockPicker : MonoBehaviour
     }
 
     //Need to record WireLockPicker hitting Top or Bottom Border
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.relativeVelocity.magnitude > 2)
-        {
-            print("Whoa! You hit something!");
-        }
-    }
+   
 }
