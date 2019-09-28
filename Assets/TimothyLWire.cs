@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimothyLWireLockPicker : MonoBehaviour
+public class TimothyLWire : MonoBehaviour
 {
     public Vector2 liftUp;
+
+    
     
     // Start is called before the first frame update
     void Start()
@@ -27,5 +29,5 @@ public class TimothyLWireLockPicker : MonoBehaviour
     }
 
     //Need to record WireLockPicker hitting Top or Bottom Border
-   
+    
 }
