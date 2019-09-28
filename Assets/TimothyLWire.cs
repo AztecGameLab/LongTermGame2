@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimothyLWire : MonoBehaviour
 {
     public Vector2 liftUp;
+    Vector2 startPosition;
 
     
     
@@ -12,6 +13,7 @@ public class TimothyLWire : MonoBehaviour
     void Start()
     {
         print("Does this work?");
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -24,25 +26,34 @@ public class TimothyLWire : MonoBehaviour
         }
 
         //Creating a case where if it touches the top border, lock breaks and user has to start over
-        if (GetComponent<Rigidbody2D>().position.y > 2.69)
+        if (GetComponent<Rigidbody2D>().position.y > 2.65)
         {
-
+            print("You broke the lock!");
+            transform.position = startPosition;
         }
 
         //They press this when they want to "turn" the wire and "pop" the lock open
+        //Need to make a range for a successful "lockpick"
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (GetComponent<Rigidbody2D>().position.y > 0)
+            if (GetComponent<Rigidbody2D>().position.y > 2.1 && GetComponent<Rigidbody2D>().position.y < 2.4)
             {
-                print("Wow you made it work");
+                print("You succeeded!");
+                /* This is just if I ever needed to get y position of places ever again by eye without calculations (typically if I were to change the range of the "lock")
+                 * print(GetComponent<Rigidbody2D>().position.y);
+                 */ 
             }
-            print (GetComponent<Rigidbody2D>().position);
+            else
+            {
+                print("Oof you failed.");
+                transform.position = startPosition;
+            }
             
         }
 
 
     }
 
-    //Need to record WireLockPicker hitting Top or Bottom Border
+    
     
 }
