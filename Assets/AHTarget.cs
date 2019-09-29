@@ -22,15 +22,7 @@ public class AHTarget : MonoBehaviour
     {
         if (collision.gameObject.name == "ArcherH Bullet(Clone)")
         {
-            if(GameObject.Find("Score").GetComponent<Text>() == null)
-            {
-                print("finding score text didnt work");
-            }
             Text score = GameObject.Find("Score").GetComponent<Text>();
-            if(score.GetComponent<AHScore>() == null)
-            {
-                print("finding script didnt work");
-            }
             score.GetComponent<AHScore>().AddToScore(value);
             Destroy(gameObject);
         }
