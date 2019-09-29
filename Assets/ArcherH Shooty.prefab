@@ -127,13 +127,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_LinearDrag: 0.7
+  m_AngularDrag: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 24f07f3a7f7a26d44a49e3c7f0356a05, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &6590588136963545152
 CircleCollider2D:

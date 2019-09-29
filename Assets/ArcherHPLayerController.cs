@@ -27,7 +27,6 @@ public class ArcherHPLayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            print("fire");
             Shoot();
         }
 
