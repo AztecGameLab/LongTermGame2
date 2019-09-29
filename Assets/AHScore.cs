@@ -7,7 +7,8 @@ using System;
 public class AHScore : MonoBehaviour
 {
     Text scoreText;
-    int score;
+    public int score;
+    int bonusScore;
     public Transform reference;
 
     // Start is called before the first frame update
@@ -20,7 +21,11 @@ public class AHScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score = (int)Math.Round(reference.position.x);
+        score = (int)Math.Round(reference.position.x) + bonusScore;
         scoreText.text = "Score: " + score.ToString();
+    }
+    public void AddToScore(int addition)
+    {
+        bonusScore += addition;
     }
 }

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 79658009}
   - component: {fileID: 79658008}
   m_Layer: 0
-  m_Name: ArcherH FrontBound (1)
+  m_Name: ArcherH BlockDestroyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   - {fileID: 2141166577184722143, guid: 089bf4ffccfb86245854028b10d162ec, type: 3}
   - {fileID: 3212761669923908243, guid: c2873b747cbd27544b6c139cef5cbef9, type: 3}
   - {fileID: 4018906737557623544, guid: 6cbd648f941c4eb42a809abe487f11a3, type: 3}
+  target: {fileID: 2263697339361691292, guid: bf4427b13ebb1de4f91704c8c9a5380a, type: 3}
   timeBetweenSpawns: 1
 --- !u!4 &245482641
 Transform:
@@ -1034,7 +1035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -461, y: 249}
+  m_AnchoredPosition: {x: -477, y: 256.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978547119
@@ -1049,6 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad2ee3b6cd2a644cbce0e5ff4971251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   reference: {fileID: 597547469}
 --- !u!114 &1978547120
 MonoBehaviour:
