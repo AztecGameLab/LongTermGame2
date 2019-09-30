@@ -1,0 +1,10 @@
+Name: Trent Moca
+GitHub: trent3211
+slack: Trent Moca
+email: trent.moca@gmail.com
+
+Primary: Programmer
+Secondary: Writer
+My goal for this project is to create games and collaborate 
+with other programmers and artists to achieve group goals, 
+coordinate many people's skills and creativity with coding.
