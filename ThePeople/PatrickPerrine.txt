@@ -1,7 +1,0 @@
-Name: Patrick Perrine
-GitHub: BigTuna201
-Primary: Writer
-Secondary: 2D Artist
-My goals are to lead the writing for the game, 
-as well as help to the team as a whole to 
-mesh well and complete the project.

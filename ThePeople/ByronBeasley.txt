@@ -1,5 +1,0 @@
-Slack: DarkforcesII
-Github: DarkforcesII
-Primary: Music and Sound
-Secondary: Programming
-My goal is to help lead the audio team and also learn about programming and implementing audio.

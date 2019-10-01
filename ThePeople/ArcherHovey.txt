@@ -1,5 +1,0 @@
-Slack: Archer Hovey
-Github: Archer Hovey
-Primary: Programmer
-Secondary: 3d modeling (little experience)
-My goal is to learn about programming, game design, and game development in general.
