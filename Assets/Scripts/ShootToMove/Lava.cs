@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ArcherHLava : MonoBehaviour
+public class Lava : MonoBehaviour
 {
     Rigidbody2D rb;
     public float scrollSpeed;

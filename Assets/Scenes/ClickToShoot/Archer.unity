@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 79658009}
   - component: {fileID: 79658008}
   m_Layer: 0
-  m_Name: ArcherH BlockDestroyer
+  m_Name: BlockDestroyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 245482641}
   - component: {fileID: 245482640}
   m_Layer: 0
-  m_Name: ArcherH Spawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 862507655}
   - component: {fileID: 862507654}
   m_Layer: 0
-  m_Name: ArcherH UpperBound
+  m_Name: UpperBound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 916013165}
   - component: {fileID: 916013169}
   m_Layer: 0
-  m_Name: ArcherH Lava
+  m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 1779457115}
   - component: {fileID: 1779457114}
   m_Layer: 0
-  m_Name: ArcherH FrontBound
+  m_Name: FrontBound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 2079070997}
   - component: {fileID: 2079070996}
   m_Layer: 0
-  m_Name: ArcherH LowerBound
+  m_Name: LowerBound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1165,7 +1165,7 @@ PrefabInstance:
     - target: {fileID: 6590588136963545154, guid: c4dc0ecc360ff244f8aef3fb3ae53aa3,
         type: 3}
       propertyPath: m_Name
-      value: ArcherH Shooty
+      value: Shooty
       objectReference: {fileID: 0}
     - target: {fileID: 6590588136963545159, guid: c4dc0ecc360ff244f8aef3fb3ae53aa3,
         type: 3}
@@ -1221,6 +1221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590588136794180959, guid: c4dc0ecc360ff244f8aef3fb3ae53aa3,
+        type: 3}
+      propertyPath: m_Name
+      value: Shootpoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4dc0ecc360ff244f8aef3fb3ae53aa3, type: 3}

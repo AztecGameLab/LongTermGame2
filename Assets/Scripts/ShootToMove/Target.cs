@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AHTarget : MonoBehaviour
+public class Target : MonoBehaviour
 {
     public int value;
     
@@ -20,10 +20,10 @@ public class AHTarget : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "ArcherH Bullet(Clone)")
+        if (collision.gameObject.name == "Bullet(Clone)")
         {
             Text score = GameObject.Find("Score").GetComponent<Text>();
-            score.GetComponent<AHScore>().AddToScore(value);
+            score.GetComponent<Score>().AddToScore(value);
             Destroy(gameObject);
         }
     }

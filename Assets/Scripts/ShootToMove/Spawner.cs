@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherHSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     public List<GameObject> Formations;
     public GameObject target;
@@ -27,7 +27,7 @@ public class ArcherHSpawner : MonoBehaviour
             totalSpawns++;
             if (totalSpawns != 0 && totalSpawns % 10 == 0)
             {
-                gameObject.transform.parent.GetComponent<ArcherHLava>().IncreaseSpeed();
+                gameObject.transform.parent.GetComponent<Lava>().IncreaseSpeed();
             }
         }
         

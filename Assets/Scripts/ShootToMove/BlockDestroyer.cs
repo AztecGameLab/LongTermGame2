@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class AHBullet : MonoBehaviour
+public class BlockDestroyer : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +17,6 @@ public class AHBullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        Destroy(collision.gameObject);
     }
 }

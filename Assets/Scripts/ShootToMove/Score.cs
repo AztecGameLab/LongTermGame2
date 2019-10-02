@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class AHScore : MonoBehaviour
+public class Score : MonoBehaviour
 {
     Text scoreText;
     public int score;

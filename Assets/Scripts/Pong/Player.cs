@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class kainSplayer : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public GameObject ball;
     GameObject currentBall;

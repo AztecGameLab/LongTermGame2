@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimothyLWire : MonoBehaviour
+public class Wire : MonoBehaviour
 {
     public Vector2 liftUp;
     Vector2 startPosition;

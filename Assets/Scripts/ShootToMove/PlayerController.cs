@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherHPLayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     Vector2 mouse;
     public float shootForce;

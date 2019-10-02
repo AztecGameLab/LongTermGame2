@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArcherH PlayerMaterial
+  m_Name: PlayerMaterial
   friction: 1000
   bounciness: 0.3
