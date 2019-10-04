@@ -5,27 +5,52 @@ using UnityEngine;
 public class TimothyLWireLockPicker : MonoBehaviour
 {
     public Vector2 liftUp;
-    public bool IsTouching(Collider2D collider2D, ContactFilter2D contact)
-    {
-        return //Some kind of boolean
-    }
+    Vector2 startPosition;
     
+        
     // Start is called before the first frame update
     void Start()
     {
         print("Does this work?");
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Resets the position of pin if it touches top border
+        /*if (GetComponent<Rigidbody2D>().position.y > 1.89)
+        {
+            transform.position = startPosition;
+        }
+        */
 
-        while (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Z))
         {
             GetComponent<Rigidbody2D>().velocity = liftUp;
+            
         }
 
-        //Need to record WireLockPicker hitting Top or Bottom Border
+        //Presses button at a certain point to see if the lock pick actually works
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            //Success if it's in range
+            if(GetComponent<Rigidbody2D>().position.y > 1.45 && GetComponent<Rigidbody2D>().position.y < 1.65)
+            {
+                print("You succeeded!");
+            }
+
+            //Failure if it's not in range
+            else
+            {
+                print("Oof, you failed.");
+            }
+
+
+            //This is to get a position to set parameters for the areas
+            print(GetComponent<Rigidbody2D>().position);
+        }
+
 
 
 
