@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimothyLSummonCharacter : MonoBehaviour
 {
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,9 @@ public class TimothyLSummonCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Destroy(gameObject);
+        }
     }
 }
