@@ -19,11 +19,11 @@ public class TimothyLWireLockPicker : MonoBehaviour
     void Update()
     {
         //Resets the position of pin if it touches top border
-        /*if (GetComponent<Rigidbody2D>().position.y > 1.89)
+        if (GetComponent<Rigidbody2D>().position.y > 2.15)
         {
             transform.position = startPosition;
         }
-        */
+        
 
         if (Input.GetKey(KeyCode.Z))
         {
@@ -35,7 +35,7 @@ public class TimothyLWireLockPicker : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             //Success if it's in range
-            if(GetComponent<Rigidbody2D>().position.y > 1.45 && GetComponent<Rigidbody2D>().position.y < 1.65)
+            if(GetComponent<Rigidbody2D>().position.y > 1.05 && GetComponent<Rigidbody2D>().position.y < 1.55)
             {
                 print("You succeeded!");
             }
