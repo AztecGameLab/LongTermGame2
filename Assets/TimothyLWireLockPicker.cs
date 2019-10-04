@@ -5,6 +5,10 @@ using UnityEngine;
 public class TimothyLWireLockPicker : MonoBehaviour
 {
     public Vector2 liftUp;
+    public bool IsTouching(Collider2D collider2D, ContactFilter2D contact)
+    {
+        return //Some kind of boolean
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -21,17 +25,12 @@ public class TimothyLWireLockPicker : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = liftUp;
         }
 
-        
+        //Need to record WireLockPicker hitting Top or Bottom Border
+
 
 
     }
 
-    //Need to record WireLockPicker hitting Top or Bottom Border
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.relativeVelocity.magnitude > 2)
-        {
-            print("Whoa! You hit something!");
-        }
-    }
+
+
 }
