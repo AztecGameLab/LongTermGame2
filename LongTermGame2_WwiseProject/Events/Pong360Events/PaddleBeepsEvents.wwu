@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{25E49E9A-0F12-46FF-8746-72EAD4A30915}" SchemaVersion="94">
+	<Events>
+		<WorkUnit Name="PaddleBeepsEvents" ID="{25E49E9A-0F12-46FF-8746-72EAD4A30915}" PersistMode="Standalone"/>
+	</Events>
+</WwiseDocument>
