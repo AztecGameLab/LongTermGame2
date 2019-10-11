@@ -3,4 +3,4 @@ Github: tlieu19
 Primary: Programmer
 Secondary: N/A
 My goal is to learn about the process of game development
-and actaully contribute to creating a working game.
+and actaully contribute to creating a working game. 
