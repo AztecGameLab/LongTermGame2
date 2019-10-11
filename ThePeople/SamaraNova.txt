@@ -1,5 +1,0 @@
-slack username: samaranova
-github: samaranova
-primary: art
-secondary: programming
-My goals are to gain some experience working with a team to build a video game.

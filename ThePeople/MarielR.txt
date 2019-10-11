@@ -1,5 +1,0 @@
-Slack: marielabh
-Github: marielabh
-Primary: Programmer
-Secondary: Art/Music
-My goal is to learn about game development and improve my programming skills and knowledge.

@@ -1,7 +1,0 @@
-Slack: Ethan Rosenberg
-Github: egrosenberg
-Primary: Programmer
-Secondary: ummmmmm
-My goal is to learn about game dev
-and learn C# / Unity. also not suck
-at programming.
