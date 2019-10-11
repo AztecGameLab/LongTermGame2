@@ -11992,6 +11992,9 @@
 				<PhysicalFolder Path="Actor-Mixer Hierarchy">
 					<WorkUnit Name="Actor-Mixer Hierarchy" ID="{5EA7BBF8-64C0-4A50-8821-A07E8BE21D68}" PersistMode="Standalone"/>
 				</PhysicalFolder>
+				<PhysicalFolder Path="Actor-Mixer Hierarchy\ClickToShoot">
+					<WorkUnit Name="ClickToShoot" ID="{F4C8DD8C-CB30-476D-B389-B3805AC7EFB7}" PersistMode="Standalone"/>
+				</PhysicalFolder>
 				<PhysicalFolder Path="Actor-Mixer Hierarchy\Pong360">
 					<WorkUnit Name="Pong360" ID="{D8BCC4E7-5C76-454D-BEDC-A1858701364D}" PersistMode="Standalone"/>
 				</PhysicalFolder>
@@ -12015,6 +12018,9 @@
 				</PhysicalFolder>
 				<PhysicalFolder Path="Events">
 					<WorkUnit Name="Events" ID="{A69BF0FC-D84A-487C-ABDD-56F71CB2A126}" PersistMode="Standalone"/>
+				</PhysicalFolder>
+				<PhysicalFolder Path="Events\ClickToShootEvents">
+					<WorkUnit Name="ClickToShootEvents" ID="{0858E86A-9336-4246-9FA6-04F3A361E7C9}" PersistMode="Standalone"/>
 				</PhysicalFolder>
 				<PhysicalFolder Path="Events\Pong360Events">
 					<WorkUnit Name="Pong360Events" ID="{56D9009E-A390-4351-96CF-A01BA9B4F39D}" PersistMode="Standalone"/>

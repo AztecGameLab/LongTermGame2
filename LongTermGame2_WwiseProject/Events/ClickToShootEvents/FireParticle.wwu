@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{89868D9A-16DB-4837-AA65-2C5CA462DF7A}" SchemaVersion="94">
+	<Events>
+		<WorkUnit Name="FireParticle" ID="{89868D9A-16DB-4837-AA65-2C5CA462DF7A}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="FireParticle" ID="{E0866F84-F688-48A1-A5C0-1835B2E30BEA}">
+					<ChildrenList>
+						<Action Name="" ID="{801167FE-F60E-4E12-85E9-8CFC2B6C0086}" ShortID="369165399">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ca gabe cannon further shortened" ID="{4017FD4B-FF39-45CF-8C7F-55F8CA1DB28D}" WorkUnitID="{A33C454E-8C69-4CC3-8B9D-9AB8F56B284C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

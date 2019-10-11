@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{25E49E9A-0F12-46FF-8746-72EAD4A30915}" SchemaVersion="94">
 	<Events>
-		<WorkUnit Name="PaddleBeepsEvents" ID="{25E49E9A-0F12-46FF-8746-72EAD4A30915}" PersistMode="Standalone"/>
+		<WorkUnit Name="PaddleBeepsEvents" ID="{25E49E9A-0F12-46FF-8746-72EAD4A30915}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="BallHitsPaddle" ID="{8E5C9593-3A18-4815-88B2-C697ED5510A7}">
+					<ChildrenList>
+						<Action Name="" ID="{494C9E10-AB90-4BAD-8637-27C39FE110CD}" ShortID="682093551">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="bassBlupRegion 009" ID="{4FBE7C1D-470C-4174-B3E8-178D327E63DE}" WorkUnitID="{DD86207A-7BCC-44A5-93F2-F9D6F228D33A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

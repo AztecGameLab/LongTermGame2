@@ -14,11 +14,13 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID BALLHITSPADDLE = 2963506216U;
+        static const AkUniqueID FIREPARTICLE = 4260995335U;
     } // namespace EVENTS
 
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID CLICKTOSHOOT = 2273568469U;
         static const AkUniqueID PONG360 = 933672804U;
     } // namespace BANKS
 

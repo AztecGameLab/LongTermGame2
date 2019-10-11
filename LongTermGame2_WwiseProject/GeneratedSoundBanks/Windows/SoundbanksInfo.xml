@@ -30,5 +30,19 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
+		<SoundBank Id="2273568469" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\ClickToShoot</ObjectPath>
+			<ShortName>ClickToShoot</ShortName>
+			<Path>ClickToShoot.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4260995335" Name="FireParticle" ObjectPath="\Events\ClickToShootEvents\FireParticle\FireParticle" DurationType="OneShot" DurationMin="1.385578" DurationMax="1.385578"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="306219424" Language="SFX">
+					<ShortName>ca gabe cannon further shortened.wav</ShortName>
+					<Path>SFX\ca gabe cannon further shortened_10C4C929.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

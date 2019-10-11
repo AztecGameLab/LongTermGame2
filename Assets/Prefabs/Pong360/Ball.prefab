@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2127493598935684093}
   - component: {fileID: 4390224541203953283}
   m_Layer: 0
-  m_Name: KainSBall
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
