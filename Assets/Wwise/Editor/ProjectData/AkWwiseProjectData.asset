@@ -31,7 +31,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: b03085dc1081154dbb82117cb885a5c3
     GuidInternal: 
-    m_lastTime: -8586307999313902760
+    m_lastTime: -8586301871906930224
     List:
     - name: ClickToShoot
       guid: d515eff840f47347acdda10cb1abdd7c
@@ -52,23 +52,37 @@ MonoBehaviour:
         ObjectType: 7
       Path: Default Work Unit\Pong360
   EventWwu:
-  - PhysicalPath: Events\ClickToShootEvents\FireParticle.wwu
+  - PhysicalPath: Events\ClickToShootEvents\ActionSounds.wwu
     ParentPhysicalPath: 
     guid: 9a8d8689db163748aa652c5ca462df7a
     GuidInternal: 
-    m_lastTime: -8586307999313872785
+    m_lastTime: -8586301871906960208
     List:
+    - name: BounceOffWall
+      guid: 72d9c0b1d26f0e4f8fb3de6ee5199859
+      id: 2164897584
+      PathAndIcons:
+      - ElementName: ClickToShootEvents
+        ObjectType: 5
+      - ElementName: ActionSounds
+        ObjectType: 12
+      - ElementName: BounceOffWall
+        ObjectType: 3
+      Path: ClickToShootEvents\ActionSounds\BounceOffWall
+      maxAttenuation: 0
+      maxDuration: 0.413946
+      minDuration: 0.413946
     - name: FireParticle
       guid: 846f86e088f6a148a5c01835b2e30bea
       id: 4260995335
       PathAndIcons:
       - ElementName: ClickToShootEvents
         ObjectType: 5
-      - ElementName: FireParticle
+      - ElementName: ActionSounds
         ObjectType: 12
       - ElementName: FireParticle
         ObjectType: 3
-      Path: ClickToShootEvents\FireParticle\FireParticle
+      Path: ClickToShootEvents\ActionSounds\FireParticle
       maxAttenuation: 0
       maxDuration: 1.385578
       minDuration: 1.385578
@@ -129,6 +143,8 @@ MonoBehaviour:
   ExpandedItems:
   - /LongTermGame2_WwiseProject
   - /LongTermGame2_WwiseProject/Events
+  - /LongTermGame2_WwiseProject/Events/ClickToShootEvents
+  - /LongTermGame2_WwiseProject/Events/ClickToShootEvents/ActionSounds
   - /LongTermGame2_WwiseProject/Events/Pong360Events
   - /LongTermGame2_WwiseProject/Events/Pong360Events/PaddleBeepsEvents
   - /LongTermGame2_WwiseProject/SoundBanks

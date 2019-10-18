@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID BALLHITSPADDLE = 2963506216U;
+        static const AkUniqueID BOUNCEOFFWALL = 2164897584U;
         static const AkUniqueID FIREPARTICLE = 4260995335U;
     } // namespace EVENTS
 
