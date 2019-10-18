@@ -3,29 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
-public class Score : MonoBehaviour
+namespace ShootToMove
 {
-    Text scoreText;
-    public int score;
-    int bonusScore;
-    public Transform reference;
 
-    // Start is called before the first frame update
-    void Start()
+    public class Score : MonoBehaviour
     {
-        scoreText = gameObject.GetComponent<Text>();
-        score = (int)Math.Round(reference.position.x);
-    }
+        Text scoreText;
+        public int score;
+        int bonusScore;
+        public Transform reference;
 
-    // Update is called once per frame
-    void Update()
-    {
-        score = (int)Math.Round(reference.position.x) + bonusScore;
-        scoreText.text = "Score: " + score.ToString();
-    }
-    public void AddToScore(int addition)
-    {
-        bonusScore += addition;
+        // Start is called before the first frame update
+        void Start()
+        {
+            scoreText = gameObject.GetComponent<Text>();
+            score = (int)Math.Round(reference.position.x);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            score = (int)Math.Round(reference.position.x) + bonusScore;
+            scoreText.text = "Score: " + score.ToString();
+        }
+        public void AddToScore(int addition)
+        {
+            bonusScore += addition;
+        }
     }
 }

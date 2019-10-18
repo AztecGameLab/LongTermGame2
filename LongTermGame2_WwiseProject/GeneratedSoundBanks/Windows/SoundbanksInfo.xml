@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="134">
+	<RootPaths>
+		<ProjectRoot>C:\Users\George Sanger\Documents\GitHub\LongTermGame2\LongTermGame2_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\George Sanger\Documents\GitHub\LongTermGame2\LongTermGame2_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\George Sanger\Documents\GitHub\LongTermGame2\LongTermGame2_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\George Sanger\Documents\GitHub\LongTermGame2\LongTermGame2_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="933672804" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Pong360</ObjectPath>
+			<ShortName>Pong360</ShortName>
+			<Path>Pong360.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2963506216" Name="BallHitsPaddle" ObjectPath="\Events\Pong360Events\PaddleBeepsEvents\BallHitsPaddle" DurationType="OneShot" DurationMin="0.413946" DurationMax="0.413946"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="844245001" Language="SFX">
+					<ShortName>bassBlupRegion 009.wav</ShortName>
+					<Path>SFX\bassBlupRegion 009_10C4C929.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2273568469" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\ClickToShoot</ObjectPath>
+			<ShortName>ClickToShoot</ShortName>
+			<Path>ClickToShoot.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4260995335" Name="FireParticle" ObjectPath="\Events\ClickToShootEvents\FireParticle\FireParticle" DurationType="OneShot" DurationMin="1.385578" DurationMax="1.385578"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="306219424" Language="SFX">
+					<ShortName>ca gabe cannon further shortened.wav</ShortName>
+					<Path>SFX\ca gabe cannon further shortened_10C4C929.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

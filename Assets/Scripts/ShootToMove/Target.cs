@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Target : MonoBehaviour
+namespace ShootToMove
 {
-    public int value;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public class Target : MonoBehaviour
     {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Bullet(Clone)")
+        public int value;
+        Text score;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Text score = GameObject.Find("Score").GetComponent<Text>();
-            score.GetComponent<Score>().AddToScore(value);
-            Destroy(gameObject);
+            score = GameObject.Find("Score").GetComponent<Text>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.name == "Bullet(Clone)")
+            {
+                score.GetComponent<Score>().AddToScore(value);
+                Destroy(gameObject);
+            }
         }
     }
 }

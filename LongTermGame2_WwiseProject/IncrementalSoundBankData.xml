@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IncrementalBankBuild Version="6" Flags="861300542">
+	<Platform GUID="{DBE64867-FF92-4722-B8CA-77DDFCC52C0E}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="ClickToShoot" Hash="2730263289" Timestamp="1570806963"/>
+				<File Name="Init" Hash="1182415902" Timestamp="1570737627"/>
+				<File Name="Pong360" Hash="4058122930" Timestamp="1570737627"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="3699270768" Timestamp="1570806963"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{1F76E55C-6BCF-4F6A-9B26-4CD9950006A1}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="ClickToShoot" Hash="2730263289" Timestamp="1570806962"/>
+				<File Name="Init" Hash="2279659568" Timestamp="1570737627"/>
+				<File Name="Pong360" Hash="4058122930" Timestamp="1570737627"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="3445719994" Timestamp="1570806962"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+</IncrementalBankBuild>
