@@ -129,8 +129,6 @@ MonoBehaviour:
   ExpandedItems:
   - /LongTermGame2_WwiseProject
   - /LongTermGame2_WwiseProject/Events
-  - /LongTermGame2_WwiseProject/Events/ClickToShootEvents
-  - /LongTermGame2_WwiseProject/Events/ClickToShootEvents/FireParticle
   - /LongTermGame2_WwiseProject/Events/Pong360Events
   - /LongTermGame2_WwiseProject/Events/Pong360Events/PaddleBeepsEvents
   - /LongTermGame2_WwiseProject/SoundBanks

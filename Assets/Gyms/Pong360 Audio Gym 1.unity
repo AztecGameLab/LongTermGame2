@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 2091147465}
   - component: {fileID: 2091147464}
   - component: {fileID: 2091147463}
-  - component: {fileID: 2091147466}
+  - component: {fileID: 2091147468}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -470,7 +470,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2091147466
+--- !u!114 &2091147468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
