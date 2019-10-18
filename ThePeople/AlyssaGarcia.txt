@@ -1,6 +1,0 @@
-Slack: alyg563
-Github: alyg563
-Primary: Programmer
-Secondary: Music
-My goal is to learn what it really takes to make a
-full video game.

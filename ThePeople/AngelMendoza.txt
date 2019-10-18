@@ -1,6 +1,0 @@
-File Name: AngelMendoza.txt
-Slack Username: amendoza.sd@gmail.com
-GitHub: amendoza-sd
-Primary: Programming
-Secondary: Art
-My goals are to work together as a team to make a small but complete game that we can all be proud of :)
