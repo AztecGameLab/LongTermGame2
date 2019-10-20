@@ -41,42 +41,11 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 0
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-    totalSpriteSurfaceArea: 3840
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300060, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300054, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300052, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300058, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300056, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300044, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300046, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300040, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300042, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300036, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300038, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300032, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300034, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300048, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  - {fileID: 21300050, guid: 5c4f1fa01d076b0448a9438531d30a91, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - dungeon_14
-  - dungeon_11
-  - dungeon_10
-  - dungeon_13
-  - dungeon_12
-  - dungeon_6
-  - dungeon_7
-  - dungeon_4
-  - dungeon_5
-  - dungeon_2
-  - dungeon_3
-  - dungeon_0
-  - dungeon_1
-  - dungeon_8
-  - dungeon_9
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: Dungeon
   m_IsVariant: 0

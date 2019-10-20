@@ -41,40 +41,11 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 0
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-    totalSpriteSurfaceArea: 3584
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300026, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300024, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300022, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300020, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300008, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300010, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300012, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300014, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300000, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300002, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300004, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300006, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300016, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  - {fileID: 21300018, guid: 9dfa7bc59e7cb9142a3cb68af0656ec4, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - platform3_13
-  - platform3_12
-  - platform3_11
-  - platform3_10
-  - platform3_4
-  - platform3_5
-  - platform3_6
-  - platform3_7
-  - platform3_0
-  - platform3_1
-  - platform3_2
-  - platform3_3
-  - platform3_8
-  - platform3_9
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: Platform3
   m_IsVariant: 0

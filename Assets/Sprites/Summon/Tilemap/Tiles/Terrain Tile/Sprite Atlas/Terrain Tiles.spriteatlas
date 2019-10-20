@@ -41,72 +41,11 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-    totalSpriteSurfaceArea: 122880
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300068, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300082, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300066, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300084, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300056, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300060, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300058, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300028, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300020, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300022, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300024, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300026, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300010, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300008, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300014, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300012, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300002, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300000, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300006, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300004, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300018, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300016, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300072, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300078, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300070, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300080, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300074, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300076, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300064, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  - {fileID: 21300062, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Pebbles_07
-  - Pebbles_14
-  - Pebbles_06
-  - Pebbles_15
-  - Pebbles_01
-  - Pebbles_03
-  - Pebbles_02
-  - PBrick_14
-  - PBrick_10
-  - PBrick_11
-  - PBrick_12
-  - PBrick_13
-  - PBrick_5
-  - PBrick_4
-  - PBrick_7
-  - PBrick_6
-  - PBrick_1
-  - PBrick_0
-  - PBrick_3
-  - PBrick_2
-  - PBrick_9
-  - PBrick_8
-  - Pebbles_09
-  - Pebbles_12
-  - Pebbles_08
-  - Pebbles_13
-  - Pebbles_10
-  - Pebbles_11
-  - Pebbles_05
-  - Pebbles_04
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: Terrain Tiles
   m_IsVariant: 0
