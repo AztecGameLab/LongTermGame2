@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Sniper
 {
-    public class baddie : MonoBehaviour
+
+    public class UpstandingCitizen : MonoBehaviour
     {
-        public float speed;
-        Rigidbody2D rb;
         GameController gc;
         // Start is called before the first frame update
         void Start()
         {
             gc = FindObjectOfType<GameController>();
-            rb = gameObject.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * speed;
-
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+            if(transform.position.x > 20 || transform.position.x < -20 || transform.position.y > 20 || transform.position.y < -20)
+            {
+                Destroy(gameObject);
+            }
+
         }
         private void OnMouseDown()
         {
-            gc.KillBaddie();
+
+            gc.goodiesKilled++;
             Destroy(gameObject);
         }
     }

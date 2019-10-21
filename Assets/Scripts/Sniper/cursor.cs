@@ -19,7 +19,6 @@ namespace Sniper
         {
             mouse = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             gameObject.transform.position = mouse;
-            print(mouse);
         }
     }
 }
