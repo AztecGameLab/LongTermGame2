@@ -782,8 +782,8 @@ MonoBehaviour:
   totalBaddies: 5
   goodie: {fileID: 3265437772755561121, guid: 5de170a1d37baff4682ef613b9aa11a1, type: 3}
   goodieBottomSpeed: 3
-  goodieTopSpeed: 12
-  spawnRate: 8
+  goodieTopSpeed: 15
+  spawnRate: 12
   gameOn: 0
   timePenalty: 3
   goodiesKilled: 0

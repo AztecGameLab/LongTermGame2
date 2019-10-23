@@ -52,12 +52,37 @@ namespace Sniper
             xUpper = (cam.transform.position.x + (camWidth / 2));
             yLower = (cam.transform.position.y - (camHeight / 2));
             yUpper = (cam.transform.position.y + (camHeight / 2));
+
+            //spawns baddies
             for (int i = 0; i < totalBaddies; i++)
             {
                 Instantiate(baddie, new Vector2(Random.Range(xLower + diameter, xUpper - diameter), Random.Range(yLower + diameter, yUpper - diameter)), Quaternion.identity);
                 currentBaddies++;
             }
 
+            //spawns initial goodies (# based on bottom speed)
+            for (int i = 0; i < goodieBottomSpeed*5; i++)
+            {
+                GameObject newGoodie = Instantiate(goodie, new Vector2(Random.Range(xLower + diameter, xUpper - diameter), Random.Range(yLower + diameter, yUpper - diameter)), Quaternion.identity);
+                int dir = Random.Range(1, 5);
+                switch (dir)
+                {
+                    case 1:
+                        newGoodie.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -Random.Range(goodieBottomSpeed, goodieTopSpeed));
+                        break;
+                    case 2:
+                        newGoodie.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(goodieBottomSpeed, goodieTopSpeed), 0);
+                        break;
+                    case 3:
+                        newGoodie.GetComponent<Rigidbody2D>().velocity = new Vector2(0, Random.Range(goodieBottomSpeed, goodieTopSpeed));
+                        break;
+                    case 4:
+                        newGoodie.GetComponent<Rigidbody2D>().velocity = new Vector2(-Random.Range(goodieBottomSpeed, goodieTopSpeed), 0);
+                        break;
+                }
+            }
+
+            //spawns first goodie outside bounds
             SpawnGoodie((SpawnLocation)Random.Range(1, 5));
             timeLastSpawn = Time.time;
         }
@@ -65,6 +90,7 @@ namespace Sniper
         // Update is called once per frame
         void Update()
         {
+            //spawns goodies outside at spawnrate
             if(Time.time > timeLastSpawn + (1 / spawnRate))
             {
                 SpawnGoodie((SpawnLocation)Random.Range(1, 5));
