@@ -53,7 +53,6 @@ namespace LockPick{
 
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         this.enabled = false;
-
                     }
                     else
                     {
