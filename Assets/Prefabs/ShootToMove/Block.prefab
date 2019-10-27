@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5075481423835866399}
   - component: {fileID: 7927252043072326070}
   m_Layer: 0
-  m_Name: ArcherH Block
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1842550b881df8444a1eae10b67d8d98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5074937534907b34aaa1a0c284131d19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

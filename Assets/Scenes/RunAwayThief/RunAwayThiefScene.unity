@@ -146,7 +146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 146821602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 325923a7f5d84c14f9077998f7c3296e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9012edff0bf9ca44f9992505b8477258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 654996995}
@@ -154,12 +154,12 @@ MonoBehaviour:
   Canvas: {fileID: 1910517285}
   Panel_Win: {fileID: 327441464}
   Panel_Lose: {fileID: 1532540855}
-  ground: {fileID: 0}
-  playerCollider: {fileID: 0}
-  enemyCollider: {fileID: 0}
-  groundCollider: {fileID: 0}
+  ground: {fileID: 1446545928}
+  playerCollider: {fileID: 654996996}
+  enemyCollider: {fileID: 917304050}
+  groundCollider: {fileID: 1446545932}
   end: 0
-  period: 0.99
+  period: 0.1
 --- !u!4 &146821604
 Transform:
   m_ObjectHideFlags: 0
@@ -306,12 +306,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd30d17154bf9ac4a8857d9dfd321b94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 362bead885155a342890b239e7848251, type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.56, y: 8.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -361,11 +361,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 654996991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c78609432098e4ea418e53c14fd9fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 935086d71d302ce4ca6febb05c73a11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForward: {x: 2, y: 0.5}
-  increaseSpeed: 30
+  moveForward: {x: 0, y: 0}
+  increaseSpeed: 0
   gameController: {fileID: 146821603}
 --- !u!61 &654996996
 BoxCollider2D:
@@ -385,7 +385,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4.56, y: 8.48}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 4.56, y: 8.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -451,12 +451,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: de912c80ca2f49944bc1edb62529089d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5f64bda803a4674ab13ad44960a3931, type: 3}
   m_Color: {r: 0.7019608, g: 0.7019608, b: 0.7019608, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.28, y: 9.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -485,12 +485,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 917304046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8146fed31b606b4c89006e48d84d035, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d76e1d7bf595b46882939035d0f266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForward: {x: 1, y: 0.5}
-  increaseSpeed: 200
-  playerBox: {fileID: 0}
+  moveForward: {x: 0, y: 0}
+  increaseSpeed: 0
+  playerBox: {fileID: 654996996}
 --- !u!61 &917304050
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.28, y: 9.2}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 5.28, y: 9.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -959,7 +959,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c9504817b91760543b758b94282f9563, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e8d08fb96dc9154e8c14d57bfcc4dc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2451404e5ad2a394cb87dea332bfed42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 279c12817e696114db993165fd9a5428, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5ce5d5070b2625418dce28cb9ce1439, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f51598b887eeedb41a3afa2ceefd6c4d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

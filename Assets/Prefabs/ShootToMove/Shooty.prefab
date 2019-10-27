@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6590588136963545152}
   - component: {fileID: 6590588136963545155}
   m_Layer: 0
-  m_Name: ArcherH Shooty
+  m_Name: Shooty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6590588136963545153
@@ -130,7 +130,7 @@ Rigidbody2D:
   m_LinearDrag: 0.7
   m_AngularDrag: 1
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 24f07f3a7f7a26d44a49e3c7f0356a05, type: 2}
+  m_Material: {fileID: 6200000, guid: 4f6d0c56001d6b248ae9ad47528b9d12, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -144,7 +144,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 6590588136963545154}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4f6d0c56001d6b248ae9ad47528b9d12, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -160,9 +160,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6590588136963545154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44bace90b964a9242829a95675c4a20d, type: 3}
+  m_Script: {fileID: 11500000, guid: 57c27d167a050724bb4411c756356e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 15
-  bullet: {fileID: 1960476682838171475, guid: 04ff1c94e3fa1ed4286a5e6920732dba, type: 3}
-  bulletSpeed: 30
+  shootForce: 0
+  bullet: {fileID: 0}
+  bulletSpeed: 0

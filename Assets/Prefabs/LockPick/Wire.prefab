@@ -139,10 +139,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6662976468367467222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5858619dae4127e4aba1bdaf949a000e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c0d43f956d06ab499d4754cfb29bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liftUp: {x: 0, y: 3}
+  liftUp: {x: 0, y: 0}
   startPosition: {x: 0, y: 0}
   secondWire: {fileID: 0}
   pinHeight: []
