@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	2963506216	BallHitsPaddle			\Pong360Events\PaddleBeepsEvents\BallHitsPaddle	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	844245001	bassBlupRegion 009	C:\Users\George Sanger\Documents\GitHub\LongTermGame2\LongTermGame2_WwiseProject\.cache\Mac\SFX\bassBlupRegion 009_10C4C929.wem		\Actor-Mixer Hierarchy\Pong360\PaddleBeeps\bassBlupRegion 009		36574
-
