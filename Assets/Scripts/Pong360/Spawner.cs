@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace pong360
+namespace Pong360
 {
     public class Spawner : MonoBehaviour
     {
 
         void Start()
         {
-            print("hello");
+            print("spawned!");
         }
-
 
         void Update()
         {
 
         }
     }
-
 }
+

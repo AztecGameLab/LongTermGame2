@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace pong360
+namespace Pong360
 {
     public class Player : MonoBehaviour
     {
         public GameObject ball;
+        public int bounces;
+
+        bool invert;
         GameObject currentBall;
         float time;
-
-        public int bounces;
-        bool invert;
 
         void Start()
         {
@@ -51,7 +51,7 @@ namespace pong360
             currentBall.transform.eulerAngles = rot;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        void OnCollisionEnter2D(Collision2D collision)
         {
             invert = !invert;
 
@@ -59,6 +59,6 @@ namespace pong360
             float multiplyer = 5 + (bounces * 0.3f);
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity.normalized * multiplyer;
         }
-
     }
 }
+
