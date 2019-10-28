@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 namespace Sniper
 {
-
     public class GameController : MonoBehaviour
     {
         public Camera cam;
         public GameObject baddie;
         public int totalBaddies;
-        int currentBaddies;
         public GameObject goodie;
         public float goodieBottomSpeed;
         public float goodieTopSpeed;
         public float spawnRate;
-
         public bool gameOn;
+        public float timePenalty;
+        public int goodiesKilled;
 
+        int currentBaddies;
         float xLower;
         float xUpper;
         float yLower;
         float yUpper;
-
         float diameter;
-
         float timeLastSpawn;
-        public float timePenalty;
-        public int goodiesKilled;
 
         enum SpawnLocation
         {
@@ -36,8 +33,7 @@ namespace Sniper
             bottom = 3,
             left = 4
         }
-
-        // Start is called before the first frame update
+        
         void Start()
         {
             gameOn = true;
@@ -61,7 +57,7 @@ namespace Sniper
             }
 
             //spawns initial goodies (# based on bottom speed)
-            for (int i = 0; i < goodieBottomSpeed*5; i++)
+            for (int i = 0; i < goodieBottomSpeed * 5; i++)
             {
                 GameObject newGoodie = Instantiate(goodie, new Vector2(Random.Range(xLower + diameter, xUpper - diameter), Random.Range(yLower + diameter, yUpper - diameter)), Quaternion.identity);
                 int dir = Random.Range(1, 5);
@@ -86,8 +82,7 @@ namespace Sniper
             SpawnGoodie((SpawnLocation)Random.Range(1, 5));
             timeLastSpawn = Time.time;
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             //spawns goodies outside at spawnrate
@@ -96,8 +91,8 @@ namespace Sniper
                 SpawnGoodie((SpawnLocation)Random.Range(1, 5));
                 timeLastSpawn = Time.time;
             }
-
         }
+
         void SpawnGoodie(SpawnLocation loc)
         {
             if (loc == SpawnLocation.top)
@@ -121,6 +116,7 @@ namespace Sniper
                 newGoodie.GetComponent<Rigidbody2D>().velocity = new Vector2(-Random.Range(goodieBottomSpeed, goodieTopSpeed), 0);
             }
         }
+
         public void KillBaddie()
         {
             currentBaddies--;
@@ -129,15 +125,16 @@ namespace Sniper
                 EndGame();
             }
         }
+
         void EndGame()
         {
             gameOn = false;
             Invoke("Restart", 3);
         }
+
         void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
     }
 }

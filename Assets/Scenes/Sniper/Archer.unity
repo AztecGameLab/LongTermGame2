@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 1561167662}
   - component: {fileID: 1561167661}
   m_Layer: 5
-  m_Name: Goodie Kill Count
+  m_Name: CitizenKills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
