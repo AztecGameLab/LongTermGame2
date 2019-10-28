@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO add spin physics to ball
 namespace Pong360
 {
     public class Player : MonoBehaviour
