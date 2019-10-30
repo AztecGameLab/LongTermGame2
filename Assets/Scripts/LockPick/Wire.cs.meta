@@ -3,7 +3,9 @@ guid: 9c0d43f956d06ab499d4754cfb29bb9f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - secondWire: {instanceID: 0}
+  - SuccessArea: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

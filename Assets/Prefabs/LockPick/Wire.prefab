@@ -145,4 +145,9 @@ MonoBehaviour:
   liftUp: {x: 0, y: 3}
   startPosition: {x: 0, y: 0}
   secondWire: {fileID: 6662976468367467222}
-  pinHeight: []
+  pinHeight:
+  - 0
+  - 1
+  - 1.75
+  - 0.75
+  SuccessArea: {fileID: 0}

@@ -61,7 +61,6 @@ namespace LockPick{
                     print("You succeeded!");
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
-                    //SuccessArea.
 
                     if (wireCount < 3)
                     {
