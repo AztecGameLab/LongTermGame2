@@ -360,18 +360,23 @@ PrefabInstance:
     - target: {fileID: 6662976468367467217, guid: 1e666c69111443f42a3f44376e7aba0e,
         type: 3}
       propertyPath: pinHeight.Array.data[0]
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6662976468367467217, guid: 1e666c69111443f42a3f44376e7aba0e,
         type: 3}
       propertyPath: pinHeight.Array.data[1]
-      value: 2.75
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6662976468367467217, guid: 1e666c69111443f42a3f44376e7aba0e,
         type: 3}
       propertyPath: pinHeight.Array.data[2]
-      value: 2
+      value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 6662976468367467217, guid: 1e666c69111443f42a3f44376e7aba0e,
+        type: 3}
+      propertyPath: SuccessArea
+      value: 
+      objectReference: {fileID: 1565002790}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e666c69111443f42a3f44376e7aba0e, type: 3}
 --- !u!1 &451978764
