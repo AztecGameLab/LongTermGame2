@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0d43f956d06ab499d4754cfb29bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liftUp: {x: 0, y: 0}
+  liftUp: {x: 0, y: 3}
   startPosition: {x: 0, y: 0}
-  secondWire: {fileID: 0}
+  secondWire: {fileID: 6662976468367467222}
   pinHeight: []

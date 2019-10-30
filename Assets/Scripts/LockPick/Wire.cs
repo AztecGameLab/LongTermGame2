@@ -11,8 +11,20 @@ namespace LockPick{
         public GameObject secondWire;
 
         public static int wireCount = 0;
-
         public float[] pinHeight;
+
+        public SpriteRenderer SuccessArea;
+
+
+        private void WinState()
+        {
+            print("You won!");
+            /*
+             * Probably will add more things.
+             * Lock Background image should be changed as popped open instead of still closed
+             * audio plays of a very satisfying, audible "pop"
+             */
+        }
         
         // Start is called before the first frame update
         void Start()
@@ -34,6 +46,7 @@ namespace LockPick{
                 print("You broke the lock!");
             }
             
+            //This is how to move the "wire" up.
             if (Input.GetKey(KeyCode.Z))
             {
                 GetComponent<Rigidbody2D>().velocity = liftUp;            
@@ -47,6 +60,9 @@ namespace LockPick{
                 {
                     print("You succeeded!");
 
+                    //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
+                    //SuccessArea.
+
                     if (wireCount < 3)
                     {
                         Instantiate(secondWire, startPosition + new Vector2(0.5f, 0), Quaternion.identity);
@@ -56,7 +72,8 @@ namespace LockPick{
                     }
                     else
                     {
-                        print("You won!");
+                        //Create a "You won!" function
+                        WinState();
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         this.enabled = false;
                         
