@@ -9,14 +9,15 @@ namespace Sniper
     {
         public Camera cam;
         public GameObject baddie;
-        public int totalBaddies;
+        int totalBaddies;
         public GameObject goodie;
-        public float goodieBottomSpeed;
-        public float goodieTopSpeed;
-        public float spawnRate;
+        float goodieBottomSpeed;
+        float goodieTopSpeed;
+        float spawnRate;
         public bool gameOn;
         public float timePenalty;
         public int goodiesKilled;
+        public float difficulty;
 
         int currentBaddies;
         float xLower;
@@ -39,6 +40,12 @@ namespace Sniper
             gameOn = true;
             goodiesKilled = 0;
 
+            totalBaddies = Mathf.RoundToInt(Mathf.LerpUnclamped(3,5, difficulty));
+            goodieBottomSpeed = 3;
+            goodieTopSpeed = 20;
+            spawnRate = Mathf.LerpUnclamped(3,10,difficulty);
+            baddie.gameObject.GetComponent<Terrorist>().speed = Mathf.LerpUnclamped(7, 10, difficulty);
+
             float camHeight = cam.orthographicSize * 2;
             float camWidth = camHeight * Screen.width / Screen.height;
             diameter = 2 * baddie.GetComponent<CircleCollider2D>().radius;
@@ -50,6 +57,7 @@ namespace Sniper
             yUpper = (cam.transform.position.y + (camHeight / 2));
 
             //spawns baddies
+            currentBaddies = 0;
             for (int i = 0; i < totalBaddies; i++)
             {
                 Instantiate(baddie, new Vector2(Random.Range(xLower + diameter, xUpper - diameter), Random.Range(yLower + diameter, yUpper - diameter)), Quaternion.identity);
@@ -57,7 +65,7 @@ namespace Sniper
             }
 
             //spawns initial goodies (# based on bottom speed)
-            for (int i = 0; i < goodieBottomSpeed * 5; i++)
+            for (int i = 0; i < Mathf.RoundToInt(spawnRate); i++)
             {
                 GameObject newGoodie = Instantiate(goodie, new Vector2(Random.Range(xLower + diameter, xUpper - diameter), Random.Range(yLower + diameter, yUpper - diameter)), Quaternion.identity);
                 int dir = Random.Range(1, 5);

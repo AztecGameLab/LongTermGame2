@@ -24,6 +24,10 @@ namespace Sniper
 
         private void OnMouseDown()
         {
+            Die();
+        }
+        public void Die()
+        {
             gc.KillBaddie();
             Destroy(gameObject);
         }

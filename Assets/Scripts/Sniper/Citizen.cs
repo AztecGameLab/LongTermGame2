@@ -23,6 +23,10 @@ namespace Sniper
 
         private void OnMouseDown()
         {
+            Die();
+        }
+        public void Die()
+        {
             gc.goodiesKilled++;
             Destroy(gameObject);
         }

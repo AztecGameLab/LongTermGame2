@@ -31,7 +31,7 @@ namespace ShootToMove
             if (collision.gameObject.name == "Shooty")
             {
                 Destroy(collision.gameObject);
-                SceneManager.LoadScene("Archer");
+                SceneManager.LoadScene("ShootToMove");
             }
         }
         public void IncreaseSpeed()
