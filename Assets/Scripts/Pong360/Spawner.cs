@@ -6,7 +6,6 @@ namespace Pong360
 {
     public class Spawner : MonoBehaviour
     {
-
         void Start()
         {
             print("spawned!");
@@ -18,4 +17,3 @@ namespace Pong360
         }
     }
 }
-

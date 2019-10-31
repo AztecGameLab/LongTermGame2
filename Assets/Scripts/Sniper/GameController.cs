@@ -9,23 +9,23 @@ namespace Sniper
     {
         public Camera cam;
         public GameObject baddie;
-        int totalBaddies;
         public GameObject goodie;
-        float goodieBottomSpeed;
-        float goodieTopSpeed;
-        float spawnRate;
         public bool gameOn;
         public float timePenalty;
         public int goodiesKilled;
         public float difficulty;
 
         int currentBaddies;
+        int totalBaddies;
         float xLower;
         float xUpper;
         float yLower;
         float yUpper;
         float diameter;
         float timeLastSpawn;
+        float goodieBottomSpeed;
+        float goodieTopSpeed;
+        float spawnRate;
 
         enum SpawnLocation
         {

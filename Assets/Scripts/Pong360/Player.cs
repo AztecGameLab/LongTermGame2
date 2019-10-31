@@ -20,11 +20,9 @@ namespace Pong360
             currentBall = Instantiate(ball, Vector3.zero, Quaternion.identity);
             currentBall.GetComponent<Rigidbody2D>().velocity = 3 * Random.insideUnitCircle.normalized;
         }
-
-
+        
         void Update()
         {
-
             Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -55,11 +53,9 @@ namespace Pong360
         void OnCollisionEnter2D(Collision2D collision)
         {
             invert = !invert;
-
             bounces++;
             float multiplyer = 5 + (bounces * 0.3f);
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity.normalized * multiplyer;
         }
     }
 }
-

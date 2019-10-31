@@ -1,24 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace ShootToMove
 {
-
     public class Spawner : MonoBehaviour
     {
         public List<GameObject> Formations;
         public GameObject target;
         public float timeBetweenSpawns;
+
         float lastSpawn;
         int totalSpawns;
-        // Start is called before the first frame update
+        
         void Start()
         {
             lastSpawn = Time.time;
             totalSpawns = 0;
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             if (Time.time >= lastSpawn + timeBetweenSpawns)
@@ -32,7 +32,6 @@ namespace ShootToMove
                     gameObject.transform.parent.GetComponent<Lava>().IncreaseSpeed();
                 }
             }
-
         }
     }
 }

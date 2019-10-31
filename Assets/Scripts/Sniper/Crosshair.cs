@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace Sniper
 {
-    public class cursor : MonoBehaviour
+    public class Crosshair : MonoBehaviour
     {
-        Vector2 mouse;
         public float cursorSpeed;
         public bool isMouseControlled;
-        
+
+        Vector2 mouse;
+
         void Start()
         {
             if (isMouseControlled)
@@ -44,8 +45,6 @@ namespace Sniper
                         hit.transform.gameObject.GetComponent<Citizen>().Die();
                     }
                 }
-
-
             }
         }
     }

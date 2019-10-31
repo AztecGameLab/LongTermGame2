@@ -7,8 +7,9 @@ namespace Sniper
 {
     public class CitizenKills : MonoBehaviour
     {
-        GameController gc;
         public Text count;
+
+        GameController gc;
 
         void Start()
         {

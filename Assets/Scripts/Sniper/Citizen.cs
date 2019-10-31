@@ -25,6 +25,7 @@ namespace Sniper
         {
             Die();
         }
+
         public void Die()
         {
             gc.goodiesKilled++;

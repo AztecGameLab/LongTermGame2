@@ -7,6 +7,7 @@ namespace Sniper
     public class Terrorist : MonoBehaviour
     {
         public float speed;
+
         Rigidbody2D rb;
         GameController gc;
         
@@ -26,6 +27,7 @@ namespace Sniper
         {
             Die();
         }
+
         public void Die()
         {
             gc.KillBaddie();
