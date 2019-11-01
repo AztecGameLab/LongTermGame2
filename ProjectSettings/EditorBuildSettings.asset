@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bouncy/Bouncy.unity
     guid: 730cb6efe1a6b464083197300faa543b
+  - enabled: 1
+    path: Assets/Scenes/LockPick/TimothyL.unity
+    guid: f1ca2f4175a8ed94a91b3779b1dc558a
   m_configObjects: {}
