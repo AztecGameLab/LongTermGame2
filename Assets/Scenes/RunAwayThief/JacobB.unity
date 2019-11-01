@@ -159,7 +159,7 @@ MonoBehaviour:
   enemyCollider: {fileID: 917304050}
   groundCollider: {fileID: 1446545932}
   end: 0
-  period: 0.1
+  period: 1
 --- !u!4 &146821604
 Transform:
   m_ObjectHideFlags: 0
@@ -364,8 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935086d71d302ce4ca6febb05c73a11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForward: {x: 0, y: 0}
-  increaseSpeed: 0
+  moveForward: {x: 1, y: 0.5}
+  increaseSpeed: 40
   gameController: {fileID: 146821603}
 --- !u!61 &654996996
 BoxCollider2D:
@@ -488,8 +488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d76e1d7bf595b46882939035d0f266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForward: {x: 0, y: 0}
-  increaseSpeed: 0
+  moveForward: {x: 1, y: 0.5}
+  increaseSpeed: 200
   playerBox: {fileID: 654996996}
 --- !u!61 &917304050
 BoxCollider2D:

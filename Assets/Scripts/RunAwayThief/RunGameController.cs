@@ -38,7 +38,7 @@ namespace RunAwayThief
             }
             if(end == false)
             { 
-                if (Time.time > nextActionTime)
+                if (Time.time*Time.deltaTime > nextActionTime)
                 {
                     nextActionTime += period;
                     enemy.EnemyRun();
