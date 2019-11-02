@@ -8,7 +8,7 @@ namespace Pong360
     {
         void Start()
         {
-            print("spawned!");
+            // print("spawned!");
         }
 
         void Update()

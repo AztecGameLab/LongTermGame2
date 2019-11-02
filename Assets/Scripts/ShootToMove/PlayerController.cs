@@ -26,7 +26,7 @@ namespace ShootToMove
             float faceAngle = (Mathf.Atan2(faceDirection.y, faceDirection.x) * Mathf.Rad2Deg) - 90;
             rb.SetRotation(faceAngle);
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Primary"))
             {
                 Shoot();
             }

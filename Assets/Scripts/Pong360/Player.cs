@@ -23,14 +23,14 @@ namespace Pong360
         
         void Update()
         {
-            if (Input.GetButtonDown("Primary"))
+            /* if (Input.GetButtonDown("Primary"))
                 print("primary");
             if (Input.GetButtonDown("Secondary"))
-                print("secondary");
+                print("secondary"); */
             float horizontal = Input.GetAxisRaw("Horizontal");
-            print(horizontal);
+            // print(horizontal);
             float vertical = Input.GetAxisRaw("Vertical");
-            print(vertical);
+            // print(vertical);
 
             Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

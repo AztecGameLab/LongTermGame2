@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace RunAwayThief
 {
-    public class RunPlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
-        // Start is called before the first frame update
         public Vector2 moveForward;
         public float increaseSpeed;
-        public RunGameController gameController;
+        public GameController gameController;
+
+        Rigidbody2D body;
+
         void Start()
         {
-
+            body = GetComponent<Rigidbody2D>();
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             if(!gameController.end)
@@ -27,8 +29,8 @@ namespace RunAwayThief
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                GetComponent<Rigidbody2D>().velocity = moveForward;
-                GetComponent<Rigidbody2D>().AddForce(moveForward * increaseSpeed);
+                body.velocity = moveForward;
+                body.AddForce(moveForward * increaseSpeed);
             }
         }
     }

@@ -32,7 +32,7 @@ namespace ShootToMove
             if (collision.gameObject.name == "Shooty")
             {
                 Destroy(collision.gameObject);
-                SceneManager.LoadScene("ShootToMove");
+                SceneManager.LoadScene(4);
             }
         }
 

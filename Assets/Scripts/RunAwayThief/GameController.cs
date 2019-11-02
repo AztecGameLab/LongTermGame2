@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace RunAwayThief
 {
-    public class RunGameController : MonoBehaviour
+    public class GameController : MonoBehaviour
     {
-        public RunPlayerController player;
-        public RunEnemyController enemy;
+        public PlayerController player;
+        public EnemyController enemy;
         public GameObject Canvas, Panel_Win, Panel_Lose, ground;
         public Collider2D playerCollider, enemyCollider, groundCollider;
         public bool end = false;
-        private float nextActionTime = 0.0f;
         public float period = 0.1f;
+
+        float nextActionTime = 0.0f;
+
         void Start()
         {
             Canvas.SetActive(false);
@@ -23,7 +25,6 @@ namespace RunAwayThief
             groundCollider = ground.GetComponent<Collider2D>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (enemyCollider.IsTouching(playerCollider))
@@ -45,6 +46,7 @@ namespace RunAwayThief
                 }
             }
         }
+
         public void EndGame(string endCondition)
         {
             if (endCondition == "lose")
@@ -62,7 +64,5 @@ namespace RunAwayThief
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             enemy.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
-        
     }
-
 }

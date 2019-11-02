@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
     {
        
     }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
@@ -18,10 +19,12 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
 #endif
     }
+
     public void PlayTest()
     {
         print("Play Button Pressed");
     }
+
     public void showCredits()
     {
         print("People made this");
