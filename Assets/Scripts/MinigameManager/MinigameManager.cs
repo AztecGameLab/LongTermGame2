@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MinigameManager : MonoBehaviour
 {
-    System.Random _random = new System.Random();
     private static MinigameManager _instance;
     public static float difficulty = 0;
     public static int cutsceneIndex = 0;
@@ -17,21 +16,28 @@ public class MinigameManager : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
+            if (_instance)
+                return _instance;
+            else
             {
-                var instanceGm = new GameObject("Minigame Manager");
-                _instance=instanceGm.AddComponent<MinigameManager>();
+                var ManagerGM = new GameObject("Minigame Manager");
+                return ManagerGM.AddComponent<MinigameManager>();
             }
-
-            return _instance;
         }
     }
 
     void Awake()
     {
-        _instance = this;
-        DontDestroyOnLoad(this);
+        if (_instance && _instance != this)
+            Destroy(gameObject);
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+            RandomlyGenerateMinigameSequence();
+        }
     }
+
     public void FinishMinigame(bool win)
     {
         if (win)
@@ -54,7 +60,7 @@ public class MinigameManager : MonoBehaviour
     }
     public void MenuStart()
     {
-        RandomlyGenerateMinigameSequence();
+        
         nextScene();
     }
     private void LoadNextMinigame()
@@ -73,13 +79,13 @@ public class MinigameManager : MonoBehaviour
     {
         if (cutsceneIndex == cutsceneIndices.Length)
             LoadNextMinigame();
-        SceneManager.LoadScene(cutsceneIndices[cutsceneIndex]);
+        SceneManager.LoadScene(cutsceneIndices[cutsceneIndex++]);
     }
     public void nextScene()
     {
         if (frequency.Length == frequencyIndex)
         {
-            Debug.Log("GAME OVER");
+            RestartGame();
         }
         else
         {
@@ -91,20 +97,28 @@ public class MinigameManager : MonoBehaviour
     }
     private void RandomlyGenerateMinigameSequence()
     {
-        cutsceneIndices = Shuffle(cutsceneIndices);
+        minigameIndices = Shuffle(minigameIndices);
     }
     
     int[] Shuffle(int[] array)
     {
-
+        Random.seed = System.DateTime.Now.Millisecond;
         int p = array.Length;
-        for (int n = p - 1; n > 0; n--)
+        var tmp = new List<int> (array);
+        for (int n = 0; n < p; n++)
         {
-            int r = _random.Next(1, n);
-            int t = array[r];
-            array[r] = array[n];
-            array[n] = t;
+            int r = Random.Range(0, tmp.Count);
+            array[n] = tmp[r];
+            tmp.RemoveAt(r);
         }
         return array;
+    }
+    public void RestartGame()
+    {
+        cutsceneIndex = 0;
+        frequencyIndex = 0;
+        minigameIndex = 0;
+        RandomlyGenerateMinigameSequence();
+        SceneManager.LoadScene(0);
     }
 }
