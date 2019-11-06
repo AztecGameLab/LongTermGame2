@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Byron;
 
 namespace RunAwayThief
 {
@@ -9,6 +10,8 @@ namespace RunAwayThief
         public Vector2 moveForward;
         public float increaseSpeed;
         public BoxCollider2D playerBox;
+
+        [SerializeField] AudioClip FootSteps;
 
         void Start()
         {
@@ -24,6 +27,7 @@ namespace RunAwayThief
         {
             this.GetComponent<Rigidbody2D>().velocity = moveForward;
             this.GetComponent<Rigidbody2D>().AddForce(moveForward * increaseSpeed);
+            AudioManager.instance.PlaySFX(FootSteps);
         }
     }
 }
