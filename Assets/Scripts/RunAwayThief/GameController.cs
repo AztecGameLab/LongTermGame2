@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Byron;
+using UnityEngine.Audio;
 
 namespace RunAwayThief
 {
@@ -15,6 +17,8 @@ namespace RunAwayThief
 
         float nextActionTime = 0.0f;
 
+        [SerializeField] AudioClip RunAwayThief;
+
         void Start()
         {
             Canvas.SetActive(false);
@@ -23,6 +27,17 @@ namespace RunAwayThief
             playerCollider = player.GetComponent<Collider2D>();
             enemyCollider = enemy.GetComponent<Collider2D>();
             groundCollider = ground.GetComponent<Collider2D>();
+
+            StartCoroutine(LoopRunAwayThief());
+        }
+
+        IEnumerator LoopRunAwayThief()
+        {
+            while (true)
+            {
+                AudioManager.instance.PlayMusic(RunAwayThief);
+                yield return new WaitForSecondsRealtime(22.857f);
+            }
         }
 
         void Update()
