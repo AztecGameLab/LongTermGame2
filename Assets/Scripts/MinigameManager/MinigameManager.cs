@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 public class MinigameManager : MonoBehaviour
 {
     private static MinigameManager _instance;
@@ -71,15 +71,15 @@ public class MinigameManager : MonoBehaviour
             minigameIndex = 0;
         }
         if (UnityEditor.EditorApplication.isPlaying)
-            SceneManager.LoadScene(minigameIndices[minigameIndex++]);
+            EditorSceneManager.LoadScene(minigameIndices[minigameIndex++]);
         else if (!UnityEditor.EditorApplication.isPlaying)
-            UnityEditor.EditorApplication.OpenScene(SceneManager.GetSceneAt(minigameIndices[minigameIndex++]).name);
+            EditorSceneManager.OpenScene(EditorSceneManager.GetSceneAt(minigameIndices[minigameIndex++]).name);
     }
     private void LoadNextCutscene()
     {
         if (cutsceneIndex == cutsceneIndices.Length)
             LoadNextMinigame();
-        SceneManager.LoadScene(cutsceneIndices[cutsceneIndex++]);
+        EditorSceneManager.LoadScene(cutsceneIndices[cutsceneIndex++]);
     }
     public void nextScene()
     {
@@ -102,7 +102,7 @@ public class MinigameManager : MonoBehaviour
     
     int[] Shuffle(int[] array)
     {
-        Random.seed = System.DateTime.Now.Millisecond;
+        Random.InitState(System.DateTime.Now.Millisecond);
         int p = array.Length;
         var tmp = new List<int> (array);
         for (int n = 0; n < p; n++)
@@ -119,6 +119,6 @@ public class MinigameManager : MonoBehaviour
         frequencyIndex = 0;
         minigameIndex = 0;
         RandomlyGenerateMinigameSequence();
-        SceneManager.LoadScene(0);
+        EditorSceneManager.LoadScene(0);
     }
 }

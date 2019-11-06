@@ -1,29 +1,19 @@
-﻿#pragma warning disable 0649
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Memorize {
     public class PlayerController : MonoBehaviour
     {
+        GameObject[] buttons;
+        #pragma warning disable 0649
         [SerializeField]
         GameObject buttonPrefab;
-        GameObject[] buttons;
+        [SerializeField]
+        float maxTime, currentTime;
+        #pragma warning restore 0649
 
-        // Start is called before the first frame update
-        void Start()
+        void FixedUpdate()
         {
-            NewSet();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                EndSet();
-                NewSet();
-            }
+            
         }
 
         float RandomDirection()
@@ -52,4 +42,3 @@ namespace Memorize {
         }
     }
 }
-#pragma warning restore 0649
