@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
+
 public class MinigameManager : MonoBehaviour
 {
     private static MinigameManager _instance;
@@ -71,15 +73,15 @@ public class MinigameManager : MonoBehaviour
             minigameIndex = 0;
         }
         if (UnityEditor.EditorApplication.isPlaying)
-            EditorSceneManager.LoadScene(minigameIndices[minigameIndex++]);
+            SceneManager.LoadScene(minigameIndices[minigameIndex++]);
         else if (!UnityEditor.EditorApplication.isPlaying)
-            EditorSceneManager.OpenScene(EditorSceneManager.GetSceneAt(minigameIndices[minigameIndex++]).name);
+            EditorSceneManager.OpenScene(SceneManager.GetSceneAt(minigameIndices[minigameIndex++]).name);
     }
     private void LoadNextCutscene()
     {
         if (cutsceneIndex == cutsceneIndices.Length)
             LoadNextMinigame();
-        EditorSceneManager.LoadScene(cutsceneIndices[cutsceneIndex++]);
+        SceneManager.LoadScene(cutsceneIndices[cutsceneIndex++]);
     }
     public void nextScene()
     {
@@ -119,6 +121,6 @@ public class MinigameManager : MonoBehaviour
         frequencyIndex = 0;
         minigameIndex = 0;
         RandomlyGenerateMinigameSequence();
-        EditorSceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 }
