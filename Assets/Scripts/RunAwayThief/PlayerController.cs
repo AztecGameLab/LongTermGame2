@@ -14,7 +14,11 @@ namespace RunAwayThief
         private bool isGrounded;
         Rigidbody2D body;
 
+        #pragma warning disable 0649
+
         [SerializeField] AudioClip FootSteps;
+        #pragma warning restore 0649
+
 
         void Start()
         {
