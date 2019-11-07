@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Memorize {
@@ -25,12 +26,7 @@ namespace Memorize {
             slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
             maxTime = absoluteMaxTime; // TODO pass in or globalize somehow instead
 
-            GameLoop(); // TODO coroutine
-        }
-
-        void FixedUpdate()
-        {
-
+            StartCoroutine(GameLoop());
         }
 
         float RandomDirection()
@@ -74,25 +70,39 @@ namespace Memorize {
             }
         }
 
-        void GameLoop()
+        IEnumerator GameLoop()
         {
             slider.maxValue = maxTime;
             slider.value = slider.minValue;
             NewSet();
             slider.gameObject.SetActive(true);
             memorizeText.enabled = true;
-            // TODO memorize: start increasing slider time
+            // memorize
+            while (slider.value < slider.maxValue)
+            {
+                slider.value += Time.deltaTime;
+                yield return null;
+            }
             HideSet();
             memorizeText.enabled = false;
             slider.value = slider.maxValue = absoluteMaxTime;
             repeatText.enabled = true;
-            // TODO repeat: start decreasing slider time and receive input
+            // repeat
+            while (slider.value > slider.minValue)
+            {
+                // TODO receive input
+                slider.value -= Time.deltaTime;
+                yield return null;
+            }
             slider.gameObject.SetActive(false);
             repeatText.enabled = false;
             ShowSet();
-            // TODO score: show user input for comparison and use sum of remaining time as bonus and another score for completion, display for absoluteMaxTime secs
+            // TODO show user input and score (remaining time + completion)
+            yield return new WaitForSeconds(absoluteMaxTime);
+            // TODO hide user input and score
             EndSet();
             maxTime -= maxTime > deltaMaxTime ? deltaMaxTime : 0;
+            yield return null;
         }
     }
 }
