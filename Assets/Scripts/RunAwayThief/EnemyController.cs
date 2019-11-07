@@ -10,6 +10,8 @@ namespace RunAwayThief
         public float increaseSpeed;
         public BoxCollider2D playerBox;
 
+        [SerializeField] AudioClip FootSteps;
+
         void Start()
         {
             playerBox = GetComponent<BoxCollider2D>();
@@ -24,6 +26,8 @@ namespace RunAwayThief
         {
             this.GetComponent<Rigidbody2D>().velocity = moveForward * difficultyModifier;
             this.GetComponent<Rigidbody2D>().AddForce(moveForward * increaseSpeed);
+            AudioManager.instance.PlaySFX(FootSteps, 0.7f);
+            AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace RunAwayThief
         private bool isGrounded;
         Rigidbody2D body;
 
+        [SerializeField] AudioClip FootSteps;
+
         void Start()
         {
             body = GetComponent<Rigidbody2D>();
@@ -59,6 +61,8 @@ namespace RunAwayThief
             {
                 Debug.Log("is grounded");
                 isGrounded = true;
+                AudioManager.instance.PlaySFX(FootSteps, 0.7f);
+                AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
             }
         }
 
