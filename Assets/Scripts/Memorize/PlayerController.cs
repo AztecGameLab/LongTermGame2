@@ -78,21 +78,23 @@ namespace Memorize {
             slider.gameObject.SetActive(true);
             memorizeText.enabled = true;
             // memorize
+            print("memorize");
             while (slider.value < slider.maxValue)
             {
                 slider.value += Time.deltaTime;
-                yield return null;
+                //yield return null;
             }
             HideSet();
             memorizeText.enabled = false;
             slider.value = slider.maxValue = absoluteMaxTime;
             repeatText.enabled = true;
             // repeat
+            print("repeat");
             while (slider.value > slider.minValue)
             {
                 // TODO receive input
                 slider.value -= Time.deltaTime;
-                yield return null;
+                //yield return null;
             }
             slider.gameObject.SetActive(false);
             repeatText.enabled = false;
