@@ -294,7 +294,10 @@ MonoBehaviour:
     type: 3}
   absoluteMaxTime: 5
   deltaMaxTime: 0.2
-  waitTime: 1.5
+  waitTime: 1.25
+  maxButtons: 5
+  minButtons: 3
+  difficulty: 2
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0

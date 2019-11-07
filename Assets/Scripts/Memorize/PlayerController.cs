@@ -10,21 +10,28 @@ namespace Memorize {
         GameObject buttonPrefab;
         [SerializeField]
         float absoluteMaxTime, deltaMaxTime, waitTime;
+        // TODO globalize or pass in difficulty
+        // difficulty must be less than absoluteMaxTime
+        [SerializeField]
+        int maxButtons, minButtons, difficulty;
         #pragma warning restore 0649
 
         GameObject[] buttons;
         Slider slider;
         Text memorizeText, repeatText;
-        float maxTime;
+        float maxTime, deltaButtons;
 
         void Start()
         {
+            deltaButtons = maxButtons - minButtons;
+            maxButtons += difficulty;
+            minButtons += difficulty;
             slider = GetComponentInChildren<Slider>();
             Text[] texts = GetComponentsInChildren<Text>();
             memorizeText = texts[0];
             repeatText = texts[1];
             slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
-            maxTime = 3; // TODO pass in or globalize somehow instead
+            maxTime = absoluteMaxTime - difficulty;
 
             StartCoroutine(GameLoop());
         }
@@ -37,7 +44,8 @@ namespace Memorize {
 
         void NewSet()
         {
-            buttons = new GameObject[Mathf.RoundToInt(Random.value * 3f) + 3];
+            buttons = new GameObject[Mathf.RoundToInt(Random.value * deltaButtons) + minButtons];
+            // TODO fix placement of buttons on screen
             float j = -buttons.Length - 1;
             for (int i = 0; i < buttons.Length; i++)
             {
@@ -101,11 +109,10 @@ namespace Memorize {
             slider.gameObject.SetActive(false);
             repeatText.enabled = false;
             ShowSet();
-            // TODO show score (remaining time + completion)
+            // TODO show score = (remaining input time + completion) * difficulty
             yield return new WaitForSeconds(absoluteMaxTime);
             // TODO hide user input and score
             EndSet();
-            maxTime -= maxTime > deltaMaxTime ? deltaMaxTime : 0;
             yield return null;
         }
     }
