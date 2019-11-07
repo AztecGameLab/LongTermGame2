@@ -10,10 +10,6 @@ namespace RunAwayThief
         public float increaseSpeed;
         public BoxCollider2D playerBox;
 
-        #pragma warning disable 0649
-        [SerializeField] AudioClip FootSteps;
-        #pragma warning restore 0649
-
         void Start()
         {
             playerBox = GetComponent<BoxCollider2D>();
@@ -24,12 +20,10 @@ namespace RunAwayThief
             
         }
 
-        public void EnemyRun()
+        public void EnemyRun(float difficultyModifier)
         {
-            this.GetComponent<Rigidbody2D>().velocity = moveForward;
+            this.GetComponent<Rigidbody2D>().velocity = moveForward * difficultyModifier;
             this.GetComponent<Rigidbody2D>().AddForce(moveForward * increaseSpeed);
-            AudioManager.instance.PlaySFX(FootSteps, 0.7f);
-            AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
         }
     }
 }
