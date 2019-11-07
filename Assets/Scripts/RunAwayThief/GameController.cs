@@ -12,10 +12,10 @@ namespace RunAwayThief
         public Collider2D playerCollider, enemyCollider, groundCollider;
         public bool end = false;
         public float period = 0.1f;
-
+        [SerializeField]
+        private float changeSpeed;
+        [Range(0, 1)] public float difficultyModifier;
         float nextActionTime = 0.0f;
-
-        [SerializeField] AudioClip RunAwayThief;
 
         void Start()
         {
@@ -25,6 +25,8 @@ namespace RunAwayThief
             playerCollider = player.GetComponent<Collider2D>();
             enemyCollider = enemy.GetComponent<Collider2D>();
             groundCollider = ground.GetComponent<Collider2D>();
+            changeSpeed = Mathf.LerpUnclamped(1, 2, difficultyModifier);
+            player.SetMoveForward(changeSpeed);
         }
 
         void Update()
@@ -40,11 +42,12 @@ namespace RunAwayThief
                 end = true;
             }
             if(end == false)
-            { 
-                if (Time.time*Time.deltaTime > nextActionTime)
+            {
+                player.PlayerRun();
+                if (Time.time/**Time.deltaTime*/ > nextActionTime)
                 {
                     nextActionTime += period;
-                    enemy.EnemyRun();
+                    enemy.EnemyRun(changeSpeed);
                 }
             }
         }
