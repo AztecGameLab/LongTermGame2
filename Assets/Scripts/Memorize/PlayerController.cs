@@ -9,7 +9,7 @@ namespace Memorize {
         [SerializeField]
         GameObject buttonPrefab;
         [SerializeField]
-        float absoluteMaxTime, deltaMaxTime;
+        float absoluteMaxTime, deltaMaxTime, waitTime;
         #pragma warning restore 0649
 
         GameObject[] buttons;
@@ -24,7 +24,7 @@ namespace Memorize {
             memorizeText = texts[0];
             repeatText = texts[1];
             slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
-            maxTime = absoluteMaxTime; // TODO pass in or globalize somehow instead
+            maxTime = 3; // TODO pass in or globalize somehow instead
 
             StartCoroutine(GameLoop());
         }
@@ -74,32 +74,34 @@ namespace Memorize {
         {
             slider.maxValue = maxTime;
             slider.value = slider.minValue;
+            memorizeText.enabled = true;
+            yield return new WaitForSeconds(waitTime);
             NewSet();
             slider.gameObject.SetActive(true);
-            memorizeText.enabled = true;
             // memorize
-            print("memorize");
             while (slider.value < slider.maxValue)
             {
                 slider.value += Time.deltaTime;
-                //yield return null;
+                yield return null;
             }
-            HideSet();
+            slider.gameObject.SetActive(false);
             memorizeText.enabled = false;
+            HideSet();
             slider.value = slider.maxValue = absoluteMaxTime;
+            yield return new WaitForSeconds(waitTime);
             repeatText.enabled = true;
+            slider.gameObject.SetActive(true);
             // repeat
-            print("repeat");
             while (slider.value > slider.minValue)
             {
-                // TODO receive input
+                // TODO receive input, show it
                 slider.value -= Time.deltaTime;
-                //yield return null;
+                yield return null;
             }
             slider.gameObject.SetActive(false);
             repeatText.enabled = false;
             ShowSet();
-            // TODO show user input and score (remaining time + completion)
+            // TODO show score (remaining time + completion)
             yield return new WaitForSeconds(absoluteMaxTime);
             // TODO hide user input and score
             EndSet();

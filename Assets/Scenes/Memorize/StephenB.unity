@@ -294,6 +294,7 @@ MonoBehaviour:
     type: 3}
   absoluteMaxTime: 5
   deltaMaxTime: 0.2
+  waitTime: 1.5
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0
