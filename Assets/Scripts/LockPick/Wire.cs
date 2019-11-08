@@ -54,13 +54,13 @@ namespace LockPick{
             }
             
             //This is how to move the "wire" up.
-            if (Input.GetKey(KeyCode.Z))
+            if (Input.GetButton("Primary"))
             {
                 GetComponent<Rigidbody2D>().velocity = liftUp;            
             }
 
             //Presses button at a certain point to see if the lock pick actually works
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetButtonDown("Secondary"))
             {
                 //Success if it's in range
                 if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 0.5f)
