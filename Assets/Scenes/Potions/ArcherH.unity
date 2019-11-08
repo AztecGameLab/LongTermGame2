@@ -151,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillLine: {fileID: 6194863189861217832, guid: 703d8bc629289d44fae45fd3f85269bd,
     type: 3}
+  colorTarget: {fileID: 8869998434054114705, guid: a4e002654eb44834fbe8490695043cda,
+    type: 3}
   bottleOrigin: {fileID: 304243435}
   filled: 0
   fillRate: 0.5
@@ -162,6 +164,9 @@ MonoBehaviour:
   redAmount: 0
   yellowAmount: 0
   blueAmount: 0
+  redPotency: 0
+  yellowPotency: 0
+  bluePotency: 0
 --- !u!4 &273684209
 Transform:
   m_ObjectHideFlags: 0
