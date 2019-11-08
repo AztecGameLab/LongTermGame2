@@ -103,12 +103,13 @@ namespace LockPick{
                     }
                     else
                     {
-                        //Create a "You won!" function
-                        WinState();
+                                               
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                         this.enabled = false;
-                        
+                        //Create a "You won!" function
+                        WinState();
+
                     }
                 }
 
