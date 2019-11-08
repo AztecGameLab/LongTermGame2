@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class SpawnEnemies : MonoBehaviour
 {
     public GameObject troll;
-    int count = 0;
+    // int count = 0;
     float timer = 0.0f;
     float speedIncrement = 0.0f;
     int trollCount = 0;
@@ -45,7 +45,7 @@ public class SpawnEnemies : MonoBehaviour
         if (trollCount >= 3)
         {
             currTroll.GetComponent<TrollMovement>().speed += speedIncrement;
-            count = 0;
+            // count = 0;
         }
     }
    
