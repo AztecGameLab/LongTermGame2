@@ -7,6 +7,7 @@ namespace Potions
     public class GameController : MonoBehaviour
     {
         public GameObject fillLine;
+        public GameObject colorTarget;
         public GameObject bottleOrigin;
         [Range(0, 1)]
         [SerializeField]
@@ -20,20 +21,23 @@ namespace Potions
         public float r, g, b, opaqueness;
 
         public float redAmount, yellowAmount, blueAmount;
+        public float redPotency, yellowPotency, bluePotency;
         private float overflowAmount;
 
+        
+        GameObject instancedColorTarget;
 
 
         Vector3[] cube = new Vector3[8]
         {
-                new Vector3(1,1,1),
-                new Vector3(0.163f,0.373f,0.6f),
-                new Vector3(0.5f,0.5f,0),
-                new Vector3(1,0,0),
-                new Vector3(1,1,0),
-                new Vector3(0,0.66f,0.2f),
-                new Vector3(0.2f,0.094f,0),
-                new Vector3(1,0.5f,0),
+                new Vector3(1f,1f,1f),
+                new Vector3(0,0,1f),
+                new Vector3(1f,0f,1f),
+                new Vector3(1f,0,0),
+                new Vector3(1f,1f,0),
+                new Vector3(0,1f,0),
+                new Vector3(0,0,0),
+                new Vector3(1f,0.5f,0),
         };
 
         // Start is called before the first frame update
@@ -46,6 +50,8 @@ namespace Potions
             opaqueness = 1;
 
             Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
+            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-3, filledSize,0),Quaternion.identity);
+            instancedColorTarget.GetComponent<SpriteRenderer>().color = GetRandomColor();
         }
 
         // Update is called once per frame
@@ -76,7 +82,11 @@ namespace Potions
                 yellowAmount -= overflowAmount * (yellowAmount / (redAmount + yellowAmount + blueAmount));
                 blueAmount -= overflowAmount * (blueAmount / (redAmount + yellowAmount + blueAmount));
             }
-            RYBtoRGB(redAmount, yellowAmount, blueAmount,out r,out g,out b);
+            redPotency = redAmount / (redAmount + yellowAmount + blueAmount);
+            yellowPotency = yellowAmount / (redAmount + yellowAmount + blueAmount);
+            bluePotency = blueAmount / (redAmount + yellowAmount + blueAmount);
+            RYBtoRGB(redPotency, yellowPotency, bluePotency,out r,out g,out b);
+            
             filled = redAmount + yellowAmount + blueAmount;
         }
         private void Reset()
@@ -89,7 +99,13 @@ namespace Potions
             redAmount = 0;
             blueAmount = 0;
             yellowAmount = 0;
+            redPotency = 0;
+            bluePotency = 0;
+            yellowPotency = 0;
             overflowAmount = 0;
+            Destroy(instancedColorTarget);
+            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-3, filledSize, 0), Quaternion.identity);
+            instancedColorTarget.GetComponent<SpriteRenderer>().color = GetRandomColor();
         }
         private void RYBtoRGB(float r_RYB, float y_RYB, float b_RYB, out float r, out float g, out float b)
         {
@@ -107,6 +123,54 @@ namespace Potions
             g = interp7.y;
             b = interp7.z;
 
+        }
+        private Color GetRandomColor()
+        {
+            float val1, val2, val3;
+            float red, yellow, blue;
+            val1 = Random.Range(0f, 1f);
+            val2 = Random.Range(0f, 1f - val1);
+            val3 = Random.Range(0f, 1f - val1 - val2);
+            int sort = Random.Range(0, 5);
+            if(sort == 0)
+            {
+                red = val1;
+                yellow = val2;
+                blue = val3;
+            }
+            else if(sort == 1)
+            {
+                red = val2;
+                yellow = val1;
+                blue = val3;
+            }
+            else if(sort == 2)
+            {
+                red = val3;
+                yellow = val2;
+                blue = val1;
+            }
+            else if(sort == 3)
+            {
+                red = val1;
+                yellow = val3;
+                blue = val2;
+            }
+            else if(sort == 4)
+            {
+                red = val2;
+                yellow = val3;
+                blue = val1;
+            }
+            else
+            {
+                red = val3;
+                yellow = val1;
+                blue = val1;
+            }
+            float r, g, b;
+            RYBtoRGB(red, yellow, blue, out r, out g, out b);
+            return new Color(r, g, b);
         }
     }
 }
