@@ -30,7 +30,7 @@ namespace Sniper
             {
                 transform.position = (Vector2)transform.position + new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * cursorSpeed * Time.deltaTime;
             }
-            if (Input.GetKeyDown("space"))
+            if (Input.GetButtonDown("Primary"))
             {
                 Ray ray = new Ray(transform.position + new Vector3(0,0,-5), new Vector3(0, 0, 1));
                 RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 40f, (1 << 10) | (1 << 11));
