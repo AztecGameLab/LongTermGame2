@@ -24,6 +24,8 @@ namespace LockPick{
         {
             uiText.GetComponent<Text>().text = "We're in!";
             print("We're in!");
+
+            MinigameManager.Instance.FinishMinigame(true);
             /*
              * Probably will add more things.
              * Lock Background image should be changed as popped open instead of still closed

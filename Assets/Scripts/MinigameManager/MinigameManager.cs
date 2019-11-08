@@ -23,7 +23,7 @@ public class MinigameManager : MonoBehaviour
             else
             {
                 var ManagerGM = new GameObject("Minigame Manager");
-                return ManagerGM.AddComponent<MinigameManager>();
+                return _instance = ManagerGM.AddComponent<MinigameManager>();
             }
         }
     }
