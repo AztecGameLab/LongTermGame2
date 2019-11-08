@@ -6,6 +6,8 @@ MonoImporter:
   defaultReferences:
   - buttonPrefab: {fileID: 844593196040894702, guid: e75ca2e233bfe57c6b696653908a17a9,
       type: 3}
+  - placeholderPrefab: {fileID: 3081946713393475509, guid: 4c60018f060f85a4f95782d0a2c6a436,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
