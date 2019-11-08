@@ -7,10 +7,10 @@ using Random = UnityEngine.Random;
 public class SpawnEnemies : MonoBehaviour
 {
     public GameObject troll;
-    // int count = 0;
     float timer = 0.0f;
     float speedIncrement = 0.0f;
     int trollCount = 0;
+    int numSpawn = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +26,15 @@ public class SpawnEnemies : MonoBehaviour
 
         //consequent trolls are spawned in intervals of 1-3 seconds
         randX = Random.Range(-8f, 8f);
-        randDelay = Random.Range(1.0f, 4.5f);
+        float delayLowerBound = 1.0f;
+        float delayUpperBound = 4.5f;
+        randDelay = Random.Range(delayLowerBound, delayUpperBound);
 
         timer += Time.deltaTime;
         if (timer > randDelay)
         {
-            SpawnEnemy(randX);
             trollCount++;
+            SpawnEnemy(randX);
             timer = 0.0f;
         }
     }
@@ -40,13 +42,16 @@ public class SpawnEnemies : MonoBehaviour
     //spawns enemy trolls to the scene
     private void SpawnEnemy(float x)
     {
-        GameObject currTroll = Instantiate(troll, new Vector2(x, 6), Quaternion.identity);
 
-        if (trollCount >= 3)
+        if (trollCount > 2)
         {
-            currTroll.GetComponent<TrollMovement>().speed += speedIncrement;
-            // count = 0;
+            speedIncrement += 0.5f;
+            trollCount = 0;
+            numSpawn++;
         }
+
+        GameObject currTroll = Instantiate(troll, new Vector2(x, 6), Quaternion.identity);
+        currTroll.GetComponent<TrollMovement>().speed += speedIncrement;
     }
    
 }
