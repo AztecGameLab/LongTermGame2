@@ -42,7 +42,7 @@ namespace Memorize {
             StartCoroutine(GameLoop());
         }
 
-        void FixedUpdate()
+        void Update()
         {
             // TODO eating inputs?
             if (inputAllowed)
@@ -141,7 +141,7 @@ namespace Memorize {
             while (slider.value > slider.minValue)
             {
                 slider.value -= Time.deltaTime;
-                yield return null; // yields for FixedUpdate()
+                yield return null; // yields for Update()
             }
             inputAllowed = false;
             slider.gameObject.SetActive(false);
