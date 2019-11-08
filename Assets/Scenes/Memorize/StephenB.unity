@@ -298,7 +298,7 @@ MonoBehaviour:
   waitTime: 1.25
   maxButtons: 5
   minButtons: 3
-  difficulty: 2
+  difficulty: 0
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0
