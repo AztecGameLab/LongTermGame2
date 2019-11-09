@@ -11,12 +11,14 @@ namespace Defend
         private float monsterStopwatch = 2f;
 
         public GameObject playerCharacter;
-        public int monsterColumnPosition;
+        public int monsterColumnPosition = 2;
         
         // Start is called before the first frame update
         void Start()
         {
+            //For this line here, I need to make a spawner script that just controls the actual position of the Monster.
             monsterColumnPosition = playerCharacter.GetComponent<PlayerMovement>().playerPosition;
+
         }
 
         // Update is called once per frame
@@ -24,6 +26,7 @@ namespace Defend
         {
             monsterStopwatch -= Time.deltaTime;
             MonsterMove();
+            
         }
 
         //This is an automated movement of the monster and at the end checks if properly defended
@@ -31,7 +34,6 @@ namespace Defend
         {
             if(monsterStopwatch < 0)
             {
-                print("Did you move successfully?");
                 transform.position = new Vector2(transform.position.x, transform.position.y - 1);
                 monsterStopwatch = 2f;
             }
@@ -44,7 +46,7 @@ namespace Defend
         //Checks if there's a defense to stop the monster from killing you
         void DefenseCheck()
         {
-            
+            print(monsterColumnPosition);
             if (monsterColumnPosition == 1)
             {
                 if (playerCharacter.GetComponent<PlayerMovement>().defensePresent1 == true)
@@ -69,9 +71,9 @@ namespace Defend
                     this.enabled = false;
                 }
             }
-            if (monsterColumnPosition == 1)
+            if (monsterColumnPosition == 3)
             {
-                if (playerCharacter.GetComponent<PlayerMovement>().defensePresent2 == true)
+                if (playerCharacter.GetComponent<PlayerMovement>().defensePresent3 == true)
                 {
                     Destroy(gameObject);
                 }
