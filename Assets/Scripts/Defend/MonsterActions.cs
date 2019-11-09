@@ -8,17 +8,22 @@ namespace Defend
 
     public class MonsterActions : MonoBehaviour
     {
-        private float monsterStopwatch = 2f;
+        private float monsterStopwatch = 1f;
 
-        public GameObject monsterplayer;
+        private GameObject monsterPlayer;
+        private GameObject evilSummoner;
         public int monsterColumnPosition = 2;
-        
+
+        public GameObject defenses;
+
         // Start is called before the first frame update
         void Start()
-        {
+        {        
             //For this line here, I need to make a spawner script that just controls the actual column of the spawn position of the Monster.
-            monsterplayer = GameObject.Find("Player");
-            monsterColumnPosition = monsterplayer.GetComponent<PlayerActions>().playerPosition;
+            evilSummoner = GameObject.Find("Evil Dude");
+            monsterColumnPosition = evilSummoner.GetComponent<EvilSummonerActions>().spawnColumn;
+
+            monsterPlayer = GameObject.Find("Player");
                        
         }
 
@@ -36,7 +41,7 @@ namespace Defend
             if(monsterStopwatch < 0)
             {
                 transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-                monsterStopwatch = 2f;
+                monsterStopwatch = 1f;
             }
             if (transform.position.y <= -2)
             {
@@ -50,9 +55,13 @@ namespace Defend
             
             if (monsterColumnPosition == 1)
             {
-                if (monsterplayer.GetComponent<PlayerActions>().defensePresent1 == true)
+                if (monsterPlayer.GetComponent<PlayerActions>().defensePresent1 == true)
                 {
+                    //defenses.GetComponent<DefenderActions>().defenseMonsterPresent1 = true;
+                    Destroy(GameObject.Find("Defender1(Clone)"));
                     Destroy(gameObject);
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent1 = false;
+                    monsterPlayer.GetComponent<PlayerActions>().defensePresent1 = false;
                 }
                 else
                 {
@@ -62,9 +71,13 @@ namespace Defend
             }
             if (monsterColumnPosition == 2)
             {
-                if (monsterplayer.GetComponent<PlayerActions>().defensePresent2 == true)
+                if (monsterPlayer.GetComponent<PlayerActions>().defensePresent2 == true)
                 {
+                    //defenses.GetComponent<DefenderActions>().defenseMonsterPresent2 = true;
+                    Destroy(GameObject.Find("Defender2(Clone)"));
                     Destroy(gameObject);
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent2 = false;
+                    monsterPlayer.GetComponent<PlayerActions>().defensePresent2 = false;
                 }
                 else
                 {
@@ -74,9 +87,13 @@ namespace Defend
             }
             if (monsterColumnPosition == 3)
             {
-                if (monsterplayer.GetComponent<PlayerActions>().defensePresent3 == true)
+                if (monsterPlayer.GetComponent<PlayerActions>().defensePresent3 == true)
                 {
+                    //defenses.GetComponent<DefenderActions>().defenseMonsterPresent3 = true;
+                    Destroy(GameObject.Find("Defender3(Clone)"));
                     Destroy(gameObject);
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent3 = false;
+                    monsterPlayer.GetComponent<PlayerActions>().defensePresent3 = false;
                 }
                 else
                 {

@@ -24,8 +24,11 @@ namespace Defend
         public bool defensePresent2 = false;
         public bool defensePresent3 = false;
 
-        //Defense GameObject
-        public GameObject defenderSprite;
+        //Defense GameObjects
+        public GameObject defenderSprite1;
+        public GameObject defenderSprite2;
+        public GameObject defenderSprite3;
+        
 
 
         // Start is called before the first frame update
@@ -98,17 +101,17 @@ namespace Defend
         {
             if(playerPositionChecker == 1 && defensePresent1 == false)
             {
-                Instantiate(defenderSprite, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
+                Instantiate(defenderSprite1, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent1 = true;
             }
             if (playerPositionChecker == 2 && defensePresent2 == false)
             {
-                Instantiate(defenderSprite, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
+                Instantiate(defenderSprite2, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent2 = true;
             }
             if (playerPositionChecker == 3 && defensePresent3 == false)
             {
-                Instantiate(defenderSprite, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
+                Instantiate(defenderSprite3, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent3 = true;
             }
         }
