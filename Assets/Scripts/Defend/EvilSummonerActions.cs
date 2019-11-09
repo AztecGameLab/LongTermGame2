@@ -7,13 +7,22 @@ namespace Defend
 {
     public class EvilSummonerActions : MonoBehaviour
     {
-        private GameObject generalMonster;
-        private GameObject fastMonster;
-        private GameObject slowMonster;
+        public GameObject generalMonster;
+        public GameObject fastMonster;
+        public GameObject slowMonster;
+        private GameObject monsterToAdd;
 
-        private float spawnTimer = 4f;
+        private int spawnColumn;
+
+        private float spawnTimer = 3f;
 
         private int monsterDecider;
+
+        public GameObject playerCharacter;
+
+        public bool monsterPresent1;
+        public bool monsterPresent2;
+        public bool monsterPresent3;
 
 
         // Start is called before the first frame update
@@ -26,7 +35,7 @@ namespace Defend
         void Update()
         {
             spawnTimer -= Time.deltaTime;
-            SpawnMonster();print((int) Random.Range(0,3f));
+            SpawnMonster();
         }
 
         //The method that constantly and randomly spawns diff types of monsters
@@ -34,7 +43,34 @@ namespace Defend
         {
             if (spawnTimer < 0)
             {
-                monsterDecider = (int) Random.Range(1, 4f);
+                spawnTimer = 3f;
+
+                monsterDecider = (int) Random.Range(1f, 4f);
+                if(monsterDecider == 1)
+                    monsterToAdd = generalMonster;
+                if(monsterDecider == 2)
+                    monsterToAdd = fastMonster;
+                if (monsterDecider == 3)
+                    monsterToAdd = slowMonster;
+
+                spawnColumn = (int)Random.Range(1f, 4f);
+                if (spawnColumn == 1 && monsterPresent1 == false)
+                {
+                    Instantiate(monsterToAdd, playerCharacter.GetComponent<PlayerActions>().position1 + new Vector2(0, 7.5f), Quaternion.identity);
+                    monsterPresent1 = true;
+                }
+                if (spawnColumn == 2 && monsterPresent2 == false)
+                {
+                    Instantiate(monsterToAdd, playerCharacter.GetComponent<PlayerActions>().position2 + new Vector2(0, 7.5f), Quaternion.identity);
+                    monsterPresent2 = true;
+                }
+                if (spawnColumn == 3 && monsterPresent3 == false)
+                {
+                    Instantiate(monsterToAdd, playerCharacter.GetComponent<PlayerActions>().position3 + new Vector2(0, 7.5f), Quaternion.identity);
+                    monsterPresent3 = true;
+                }
+
+
             }
         }
     }
