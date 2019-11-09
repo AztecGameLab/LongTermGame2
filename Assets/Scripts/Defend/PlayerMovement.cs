@@ -11,7 +11,7 @@ namespace Defend
         public Vector2 position2;
         public Vector2 position3;
 
-        public int playerPosition = 2;
+        public int playerPosition;
 
         //Booleans for movement of one unit
         private bool isLeft = false;
@@ -30,9 +30,8 @@ namespace Defend
         void Start()
         {
             position2 = transform.position;
-            position1 = new Vector2(transform.position.x - 5f, transform.position.y);
-            position3 = new Vector2(transform.position.x + 5f, transform.position.y);
-            transform.position = position1;
+            position1 = new Vector2(transform.position.x - 4f, transform.position.y);
+            position3 = new Vector2(transform.position.x + 4f, transform.position.y);
 
         }
 
@@ -89,7 +88,6 @@ namespace Defend
             {
                 transform.position = position3;
             }
-            print("Hello");
         }
 
         //Now to create a Method that Instantiates the new Defending Object thingy
