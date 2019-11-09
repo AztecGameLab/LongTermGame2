@@ -93,4 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843e99801de45d446a8d7ca93083dc1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 0}
+  playerCharacter: {fileID: 8361260366866944468, guid: ce87128d33226824ca1ed49528e25ba5,
+    type: 3}
+  monsterColumnPosition: 0

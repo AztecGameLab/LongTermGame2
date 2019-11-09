@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Defend
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerActions : MonoBehaviour
     {
         //The three different spots that the player could be
         public Vector2 position1;
@@ -12,6 +12,8 @@ namespace Defend
         public Vector2 position3;
 
         public int playerPosition;
+
+        public static GameObject playerCharacter;
 
         //Booleans for movement of one unit
         private bool isLeft = false;
@@ -29,6 +31,7 @@ namespace Defend
         // Start is called before the first frame update
         void Start()
         {
+            playerCharacter = this.gameObject;
             position2 = transform.position;
             position1 = new Vector2(transform.position.x - 4f, transform.position.y);
             position3 = new Vector2(transform.position.x + 4f, transform.position.y);

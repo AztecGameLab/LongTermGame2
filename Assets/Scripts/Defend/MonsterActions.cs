@@ -10,15 +10,16 @@ namespace Defend
     {
         private float monsterStopwatch = 2f;
 
-        public GameObject playerCharacter;
+        public GameObject monsterplayer;
         public int monsterColumnPosition = 2;
         
         // Start is called before the first frame update
         void Start()
         {
-            //For this line here, I need to make a spawner script that just controls the actual position of the Monster.
-            monsterColumnPosition = playerCharacter.GetComponent<PlayerMovement>().playerPosition;
-
+            //For this line here, I need to make a spawner script that just controls the actual column of the spawn position of the Monster.
+            monsterplayer = GameObject.Find("Player");
+            monsterColumnPosition = monsterplayer.GetComponent<PlayerActions>().playerPosition;
+                       
         }
 
         // Update is called once per frame
@@ -46,10 +47,10 @@ namespace Defend
         //Checks if there's a defense to stop the monster from killing you
         void DefenseCheck()
         {
-            print(monsterColumnPosition);
+            
             if (monsterColumnPosition == 1)
             {
-                if (playerCharacter.GetComponent<PlayerMovement>().defensePresent1 == true)
+                if (monsterplayer.GetComponent<PlayerActions>().defensePresent1 == true)
                 {
                     Destroy(gameObject);
                 }
@@ -61,7 +62,7 @@ namespace Defend
             }
             if (monsterColumnPosition == 2)
             {
-                if (playerCharacter.GetComponent<PlayerMovement>().defensePresent2 == true)
+                if (monsterplayer.GetComponent<PlayerActions>().defensePresent2 == true)
                 {
                     Destroy(gameObject);
                 }
@@ -73,7 +74,7 @@ namespace Defend
             }
             if (monsterColumnPosition == 3)
             {
-                if (playerCharacter.GetComponent<PlayerMovement>().defensePresent3 == true)
+                if (monsterplayer.GetComponent<PlayerActions>().defensePresent3 == true)
                 {
                     Destroy(gameObject);
                 }
