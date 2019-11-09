@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5739946597753743768}
   - component: {fileID: 5739946597753743769}
   m_Layer: 0
-  m_Name: BasicMonster
+  m_Name: SlowMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d1e8c758cc958b34480c07986c4b4094, type: 3}
-  m_Color: {r: 0.757576, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.3823025, g: 0.13300997, b: 0.46226418, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
