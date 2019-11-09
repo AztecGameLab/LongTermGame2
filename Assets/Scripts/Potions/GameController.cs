@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 namespace Potions
 {
 
@@ -9,6 +10,8 @@ namespace Potions
         public GameObject fillLine;
         public GameObject colorTarget;
         public GameObject bottleOrigin;
+        public GameObject celebrationParticles;
+
         [Range(0, 1)]
         [SerializeField]
         public float filled;
@@ -21,11 +24,19 @@ namespace Potions
         public float r, g, b, opaqueness;
 
         public float redAmount, yellowAmount, blueAmount;
-        public float redPotency, yellowPotency, bluePotency;
+        float redPotency, yellowPotency, bluePotency;
         private float overflowAmount;
 
         
-        GameObject instancedColorTarget;
+        GameObject instantiatedColorTarget;
+        GameObject instantiatedCelebrationParticles;
+        Text scoreText;
+        int score;
+
+        Color targetColor;
+
+        public float acceptableRange;
+
 
 
         Vector3[] RYBtoRGBCube = new Vector3[8]
@@ -43,6 +54,10 @@ namespace Potions
         // Start is called before the first frame update
         void Start()
         {
+            score = 0;
+            scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+            scoreText.text = score.ToString();
+
             filled = 0;
             r = 0;
             g = 0;
@@ -50,14 +65,24 @@ namespace Potions
             opaqueness = 1;
 
             Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
-            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize,0),Quaternion.identity);
-            instancedColorTarget.GetComponent<SpriteRenderer>().color = GetRandomColor();
+            instantiatedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize,0),Quaternion.identity);
+            targetColor = GetRandomColor();
+            instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
+            print(targetColor.r);
+            print(targetColor.g);
+            print(targetColor.b);
         }
 
         // Update is called once per frame
         void Update()
         {
+            scoreText.text = score.ToString();
+
             if (Input.GetKeyDown(KeyCode.Space))
+            {
+                DumpPotion();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Reset();
             }
@@ -82,12 +107,23 @@ namespace Potions
                 yellowAmount -= overflowAmount * (yellowAmount / (redAmount + yellowAmount + blueAmount));
                 blueAmount -= overflowAmount * (blueAmount / (redAmount + yellowAmount + blueAmount));
             }
+
+            filled = redAmount + yellowAmount + blueAmount;
+
             redPotency = redAmount / (redAmount + yellowAmount + blueAmount);
             yellowPotency = yellowAmount / (redAmount + yellowAmount + blueAmount);
             bluePotency = blueAmount / (redAmount + yellowAmount + blueAmount);
             RYBtoRGB(redPotency, yellowPotency, bluePotency,out r,out g,out b);
-            
-            filled = redAmount + yellowAmount + blueAmount;
+
+            if (Mathf.Abs(r - targetColor.r) <= acceptableRange && Mathf.Abs(g - targetColor.g) <= acceptableRange && Mathf.Abs(b - targetColor.b) <= acceptableRange && filled >= 0.25)
+            {
+                score++;
+                instantiatedCelebrationParticles = Instantiate(celebrationParticles, bottleOrigin.transform.position + new Vector3(0,filledSize * filled,0), Quaternion.identity);
+                ParticleSystem.MainModule main = instantiatedCelebrationParticles.GetComponent<ParticleSystem>().main;
+                main.startColor = targetColor;
+                Reset();
+            }
+
         }
         private void Reset()
         {
@@ -104,9 +140,29 @@ namespace Potions
             yellowPotency = 0;
             overflowAmount = 0;
 
-            Destroy(instancedColorTarget);
-            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize, 0), Quaternion.identity);
-            instancedColorTarget.GetComponent<SpriteRenderer>().color = GetRandomColor();
+            Destroy(instantiatedColorTarget);
+            instantiatedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize, 0), Quaternion.identity);
+            targetColor = GetRandomColor();
+            instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
+
+            print(targetColor.r);
+            print(targetColor.g);
+            print(targetColor.b);
+        }
+        private void DumpPotion()
+        {
+            filled = 0;
+            r = 0;
+            g = 0;
+            b = 0;
+            opaqueness = 1;
+            redAmount = 0;
+            blueAmount = 0;
+            yellowAmount = 0;
+            redPotency = 0;
+            bluePotency = 0;
+            yellowPotency = 0;
+            overflowAmount = 0;
         }
         private void RYBtoRGB(float r_RYB, float y_RYB, float b_RYB, out float r, out float g, out float b)
         {
@@ -131,7 +187,7 @@ namespace Potions
             float red, yellow, blue;
             val1 = Random.Range(0f, 1f);
             val2 = Random.Range(0f, 1f - val1);
-            val3 = Random.Range(0f, 1f - val1 - val2);
+            val3 = 1f - val1 - val2;
             int sort = Random.Range(0, 5);
             if(sort == 0)
             {
