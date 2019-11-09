@@ -12,7 +12,7 @@ namespace Defend
         public GameObject slowMonster;
         private GameObject monsterToAdd;
 
-        private int spawnColumn;
+        public int spawnColumn;
 
         private float spawnTimer = 3f;
 
@@ -43,7 +43,7 @@ namespace Defend
         {
             if (spawnTimer < 0)
             {
-                spawnTimer = 3f;
+                spawnTimer = 1f;
 
                 monsterDecider = (int) Random.Range(1f, 4f);
                 if(monsterDecider == 1)
