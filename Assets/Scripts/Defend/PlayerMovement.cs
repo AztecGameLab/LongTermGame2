@@ -13,8 +13,8 @@ namespace Defend
 
         public int playerPosition = 2;
 
-        public bool isLeft;
-        public bool isRight;
+        public bool isLeft = false;
+        public bool isRight = false;
 
         
         // Start is called before the first frame update
@@ -23,6 +23,7 @@ namespace Defend
             position2 = transform.position;
             position1 = new Vector2(transform.position.x - 5f, transform.position.y);
             position3 = new Vector2(transform.position.x + 5f, transform.position.y);
+            transform.position = position1;
 
         }
 
@@ -30,28 +31,31 @@ namespace Defend
         void Update()
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
-
+            
             //This little section is chedcking for movement of the Player sprite
             if (horizontal == 1 && playerPosition < 3)
             {
-                isRight = true;
+                if(isRight == false)
+                {
+                    playerPosition += 1;
+                    MovePlayer();
+                    isRight = true;
+                }
             }
             if(horizontal == -1 && playerPosition > 1)
             {
-                isLeft = true;
+                if(isLeft == false)
+                {
+                    playerPosition -= 1;
+                    MovePlayer();
+                    isLeft = true;
+                }
             }
-            if (isRight == true)
+            if(horizontal == 0)
             {
-                playerPosition += 1;
-                MovePlayer();
+                isLeft = false;
+                isRight = false;
             }
-            if(isLeft == true)
-            {
-                playerPosition -= 1;
-                MovePlayer();
-            }
-            isRight = false;
-            isLeft = false;
 
         }
 
@@ -70,6 +74,7 @@ namespace Defend
             {
                 transform.position = position3;
             }
+            print("Hello");
         }
     }
 }
