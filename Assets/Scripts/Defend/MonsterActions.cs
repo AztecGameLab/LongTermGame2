@@ -25,7 +25,6 @@ namespace Defend
         //This is an automated movement of the monster and at the end checks if properly defended
         void MonsterMove()
         {
-            print(monsterStopwatch);
             if(monsterStopwatch < 0)
             {
                 print("Did you move successfully?");
@@ -35,12 +34,15 @@ namespace Defend
             if (transform.position.y <= -2)
             {
                 DefenseCheck();
+                return;
             }
         }
         //Checks if there's a defense to stop the monster from killing you
         void DefenseCheck()
         {
-            print("Does this work rightn now?");
+            transform.position = new Vector2(transform.position.x, 4f);
+            print("Does this work right now?");
+            Destroy(gameObject);
         }
     }
 }

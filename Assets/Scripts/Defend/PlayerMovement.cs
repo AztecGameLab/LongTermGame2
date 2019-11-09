@@ -11,8 +11,10 @@ namespace Defend
         public Vector2 position2;
         public Vector2 position3;
 
-
         public int playerPosition = 2;
+
+        public bool isLeft;
+        public bool isRight;
 
         
         // Start is called before the first frame update
@@ -32,14 +34,24 @@ namespace Defend
             //This little section is chedcking for movement of the Player sprite
             if (horizontal == 1 && playerPosition < 3)
             {
+                isRight = true;
+            }
+            if(horizontal == -1 && playerPosition > 1)
+            {
+                isLeft = true;
+            }
+            if (isRight == true)
+            {
                 playerPosition += 1;
                 MovePlayer();
             }
-            if(horizontal == -1 && playerPosition > 1)
+            if(isLeft == true)
             {
                 playerPosition -= 1;
                 MovePlayer();
             }
+            isRight = false;
+            isLeft = false;
 
         }
 
