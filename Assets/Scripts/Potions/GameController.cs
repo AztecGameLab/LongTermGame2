@@ -28,7 +28,7 @@ namespace Potions
         GameObject instancedColorTarget;
 
 
-        Vector3[] cube = new Vector3[8]
+        Vector3[] RYBtoRGBCube = new Vector3[8]
         {
                 new Vector3(1f,1f,1f),
                 new Vector3(0,0,1f),
@@ -50,7 +50,7 @@ namespace Potions
             opaqueness = 1;
 
             Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
-            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-3, filledSize,0),Quaternion.identity);
+            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize,0),Quaternion.identity);
             instancedColorTarget.GetComponent<SpriteRenderer>().color = GetRandomColor();
         }
 
@@ -103,16 +103,17 @@ namespace Potions
             bluePotency = 0;
             yellowPotency = 0;
             overflowAmount = 0;
+
             Destroy(instancedColorTarget);
-            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-3, filledSize, 0), Quaternion.identity);
+            instancedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize, 0), Quaternion.identity);
             instancedColorTarget.GetComponent<SpriteRenderer>().color = GetRandomColor();
         }
         private void RYBtoRGB(float r_RYB, float y_RYB, float b_RYB, out float r, out float g, out float b)
         {
-            Vector3 interp1 = Vector3.Lerp(cube[0], cube[3], r_RYB);
-            Vector3 interp2 = Vector3.Lerp(cube[1], cube[2], r_RYB);
-            Vector3 interp3 = Vector3.Lerp(cube[4], cube[7], r_RYB);
-            Vector3 interp4 = Vector3.Lerp(cube[5], cube[6], r_RYB);
+            Vector3 interp1 = Vector3.Lerp(RYBtoRGBCube[0], RYBtoRGBCube[3], r_RYB);
+            Vector3 interp2 = Vector3.Lerp(RYBtoRGBCube[1], RYBtoRGBCube[2], r_RYB);
+            Vector3 interp3 = Vector3.Lerp(RYBtoRGBCube[4], RYBtoRGBCube[7], r_RYB);
+            Vector3 interp4 = Vector3.Lerp(RYBtoRGBCube[5], RYBtoRGBCube[6], r_RYB);
 
             Vector3 interp5 = Vector3.Lerp(interp1, interp2, b_RYB);
             Vector3 interp6 = Vector3.Lerp(interp3, interp4, b_RYB);
