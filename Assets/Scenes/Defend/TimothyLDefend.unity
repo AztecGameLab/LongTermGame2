@@ -218,9 +218,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generalMonster: {fileID: 5739946597753743774, guid: f7edd0ff355b4da45895232b28253081,
     type: 3}
-  fastMonster: {fileID: 5739946597753743774, guid: f7edd0ff355b4da45895232b28253081,
+  fastMonster: {fileID: 5739946597753743774, guid: f96fc65ace6ba14478dca282e7077d10,
     type: 3}
-  slowMonster: {fileID: 5739946597753743774, guid: f7edd0ff355b4da45895232b28253081,
+  slowMonster: {fileID: 5739946597753743774, guid: 6e11b9a9881d8364dbb3c61e5cdd0ded,
     type: 3}
   spawnColumn: 0
   playerCharacter: {fileID: 1851575389}
@@ -826,7 +826,7 @@ PrefabInstance:
     - target: {fileID: 3672504072415439521, guid: 5704ae43c40500d4789f78f84d6e1d89,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3672504072415439521, guid: 5704ae43c40500d4789f78f84d6e1d89,
         type: 3}

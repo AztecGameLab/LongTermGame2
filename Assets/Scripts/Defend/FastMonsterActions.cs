@@ -6,15 +6,13 @@ using UnityEngine;
 namespace Defend
 {
 
-    public class MonsterActions : MonoBehaviour
+    public class FastMonsterActions : MonoBehaviour
     {
-        private float monsterStopwatch = 1f;
+        private float monsterStopwatch = 0.25f;
 
         private GameObject monsterPlayer;
         private GameObject evilSummoner;
         public int monsterColumnPosition = 2;
-
-        public GameObject defenses;
 
         // Start is called before the first frame update
         void Start()
@@ -40,10 +38,10 @@ namespace Defend
         {
             if(monsterStopwatch < 0)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-                monsterStopwatch = 1f;
+                transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
+                monsterStopwatch = 0.25f;
             }
-            if (transform.position.y <= -2)
+            if (transform.position.y <= -2.5f)
             {
                 DefenseCheck();
                 return;
