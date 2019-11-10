@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5739946597753743771}
   - component: {fileID: 5739946597753743768}
-  - component: {fileID: 5739946597753743769}
+  - component: {fileID: -7603315889050973691}
   m_Layer: 0
-  m_Name: BasicMonster 1
+  m_Name: FastMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5739946597753743769
+--- !u!114 &-7603315889050973691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,9 +90,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5739946597753743774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843e99801de45d446a8d7ca93083dc1a, type: 3}
+  m_Script: {fileID: 11500000, guid: c238d967e0b8369409987221d8e6d715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterColumnPosition: 0
-  defenses: {fileID: 8543439179092145697, guid: 5704ae43c40500d4789f78f84d6e1d89,
-    type: 3}
+  monsterColumnPosition: 2
+  defenses: {fileID: 0}
