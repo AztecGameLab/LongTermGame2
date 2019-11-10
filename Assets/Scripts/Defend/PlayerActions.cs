@@ -10,6 +10,8 @@ namespace Defend
         public Vector2 position1;
         public Vector2 position2;
         public Vector2 position3;
+        public Vector2 position4;
+        public Vector2 position5;
 
         public int playerPosition;
 
@@ -23,21 +25,27 @@ namespace Defend
         public bool defensePresent1 = false;
         public bool defensePresent2 = false;
         public bool defensePresent3 = false;
+        public bool defensePresent4 = false;
+        public bool defensePresent5 = false;
 
         //Defense GameObjects
         public GameObject defenderSprite1;
         public GameObject defenderSprite2;
         public GameObject defenderSprite3;
-        
+        public GameObject defenderSprite4;
+        public GameObject defenderSprite5;
+
 
 
         // Start is called before the first frame update
         void Start()
         {
             playerCharacter = this.gameObject;
-            position2 = transform.position;
-            position1 = new Vector2(transform.position.x - 4f, transform.position.y);
-            position3 = new Vector2(transform.position.x + 4f, transform.position.y);
+            position3 = transform.position;
+            position1 = new Vector2(transform.position.x - 3f, transform.position.y);
+            position2 = new Vector2(transform.position.x - 1.5f, transform.position.y);
+            position4 = new Vector2(transform.position.x + 1.5f, transform.position.y);
+            position5 = new Vector2(transform.position.x + 3f, transform.position.y);
 
         }
 
@@ -47,7 +55,7 @@ namespace Defend
             float horizontal = Input.GetAxisRaw("Horizontal");
             
             //This little section is chedcking for movement of the Player sprite
-            if (horizontal == 1 && playerPosition < 3)
+            if (horizontal == 1 && playerPosition < 5)
             {
                 if(isRight == false)
                 {
@@ -70,9 +78,9 @@ namespace Defend
                 isLeft = false;
                 isRight = false;
             }
-
+            
             //Calling the Place Defense when the button is pressed
-            if (Input.GetButtonDown("Primary"))
+            if (Input.GetKeyDown(KeyCode.Z))    //(Input.GetButtonDown("Primary"))
             {
                 PlaceDefense(transform.position, playerPosition);
             }
@@ -94,6 +102,14 @@ namespace Defend
             {
                 transform.position = position3;
             }
+            if (playerPosition == 4)
+            {
+                transform.position = position4;
+            }
+            if (playerPosition == 5)
+            {
+                transform.position = position5;
+            }
         }
 
         //Now to create a Method that Instantiates the new Defending Object thingy
@@ -113,6 +129,16 @@ namespace Defend
             {
                 Instantiate(defenderSprite3, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent3 = true;
+            }
+            if (playerPositionChecker == 4 && defensePresent4 == false)
+            {
+                Instantiate(defenderSprite4, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
+                defensePresent1 = true;
+            }
+            if (playerPositionChecker == 5 && defensePresent5 == false)
+            {
+                Instantiate(defenderSprite5, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
+                defensePresent1 = true;
             }
         }
     }
