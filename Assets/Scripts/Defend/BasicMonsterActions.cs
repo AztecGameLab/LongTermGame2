@@ -7,7 +7,7 @@ namespace Defend
 
     public class BasicMonsterActions : MonoBehaviour
     {
-        private float monsterStopwatch = .5f;
+        private float monsterStopwatch = .175f;
 
         private GameObject monsterPlayer;
         private GameObject evilSummoner;
@@ -38,7 +38,7 @@ namespace Defend
             if(monsterStopwatch < 0)
             {
                 transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-                monsterStopwatch = .5f;
+                monsterStopwatch = .175f;
             }
             if (transform.position.y <= -2)
             {

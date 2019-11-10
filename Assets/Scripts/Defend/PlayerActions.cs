@@ -16,6 +16,8 @@ namespace Defend
         public int playerPosition;
 
         public static GameObject playerCharacter;
+        public GameObject evilSummoner;
+
 
         //Booleans for movement of one unit
         private bool isLeft = false;
@@ -115,30 +117,30 @@ namespace Defend
         //Now to create a Method that Instantiates the new Defending Object thingy
         private void PlaceDefense(Vector2 playerPositonSpot, int playerPositionChecker)
         {
-            if(playerPositionChecker == 1 && defensePresent1 == false)
+            if (playerPositionChecker == 1 && defensePresent1 == false && evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent1 == true)
             {
                 Instantiate(defenderSprite1, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent1 = true;
             }
-            if (playerPositionChecker == 2 && defensePresent2 == false)
+            if (playerPositionChecker == 2 && defensePresent2 == false && evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent2 == true)
             {
                 Instantiate(defenderSprite2, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent2 = true;
             }
-            if (playerPositionChecker == 3 && defensePresent3 == false)
+            if (playerPositionChecker == 3 && defensePresent3 == false && evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent3 == true)
             {
                 Instantiate(defenderSprite3, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
                 defensePresent3 = true;
             }
-            if (playerPositionChecker == 4 && defensePresent4 == false)
+            if (playerPositionChecker == 4 && defensePresent4 == false && evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent4 == true)
             {
                 Instantiate(defenderSprite4, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
-                defensePresent1 = true;
+                defensePresent4 = true;
             }
-            if (playerPositionChecker == 5 && defensePresent5 == false)
+            if (playerPositionChecker == 5 && defensePresent5 == false && evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent5 == true)
             {
                 Instantiate(defenderSprite5, playerPositonSpot + new Vector2(0, 1.5f), Quaternion.identity);
-                defensePresent1 = true;
+                defensePresent5 = true;
             }
         }
     }
