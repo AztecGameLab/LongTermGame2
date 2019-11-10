@@ -732,6 +732,7 @@ MonoBehaviour:
   position4: {x: 0, y: 0}
   position5: {x: 0, y: 0}
   playerPosition: 2
+  evilSummoner: {fileID: 594237364}
   defensePresent1: 0
   defensePresent2: 0
   defensePresent3: 0
