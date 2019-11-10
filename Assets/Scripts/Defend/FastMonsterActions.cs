@@ -8,7 +8,7 @@ namespace Defend
 
     public class FastMonsterActions : MonoBehaviour
     {
-        private float monsterStopwatch = 0.15f;
+        private float monsterStopwatch = 0.075f;
 
         private GameObject monsterPlayer;
         private GameObject evilSummoner;
@@ -39,7 +39,7 @@ namespace Defend
             if(monsterStopwatch < 0)
             {
                 transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
-                monsterStopwatch = 0.15f;
+                monsterStopwatch = 0.1f;
             }
             if (transform.position.y <= -2.5f)
             {
