@@ -8,7 +8,7 @@ namespace Defend
 
     public class FastMonsterActions : MonoBehaviour
     {
-        private float monsterStopwatch = 0.25f;
+        private float monsterStopwatch = 0.15f;
 
         private GameObject monsterPlayer;
         private GameObject evilSummoner;
@@ -39,7 +39,7 @@ namespace Defend
             if(monsterStopwatch < 0)
             {
                 transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
-                monsterStopwatch = 0.25f;
+                monsterStopwatch = 0.15f;
             }
             if (transform.position.y <= -2.5f)
             {
@@ -50,7 +50,7 @@ namespace Defend
         //Checks if there's a defense to stop the monster from killing you
         void DefenseCheck()
         {
-            
+
             if (monsterColumnPosition == 1)
             {
                 if (monsterPlayer.GetComponent<PlayerActions>().defensePresent1 == true)
@@ -100,7 +100,41 @@ namespace Defend
 
                 }
             }
-            
+            if (monsterColumnPosition == 4)
+            {
+                if (monsterPlayer.GetComponent<PlayerActions>().defensePresent4 == true)
+                {
+                    //defenses.GetComponent<DefenderActions>().defenseMonsterPresent4 = true;
+                    Destroy(GameObject.Find("Defender4(Clone)"));
+                    Destroy(gameObject);
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent4 = false;
+                    monsterPlayer.GetComponent<PlayerActions>().defensePresent4 = false;
+                }
+                else
+                {
+                    print("You've Been Killed!!!");
+                    this.enabled = false;
+
+                }
+            }
+            if (monsterColumnPosition == 5)
+            {
+                if (monsterPlayer.GetComponent<PlayerActions>().defensePresent5 == true)
+                {
+                    //defenses.GetComponent<DefenderActions>().defenseMonsterPresent5 = true;
+                    Destroy(GameObject.Find("Defender5(Clone)"));
+                    Destroy(gameObject);
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent5 = false;
+                    monsterPlayer.GetComponent<PlayerActions>().defensePresent5 = false;
+                }
+                else
+                {
+                    print("You've Been Killed!!!");
+                    this.enabled = false;
+
+                }
+            }
+
         }
     }
 }

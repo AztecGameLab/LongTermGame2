@@ -227,6 +227,8 @@ MonoBehaviour:
   monsterPresent1: 0
   monsterPresent2: 0
   monsterPresent3: 0
+  monsterPresent4: 0
+  monsterPresent5: 0
 --- !u!212 &594237366
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -727,15 +729,23 @@ MonoBehaviour:
   position1: {x: 0, y: 0}
   position2: {x: 0, y: 0}
   position3: {x: 0, y: 0}
+  position4: {x: 0, y: 0}
+  position5: {x: 0, y: 0}
   playerPosition: 2
   defensePresent1: 0
   defensePresent2: 0
   defensePresent3: 0
+  defensePresent4: 0
+  defensePresent5: 0
   defenderSprite1: {fileID: 8543439179092145697, guid: 5704ae43c40500d4789f78f84d6e1d89,
     type: 3}
   defenderSprite2: {fileID: 8543439179092145697, guid: 74f1740d1f5d1864e8595b80e066ca9b,
     type: 3}
   defenderSprite3: {fileID: 8543439179092145697, guid: 69ff85ee34f8e7147a064799f960718e,
+    type: 3}
+  defenderSprite4: {fileID: 8543439179092145697, guid: 4c1efec0682bd6246aa75da28297afb7,
+    type: 3}
+  defenderSprite5: {fileID: 8543439179092145697, guid: ac43a30e2e1f1c84aa315a27f5f61c15,
     type: 3}
 --- !u!1001 &55154506213298465
 PrefabInstance:
