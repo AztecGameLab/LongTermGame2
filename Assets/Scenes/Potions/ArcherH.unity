@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 1412874779}
   - component: {fileID: 1412874778}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,8 +551,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: R, Y, B to add that color, space to dump current mixture, esc to skip this
-    color target (temp controls)
+  m_Text: "R, Y, B to add that color, space to dump current mixture, esc to skip this
+    color target (temp controls). \nArrow key controls:\n        yellow\n          /\\\n
+    \          |\nred <--  --> blue\n           |\n          \\/\n         dump"
 --- !u!222 &1412874779
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -78,7 +78,7 @@ namespace Potions
         {
             scoreText.text = score.ToString();
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetAxisRaw("Vertical") == -1 || Input.GetKeyDown(KeyCode.Space))
             {
                 DumpPotion();
             }
@@ -87,15 +87,15 @@ namespace Potions
                 Reset();
             }
 
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R))
             {
                 redAmount += fillRate * Time.deltaTime;
             }
-            else if (Input.GetKey(KeyCode.Y))
+            if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
             {
                 yellowAmount += fillRate * Time.deltaTime;
             }
-            else if (Input.GetKey(KeyCode.B))
+            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
             {
                 blueAmount += fillRate * Time.deltaTime;
             }
@@ -145,9 +145,9 @@ namespace Potions
             targetColor = GetRandomColor();
             instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
 
-            print(targetColor.r);
-            print(targetColor.g);
-            print(targetColor.b);
+            //print(targetColor.r);
+            //print(targetColor.g);
+            //print(targetColor.b);
         }
         private void DumpPotion()
         {
