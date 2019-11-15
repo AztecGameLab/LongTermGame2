@@ -13,6 +13,8 @@ namespace Defend
         private float moveDistance;
 
         private float monsterStopwatch;
+
+        private bool[] monsterPresent;
        
 
         private GameObject monsterPlayer;
@@ -55,7 +57,7 @@ namespace Defend
             monsterDecider = (int)Random.Range(1f, 4f);
             if (monsterDecider == 1)
             {
-                //This is the basic monster
+                //This is the Basic monster
                 moveSpeed = .75f;
                 moveDistance = 1;
             }
@@ -98,7 +100,7 @@ namespace Defend
                     //defenses.GetComponent<DefenderActions>().defenseMonsterPresent1 = true;
                     Destroy(GameObject.Find("Defender1(Clone)"));
                     Destroy(gameObject);
-                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent1 = false;
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent[0] = false;
                     monsterPlayer.GetComponent<PlayerActions>().defensePresent1 = false;
                 }
                 else
@@ -114,7 +116,7 @@ namespace Defend
                     //defenses.GetComponent<DefenderActions>().defenseMonsterPresent2 = true;
                     Destroy(GameObject.Find("Defender2(Clone)"));
                     Destroy(gameObject);
-                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent2 = false;
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent[1] = false;
                     monsterPlayer.GetComponent<PlayerActions>().defensePresent2 = false;
                 }
                 else
@@ -130,7 +132,7 @@ namespace Defend
                     //defenses.GetComponent<DefenderActions>().defenseMonsterPresent3 = true;
                     Destroy(GameObject.Find("Defender3(Clone)"));
                     Destroy(gameObject);
-                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent3 = false;
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent[2] = false;
                     monsterPlayer.GetComponent<PlayerActions>().defensePresent3 = false;
                 }
                 else
@@ -147,7 +149,7 @@ namespace Defend
                     //defenses.GetComponent<DefenderActions>().defenseMonsterPresent4 = true;
                     Destroy(GameObject.Find("Defender4(Clone)"));
                     Destroy(gameObject);
-                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent4 = false;
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent[3] = false;
                     monsterPlayer.GetComponent<PlayerActions>().defensePresent4 = false;
                 }
                 else
@@ -164,7 +166,7 @@ namespace Defend
                     //defenses.GetComponent<DefenderActions>().defenseMonsterPresent5 = true;
                     Destroy(GameObject.Find("Defender5(Clone)"));
                     Destroy(gameObject);
-                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent5 = false;
+                    evilSummoner.GetComponent<EvilSummonerActions>().monsterPresent[4] = false;
                     monsterPlayer.GetComponent<PlayerActions>().defensePresent5 = false;
                 }
                 else
