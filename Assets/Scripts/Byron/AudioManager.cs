@@ -51,6 +51,26 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = volume;
     }
 
+    public void PlayMusic(AudioClip musicClip, float volume, float pitch, bool loop = false)
+    {
+        musicSource.loop = loop;
+        if (loop)
+        {
+            musicSource.clip = musicClip;
+            musicSource.Play();
+        }
+        else
+        {
+            PlayMusic(musicClip, volume);
+        }
+        musicSource.pitch = pitch;
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
     // In case we want to set music volume separately
     public void SetMusicVolume(float Volume)
     {

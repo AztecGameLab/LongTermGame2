@@ -11,7 +11,7 @@ namespace Memorize {
         [SerializeField]
         float absoluteMaxTime, waitTime;
         [SerializeField]
-        AudioClip correct, incorrect;
+        AudioClip correct, incorrect, music;
         // TODO globalize or pass in difficulty
         [SerializeField]
         ushort maxButtons, minButtons, difficulty;
@@ -96,6 +96,7 @@ namespace Memorize {
             slider.maxValue = maxTime;
             slider.value = slider.minValue;
             memorizeText.enabled = true;
+            AudioManager.instance.PlayMusic(music, 1f, difficulty > 0 ? (float)difficulty / absoluteMaxTime + 1f : 1f, true);
             yield return new WaitForSeconds(waitTime);
 
             // generate new set of buttons and placeholders
@@ -165,6 +166,7 @@ namespace Memorize {
             {
                 Destroy(placeholder); // TODO doesn't work?
             }
+            AudioManager.instance.StopMusic();
             yield return null;
         }
     }
