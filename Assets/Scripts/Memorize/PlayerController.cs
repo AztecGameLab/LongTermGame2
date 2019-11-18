@@ -10,14 +10,16 @@ namespace Memorize {
         GameObject buttonPrefab, placeholderPrefab;
         [SerializeField]
         float absoluteMaxTime, waitTime;
+        [SerializeField]
+        AudioClip correct, incorrect;
         // TODO globalize or pass in difficulty
         [SerializeField]
         ushort maxButtons, minButtons, difficulty;
-        SpriteRenderer[] placeholderSprites;
         #pragma warning restore 0649
 
         GameObject[] buttons, placeholders;
         KeyCode[] keys;
+        SpriteRenderer[] placeholderSprites;
         Slider slider;
         Text memorizeText, repeatText;
         float maxTime, deltaButtons;
@@ -44,43 +46,40 @@ namespace Memorize {
 
         void Update()
         {
-            // TODO eating inputs?
             if (inputAllowed)
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    if (keys[c] == KeyCode.UpArrow)
-                    {
-                        placeholderSprites[c].color = Color.green;
-                    }
-                    placeholders[c++].SetActive(true);
+                    KeyCheck(KeyCode.UpArrow);
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    if (keys[c] == KeyCode.DownArrow)
-                    {
-                        placeholderSprites[c].color = Color.green;
-                    }
-                    placeholders[c++].SetActive(true);
+                    KeyCheck(KeyCode.DownArrow);
                 }
                 else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    if (keys[c] == KeyCode.LeftArrow)
-                    {
-                        placeholderSprites[c].color = Color.green;
-                    }
-                    placeholders[c++].SetActive(true);
+                    KeyCheck(KeyCode.LeftArrow);
                 }
                 else if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    if (keys[c] == KeyCode.RightArrow)
-                    {
-                        placeholderSprites[c].color = Color.green;
-                    }
-                    placeholders[c++].SetActive(true);
+                    KeyCheck(KeyCode.RightArrow);
                 }
                 inputAllowed = c < buttons.Length;
             }
+        }
+
+        void KeyCheck(KeyCode code)
+        {
+            if (keys[c] == code)
+            {
+                placeholderSprites[c].color = Color.green;
+                AudioManager.instance.PlaySFX(correct, 1f);
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX(incorrect, 1f);
+            }
+            placeholders[c++].SetActive(true);
         }
 
         float RandomDirection(ushort i)
