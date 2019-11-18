@@ -298,9 +298,10 @@ MonoBehaviour:
   waitTime: 1.25
   correct: {fileID: 8300000, guid: fbe744f65899eba83a0a00a58cc186f5, type: 3}
   incorrect: {fileID: 8300000, guid: c1025931a51e99d62b755c23ef3845d2, type: 3}
+  music: {fileID: 8300000, guid: bc971c6632b6ee346ad5ac5cd52016d5, type: 3}
   maxButtons: 5
   minButtons: 3
-  difficulty: 0
+  difficulty: 4
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0
