@@ -26,13 +26,12 @@ namespace Memorize {
         bool inputAllowed;
         ushort c;
 
-        void Start()
+        void Awake()
         {
             slider = GetComponentInChildren<Slider>();
             Text[] texts = GetComponentsInChildren<Text>();
             memorizeText = texts[0];
             repeatText = texts[1];
-            slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
 
             inputAllowed = false;
             deltaButtons = maxButtons - minButtons;
@@ -40,8 +39,13 @@ namespace Memorize {
             maxButtons += difficulty;
             minButtons += difficulty;
             maxTime = absoluteMaxTime - difficulty;
+        }
 
-            StartCoroutine(GameLoop());
+        void Start()
+        {
+            slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
+
+            StartCoroutine(GameLoop()); // TODO Loop several times
         }
 
         void Update()
@@ -96,7 +100,7 @@ namespace Memorize {
             slider.maxValue = maxTime;
             slider.value = slider.minValue;
             memorizeText.enabled = true;
-            AudioManager.instance.PlayMusic(music, 1f, difficulty > 0 ? (float)difficulty / absoluteMaxTime + 1f : 1f, true);
+            AudioManager.instance.PlayMusicLoop(music, 1f, difficulty > 0 ? (float)difficulty / absoluteMaxTime + 1f : 1f);
             yield return new WaitForSeconds(waitTime);
 
             // generate new set of buttons and placeholders
@@ -164,7 +168,7 @@ namespace Memorize {
             }
             foreach (GameObject placeholder in placeholders)
             {
-                Destroy(placeholder); // TODO doesn't work?
+                Destroy(placeholder);
             }
             AudioManager.instance.StopMusic();
             yield return null;
