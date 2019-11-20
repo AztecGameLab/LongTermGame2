@@ -15,6 +15,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+        instance = this;
+
         // Making sure each audio source is assigned to an instance
         musicSource = this.gameObject.AddComponent<AudioSource>();
         sfxSource = this.gameObject.AddComponent<AudioSource>();
@@ -33,8 +36,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-        instance = this;
+        
     }
 
     // In case we want to set sfx clip with a volume at start
@@ -51,19 +53,12 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = volume;
     }
 
-    public void PlayMusic(AudioClip musicClip, float volume, float pitch, bool loop = false)
+    public void PlayMusicLoop(AudioClip musicClip, float volume, float pitch)
     {
-        musicSource.loop = loop;
-        if (loop)
-        {
-            musicSource.clip = musicClip;
-            musicSource.Play();
-        }
-        else
-        {
-            PlayMusic(musicClip, volume);
-        }
+        musicSource.clip = musicClip;
+        musicSource.Play();
         musicSource.pitch = pitch;
+        musicSource.volume = volume;
     }
 
     public void StopMusic()

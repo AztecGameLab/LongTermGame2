@@ -301,7 +301,7 @@ MonoBehaviour:
   music: {fileID: 8300000, guid: bc971c6632b6ee346ad5ac5cd52016d5, type: 3}
   maxButtons: 5
   minButtons: 3
-  difficulty: 4
+  difficulty: 0
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0
