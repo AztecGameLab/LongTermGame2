@@ -7,6 +7,14 @@ public class WizardController : MonoBehaviour
     public GameObject spell;
     public float speed = 1.0f;
 
+    [SerializeField] AudioClip WizardSpaceInvaderClip;
+    [SerializeField] AudioManager audioManager;
+
+    private void Awake()
+    {
+        AudioManager.instance.PlayMusicLoop(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
+    }
+
     // Update is called once per frame
     void Update()
     {
