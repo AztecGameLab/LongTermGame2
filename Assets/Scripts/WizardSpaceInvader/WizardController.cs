@@ -12,7 +12,7 @@ public class WizardController : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager.instance.PlayMusicLoop(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
+        AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
     }
 
     // Update is called once per frame

@@ -6,15 +6,11 @@ namespace Memorize {
     public class PlayerController : MonoBehaviour
     {
         #pragma warning disable 0649
-        [SerializeField]
-        GameObject buttonPrefab, placeholderPrefab;
-        [SerializeField]
-        float absoluteMaxTime, waitTime;
-        [SerializeField]
-        AudioClip correct, incorrect, music;
+        [SerializeField] GameObject buttonPrefab, placeholderPrefab;
+        [SerializeField] float absoluteMaxTime, waitTime;
+        [SerializeField] AudioClip correct, incorrect, music;
         // TODO globalize or pass in difficulty
-        [SerializeField]
-        ushort maxButtons, minButtons, difficulty;
+        [SerializeField] ushort maxButtons, minButtons, difficulty;
         #pragma warning restore 0649
 
         GameObject[] buttons, placeholders;
@@ -100,7 +96,7 @@ namespace Memorize {
             slider.maxValue = maxTime;
             slider.value = slider.minValue;
             memorizeText.enabled = true;
-            AudioManager.instance.PlayMusicLoop(music, 1f, difficulty > 0 ? (float)difficulty / absoluteMaxTime + 1f : 1f);
+            AudioManager.instance.PlayMusic(music, 1f, difficulty > 0 ? (float)difficulty / absoluteMaxTime + 1f : 1f, true);
             yield return new WaitForSeconds(waitTime);
 
             // generate new set of buttons and placeholders
