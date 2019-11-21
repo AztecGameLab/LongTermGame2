@@ -50,12 +50,12 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = volume;
     }
 
-    public void PlayMusicLoop(AudioClip musicClip, float volume, float pitch, bool isLooping = false)
+    public void PlayMusic(AudioClip musicClip, float volume, float pitch, bool loop = false)
     {
         musicSource.clip = musicClip;
         musicSource.Play();
         musicSource.volume = volume;
-        musicSource.loop = isLooping;
+        musicSource.loop = loop;
         musicSource.pitch = pitch;
     }
 

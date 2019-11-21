@@ -31,7 +31,7 @@ namespace RunAwayThief
             changeSpeed = Mathf.LerpUnclamped(1, 2, difficultyModifier);
             player.SetMoveForward(changeSpeed);
 
-            AudioManager.instance.PlayMusicLoop(RunAwayThiefMusic, 0.9f, 1.0f, true);
+            AudioManager.instance.PlayMusic(RunAwayThiefMusic, 0.9f, 1.0f, true);
         }
 
         void Update()
