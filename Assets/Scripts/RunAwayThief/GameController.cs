@@ -17,6 +17,9 @@ namespace RunAwayThief
         [Range(0, 1)] public float difficultyModifier;
         float nextActionTime = 0.0f;
 
+        [SerializeField] AudioClip RunAwayThiefMusic;
+        [SerializeField] AudioManager audioManager;
+
         void Start()
         {
             Canvas.SetActive(false);
@@ -27,6 +30,8 @@ namespace RunAwayThief
             groundCollider = ground.GetComponent<Collider2D>();
             changeSpeed = Mathf.LerpUnclamped(1, 2, difficultyModifier);
             player.SetMoveForward(changeSpeed);
+
+            AudioManager.instance.PlayMusicLoop(RunAwayThiefMusic, 0.9f, 1.0f, true);
         }
 
         void Update()

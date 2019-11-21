@@ -10,6 +10,8 @@ namespace RunAwayThief
         public float increaseSpeed;
         public BoxCollider2D playerBox;
 
+        [SerializeField] AudioManager audioManager;
+
         #pragma warning disable 0649
         [SerializeField] AudioClip FootSteps;
         #pragma warning restore 0649

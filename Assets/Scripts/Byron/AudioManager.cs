@@ -22,9 +22,6 @@ public class AudioManager : MonoBehaviour
         musicSource = this.gameObject.AddComponent<AudioSource>();
         sfxSource = this.gameObject.AddComponent<AudioSource>();
 
-        // Loop Music
-        musicSource.loop = true;
-
         // Assigning audio mixer child to each audio source
         AudioMixer MasterMixer = Resources.Load("Master") as AudioMixer;
         string _MixerGroup1 = "Music";
@@ -53,12 +50,13 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = volume;
     }
 
-    public void PlayMusicLoop(AudioClip musicClip, float volume, float pitch)
+    public void PlayMusicLoop(AudioClip musicClip, float volume, float pitch, bool isLooping = false)
     {
         musicSource.clip = musicClip;
         musicSource.Play();
-        musicSource.pitch = pitch;
         musicSource.volume = volume;
+        musicSource.loop = isLooping;
+        musicSource.pitch = pitch;
     }
 
     public void StopMusic()
