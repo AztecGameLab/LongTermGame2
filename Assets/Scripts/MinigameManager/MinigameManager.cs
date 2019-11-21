@@ -22,6 +22,7 @@ public class MinigameManager : MonoBehaviour
                 return _instance;
             else
             {
+
                 var ManagerGM = new GameObject("Minigame Manager");
                 return _instance = ManagerGM.AddComponent<MinigameManager>();
             }
@@ -40,25 +41,52 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public void FinishMinigame(bool win)
+    public static void FinishMinigame(bool win)
     {
+        if (!_instance)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            return;
+        }
         if (win)
         {
-            difficulty+=0.5f;
+      
+            difficulty += 0.5f;
             difficulty = Mathf.Clamp01(difficulty);
-            nextScene();
+            Instance.nextScene();
         }
         else if (difficulty > 0)
         {
             difficulty-=0.05f;
             difficulty = Mathf.Clamp01(difficulty);
-            nextScene();
+            Instance.nextScene();
         }
         
     }
-    public void FinishCutscene()
+    public static void FinishMinigame()
     {
-        nextScene();
+        if (!_instance)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            return;
+        }
+            Instance.nextScene();
+        
+    }
+    public static void FinishCutscene()
+    {
+        if (!_instance)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            return;
+        }
+        Instance.nextScene();
     }
     public void MenuStart()
     {
