@@ -17,8 +17,9 @@ namespace RunAwayThief
         [Range(0, 1)] public float difficultyModifier;
         float nextActionTime = 0.0f;
 
+        #pragma warning disable 0649
         [SerializeField] AudioClip RunAwayThiefMusic;
-        [SerializeField] AudioManager audioManager;
+        #pragma warning restore 0649
 
         void Start()
         {

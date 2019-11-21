@@ -7,10 +7,11 @@ public class WizardController : MonoBehaviour
     public GameObject spell;
     public float speed = 1.0f;
 
+    #pragma warning disable 0649
     [SerializeField] AudioClip WizardSpaceInvaderClip;
-    [SerializeField] AudioManager audioManager;
+    #pragma warning restore 0649
 
-    private void Awake()
+    private void Start()
     {
         AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
     }
