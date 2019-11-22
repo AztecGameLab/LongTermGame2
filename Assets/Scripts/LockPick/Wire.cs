@@ -72,8 +72,6 @@ namespace LockPick{
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
                     if (wire_Count == 1)
                     {
-                        //Replace this with changing a visual UI that shows a text message
-                        //print("Nice! Time to stick the nail in");
                         uiText.GetComponent<Text>().text = "Nice! Time to Stick the nail in";
                         successPosition.y += .7f;
                         SuccessArea.transform.position = successPosition;
@@ -82,8 +80,6 @@ namespace LockPick{
                     }
                     if (wire_Count == 2)
                     {
-                        //Replace this with changing a visual UI that shows a text message
-                        //print("Just the paperclip now...");'
                         uiText.GetComponent<Text>().text = "Just the paperclip now...";
                         successPosition.y = 1.4f;
                         SuccessArea.transform.position = successPosition;
@@ -93,8 +89,6 @@ namespace LockPick{
 
                     if (wire_Count < 3)
                     {
-                        //print("You succeeded!");
-
                         Instantiate(secondWire, startPosition + new Vector2(0.5f, 0), Quaternion.identity);
 
                         GetComponent<Rigidbody2D>().gravityScale = 0;
