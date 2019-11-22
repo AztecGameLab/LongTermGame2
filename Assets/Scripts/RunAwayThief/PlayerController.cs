@@ -14,8 +14,6 @@ namespace RunAwayThief
         private bool isGrounded;
         Rigidbody2D body;
 
-        [SerializeField] AudioManager audioManager;
-
         #pragma warning disable 0649
 
         [SerializeField] AudioClip FootSteps;
