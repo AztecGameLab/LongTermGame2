@@ -1,0 +1,201 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ComboTest : MonoBehaviour
+{
+    public Image healthBar;
+    public Image enemyHealthBar;
+    public GameObject displayBox;
+    public GameObject enemyBox;
+    public Animator anim;
+    public Animator enemyAnim;
+    public static string[] buttonOptions = new string[] { "Right", "Left", "Down" , "Up"};
+    public float period = 0.1f;
+    public float startHealth;
+    public float enemyHealth;
+    public float enemyStartHealth;
+    public float playerHealth;
+    public int damageAmount;
+
+    private KeyCombo c = new KeyCombo(buttonOptions);
+    private int winState;
+    private int loseState;
+    private int enemyReturnValue;
+    private int randomAnim;
+    // private int defended;
+    private float nextActionTime = 0.0f;
+
+    private void Start()
+    {
+        playerHealth = 100;
+        enemyHealth = enemyStartHealth;
+
+        for (int t = 0; t < buttonOptions.Length; t++)
+        {
+            string tmp = buttonOptions[t];
+            int r = Random.Range(t, buttonOptions.Length);
+            buttonOptions[t] = buttonOptions[r];
+            buttonOptions[r] = tmp;
+
+        }
+
+        for (int i = 0; i < buttonOptions.Length; i++)
+        {
+            displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
+        }
+        winState = 0;
+    }
+
+    void Update()
+    {
+        if (c.Check())
+        {
+            // do the falcon punch
+            Debug.Log("PUNCH");
+            StartCoroutine(succesfullAttack());
+
+            for (int t = 0; t < buttonOptions.Length; t++)
+            {
+                string tmp = buttonOptions[t];
+                int r = Random.Range(t, buttonOptions.Length);
+                buttonOptions[t] = buttonOptions[r];
+                buttonOptions[r] = tmp;
+            }
+
+            displayBox.GetComponent<Text>().text = string.Empty;
+
+            for (int i = 0; i < buttonOptions.Length; i++)
+            {
+                displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
+            }
+        }
+
+        if (Time.time > nextActionTime)
+        {
+            nextActionTime += period;
+            //defended = 1;
+            //generateEnemyButton();
+            StartCoroutine(enemyAttack());
+        }
+
+        if(playerHealth <= 0 && loseState == 0)
+        {
+            //some death state
+            loseState = 1;
+            Debug.Log("lost");
+            //restart
+        }
+        if(enemyHealth <= 0 && winState == 0)
+        {
+            //win state
+            winState = 1;
+            Debug.Log("win");
+        }
+    }
+
+    IEnumerator succesfullAttack()
+    {
+        randomAnim = Random.Range(0, 3);
+        dealDamage(10);
+
+        if (randomAnim == 0)
+        {
+            anim.SetBool("attack1", true);
+            yield return new WaitForSeconds(1f);
+            anim.SetBool("attack1", false);
+        }
+        if (randomAnim == 1)
+        {
+            anim.SetBool("attack2", true);
+            yield return new WaitForSeconds(1f);
+            anim.SetBool("attack2", false);
+        }
+        if (randomAnim == 2)
+        {
+            anim.SetBool("attack3", true);
+            yield return new WaitForSeconds(1f);
+            anim.SetBool("attack3", false);
+        }
+    }
+
+    IEnumerator enemyAttack()
+    {
+        int qteGen = Random.Range(0, 2);
+
+        if(qteGen == 0)
+        {
+            enemyAnim.SetBool("attack1", true);
+            yield return new WaitForSeconds(1);
+            enemyAnim.SetBool("attack1", false);
+            takeDamage(10);
+        }
+        if (qteGen == 1)
+        {
+            enemyAnim.SetBool("attack2", true);
+            yield return new WaitForSeconds(1);
+            enemyAnim.SetBool("attack1", false);
+            takeDamage(10);
+        }
+        if (qteGen == 2)
+        {
+            enemyAnim.SetBool("attack1", true);
+            yield return new WaitForSeconds(1);
+            enemyAnim.SetBool("attack1", false);
+            takeDamage(10);
+        }
+        yield return new WaitForSeconds(1);
+
+    }
+
+    IEnumerator enemyHurt()
+    {
+        enemyAnim.SetBool("Hurt", true);
+        yield return new WaitForSeconds(.5f);
+        enemyAnim.SetBool("Hurt", false);
+
+    }
+
+    public int generateEnemyButton()
+    {
+        string enemyCharacter = "";
+        int qteGen = Random.Range(0, 3);
+
+        if(qteGen == 0)
+        {
+            enemyCharacter = "w";
+            enemyBox.GetComponent<Text>().text = enemyCharacter;
+            return enemyReturnValue = 1;
+            
+        }
+        if (qteGen == 1)
+        {
+            enemyCharacter = "q";
+            enemyBox.GetComponent<Text>().text = enemyCharacter;
+            return enemyReturnValue = 2;
+        }
+        if (qteGen == 2)
+        {
+            enemyCharacter = "e";
+            enemyBox.GetComponent<Text>().text = enemyCharacter;
+            return enemyReturnValue = 3;
+
+        }
+
+        return 0;
+    }
+
+    public void dealDamage(float amount)
+    {
+        StartCoroutine(enemyHurt());
+        enemyHealth -= amount;
+        enemyHealthBar.fillAmount = enemyHealth / startHealth;
+    }
+
+    public void takeDamage(float amount)
+    {
+        playerHealth -= amount;
+        healthBar.fillAmount = playerHealth / startHealth;
+    }
+}
