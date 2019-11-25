@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource sfxSource;
     #endregion
 
+    bool isSfxPlaying = false;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -43,6 +45,20 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = volume;
     }
 
+    public void PlaySFX(AudioClip sfxClip, float volume, float pitch)
+    {
+        PlaySFX(sfxClip, volume);
+        sfxSource.pitch = pitch;
+    }
+
+    public void PlaySFX(AudioClip sfxClip, float volume, bool loop = false)
+    {
+        sfxSource.clip = sfxClip;
+        sfxSource.Play();
+        sfxSource.volume = volume;
+        sfxSource.loop = isSfxPlaying = loop;
+    }
+
     // In case we want to set music clip with a volume at start
     public void PlayMusic(AudioClip musicClip, float volume)
     {
@@ -62,6 +78,17 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         musicSource.Stop();
+    }
+
+    public void StopSFX()
+    {
+        sfxSource.Stop();
+        isSfxPlaying = false;
+    }
+
+    public bool GetIsSFXPlaying()
+    {
+        return isSfxPlaying;
     }
 
     // In case we want to set music volume separately

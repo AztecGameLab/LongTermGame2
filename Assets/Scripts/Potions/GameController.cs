@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 namespace Potions
 {
-
     public class GameController : MonoBehaviour
     {
         public GameObject fillLine;
@@ -38,15 +38,18 @@ namespace Potions
 
         Vector3[] RYBtoRGBCube = new Vector3[8]
         {
-                new Vector3(1f,1f,1f),
-                new Vector3(0,0,1f),
-                new Vector3(1f,0f,1f),
-                new Vector3(1f,0,0),
-                new Vector3(1f,1f,0),
-                new Vector3(0,1f,0),
-                new Vector3(0,0,0),
-                new Vector3(1f,0.5f,0),
+            new Vector3(1f,1f,1f),
+            new Vector3(0,0,1f),
+            new Vector3(1f,0f,1f),
+            new Vector3(1f,0,0),
+            new Vector3(1f,1f,0),
+            new Vector3(0,1f,0),
+            new Vector3(0,0,0),
+            new Vector3(1f,0.5f,0),
         };
+
+        [SerializeField]
+        AudioClip pourSound;
 
         // Start is called before the first frame update
         void Start()
@@ -82,6 +85,16 @@ namespace Potions
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Reset();
+            }
+
+            bool isThereInput = Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R) || Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y) || Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B);
+            if (isThereInput && !AudioManager.instance.GetIsSFXPlaying())
+            {
+            AudioManager.instance.PlaySFX(pourSound, 1f, true);
+            }
+            else if (!isThereInput && AudioManager.instance.GetIsSFXPlaying())
+            {
+                AudioManager.instance.StopSFX();
             }
 
             if (Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R))
@@ -122,6 +135,7 @@ namespace Potions
             }
 
         }
+
         private void Reset()
         {
             filled = 0;
@@ -146,6 +160,7 @@ namespace Potions
             //print(targetColor.g);
             //print(targetColor.b);
         }
+
         private void DumpPotion()
         {
             filled = 0;
@@ -161,6 +176,7 @@ namespace Potions
             yellowPotency = 0;
             overflowAmount = 0;
         }
+
         private void RYBtoRGB(float r_RYB, float y_RYB, float b_RYB, out float r, out float g, out float b)
         {
             Vector3 interp1 = Vector3.Lerp(RYBtoRGBCube[0], RYBtoRGBCube[3], r_RYB);
@@ -176,8 +192,8 @@ namespace Potions
             r = interp7.x;
             g = interp7.y;
             b = interp7.z;
-
         }
+
         private Color GetRandomColor()
         {
             float val1, val2, val3;
@@ -186,6 +202,7 @@ namespace Potions
             val2 = Random.Range(0f, 1f - val1);
             val3 = 1f - val1 - val2;
             int sort = Random.Range(0, 5);
+
             if(sort == 0)
             {
                 red = val1;
@@ -228,4 +245,3 @@ namespace Potions
         }
     }
 }
-

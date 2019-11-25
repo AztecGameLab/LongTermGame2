@@ -658,7 +658,8 @@ MonoBehaviour:
   speed: 12
   WizardSpaceInvaderClip: {fileID: 8300000, guid: 5503b029384334d4186033d838278249,
     type: 3}
-  audioManager: {fileID: 1523243671}
+  spellSound: {fileID: 8300000, guid: faad81c6a7ae52b25a2b8ddc8b921ad7, type: 3}
+  pitchRange: 0.05
 --- !u!70 &1037271907
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

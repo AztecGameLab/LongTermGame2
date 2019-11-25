@@ -9,9 +9,19 @@ public class WizardController : MonoBehaviour
 
     #pragma warning disable 0649
     [SerializeField] AudioClip WizardSpaceInvaderClip;
+    [SerializeField] AudioClip spellSound;
+    [SerializeField] float pitchRange;
     #pragma warning restore 0649
 
-    private void Start()
+    float pitchMin, pitchMax;
+
+    void Awake()
+    {
+        pitchMax = 1f + pitchRange;
+        pitchMin = 1f - pitchRange;
+    }
+
+    void Start()
     {
         AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
     }
@@ -35,6 +45,6 @@ public class WizardController : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y + 1.5f;
         Instantiate(spell, new Vector2(x, y), Quaternion.identity);
+        AudioManager.instance.PlaySFX(spellSound, 1f, Random.Range(pitchMin, pitchMax));
     }
-
 }

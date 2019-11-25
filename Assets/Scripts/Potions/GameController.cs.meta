@@ -3,7 +3,12 @@ guid: 034a3db8c7a1a1e4cbaf0b831ae29b9b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fillLine: {instanceID: 0}
+  - colorTarget: {instanceID: 0}
+  - bottleOrigin: {instanceID: 0}
+  - celebrationParticles: {instanceID: 0}
+  - pourSound: {fileID: 8300000, guid: 7abab56a9d6f501da82a368a130ac554, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

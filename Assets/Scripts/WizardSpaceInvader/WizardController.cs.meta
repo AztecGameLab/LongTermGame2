@@ -3,7 +3,10 @@ guid: c952196330ef73341bed373b08f11c95
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spell: {instanceID: 0}
+  - WizardSpaceInvaderClip: {instanceID: 0}
+  - spellSound: {fileID: 8300000, guid: faad81c6a7ae52b25a2b8ddc8b921ad7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
