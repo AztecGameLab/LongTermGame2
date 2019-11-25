@@ -27,7 +27,6 @@ namespace Potions
         float redPotency, yellowPotency, bluePotency;
         private float overflowAmount;
 
-        
         GameObject instantiatedColorTarget;
         GameObject instantiatedCelebrationParticles;
         Text scoreText;
@@ -36,8 +35,6 @@ namespace Potions
         Color targetColor;
 
         public float acceptableRange;
-
-
 
         Vector3[] RYBtoRGBCube = new Vector3[8]
         {
