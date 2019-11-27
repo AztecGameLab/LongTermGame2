@@ -27,10 +27,7 @@ namespace RunAwayThief
         
         void Update()
         {
-            /*if(!gameController.end)
-            {
-                PlayerRun();
-            }*/
+            
         }
 
         public void PlayerRun()
@@ -40,12 +37,10 @@ namespace RunAwayThief
                 if (isGrounded)
                 {
                     body.velocity = moveForward;
-                    //body.AddForce(moveForward * increaseSpeed);
                 }
                 else if(!isGrounded)
                 {
-                    body.velocity = new Vector2(moveForward.x, 0);
-                    //body.AddForce(moveForward * increaseSpeed);
+                    body.velocity = new Vector2(moveForward.x, moveForward.y*-1);
                 }
             }
         }
