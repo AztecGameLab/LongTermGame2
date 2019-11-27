@@ -12,6 +12,7 @@ namespace RunAwayThief
         public GameController gameController;
         public Collider2D playerCollider;
         private bool isGrounded;
+        public GameObject dirtParticle;
         Rigidbody2D body;
 
         #pragma warning disable 0649
@@ -34,6 +35,8 @@ namespace RunAwayThief
         {
             if (Input.GetButtonDown("Primary"))
             {
+                Vector3 dirtPosition = new Vector3(body.transform.position.x, body.transform.position.y - 1.4f, body.transform.position.z);
+                Instantiate(dirtParticle, dirtPosition, body.transform.rotation);
                 if (isGrounded)
                 {
                     body.velocity = moveForward;
