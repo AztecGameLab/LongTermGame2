@@ -13,17 +13,15 @@ namespace Potions
         public GameObject celebrationParticles;
 
         [Range(0, 1)]
-        [SerializeField]
         public float filled;
 
         public float fillRate;
         public float filledSize;
 
         [Range(0, 1)]
-        [SerializeField]
         public float r, g, b, opaqueness;
 
-        public float redAmount, yellowAmount, blueAmount;
+        float redAmount, yellowAmount, blueAmount;
         float redPotency, yellowPotency, bluePotency;
         private float overflowAmount;
 
@@ -101,11 +99,11 @@ namespace Potions
             {
                 redAmount += fillRate * Time.deltaTime;
             }
-            if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
+            else if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
             {
                 yellowAmount += fillRate * Time.deltaTime;
             }
-            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
+            else if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
             {
                 blueAmount += fillRate * Time.deltaTime;
             }
