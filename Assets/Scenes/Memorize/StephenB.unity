@@ -296,7 +296,7 @@ MonoBehaviour:
     type: 3}
   absoluteMaxTime: 5
   waitTime: 1.25
-  deltaSpeed: 0.01
+  deltaSpeed: 0.0075
   correct: {fileID: 8300000, guid: fbe744f65899eba83a0a00a58cc186f5, type: 3}
   incorrect: {fileID: 8300000, guid: c1025931a51e99d62b755c23ef3845d2, type: 3}
   music: {fileID: 8300000, guid: bc971c6632b6ee346ad5ac5cd52016d5, type: 3}

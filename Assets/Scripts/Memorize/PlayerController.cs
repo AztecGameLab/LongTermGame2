@@ -164,6 +164,13 @@ namespace Memorize {
                 {
                     Destroy(placeholder);
                 }
+
+                if (!isWin)
+                {
+                    AudioManager.instance.StopMusic();
+                    MinigameManager.FinishMinigame(isWin);
+                    yield break;
+                }
                 
                 // up the ante
                 maxButtons++;
@@ -174,7 +181,6 @@ namespace Memorize {
             
             AudioManager.instance.StopMusic();
             MinigameManager.FinishMinigame(isWin);
-            yield return null;
         }
     }
 }
