@@ -91,6 +91,7 @@ namespace Memorize {
         {
             slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
             AudioManager.instance.PlayMusic(music, 1f, speed, true);
+            yield return new WaitForSeconds(waitTime);
 
             for (int h = 0; h < loops; h++)
             {
@@ -98,7 +99,6 @@ namespace Memorize {
                 slider.maxValue = maxTime;
                 slider.value = slider.minValue;
                 memorizeText.enabled = true;
-                yield return new WaitForSeconds(waitTime);
 
                 // generate new set of buttons and placeholders
                 int size = Mathf.RoundToInt(Random.value * deltaButtons) + minButtons;
