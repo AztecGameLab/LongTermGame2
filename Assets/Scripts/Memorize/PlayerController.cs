@@ -2,23 +2,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO change UI and controls
 namespace Memorize {
     public class PlayerController : MonoBehaviour
     {
         #pragma warning disable 0649
         [SerializeField] GameObject buttonPrefab, placeholderPrefab;
-        [SerializeField] float absoluteMaxTime, initialWaitTime, waitTime, deltaSpeed;
         [SerializeField] AudioClip correct, incorrect, music;
+        [SerializeField] float absoluteMaxTime, initialWaitTime, waitTime, deltaSpeed;
         [SerializeField] ushort maxButtons, minButtons, loops;
         #pragma warning restore 0649
 
         GameObject[] buttons, placeholders;
-        KeyCode[] keys;
         SpriteRenderer[] placeholderSprites;
-        Slider slider;
+        KeyCode[] keys;
         Text memorizeText, repeatText;
-        float maxTime, deltaButtons;
-        float speed = 1f;
+        Slider slider;
+        float maxTime, deltaButtons, speed;
         bool inputAllowed, isWin;
         ushort c;
 
@@ -32,6 +32,7 @@ namespace Memorize {
             deltaButtons = maxButtons - minButtons;
             maxTime = absoluteMaxTime;
             isWin = true;
+            speed = 1f;
         }
 
         void Start()
@@ -82,7 +83,6 @@ namespace Memorize {
         float RandomDirection(ushort i)
         {
             float r = Random.value;
-            // TODO better way to sort this shared logic
             keys[i] = r < 0.5f ? (r < 0.25f ? KeyCode.UpArrow : KeyCode.LeftArrow) : (r < 0.75f ? KeyCode.DownArrow : KeyCode.RightArrow);
             return r < 0.5f ? (r < 0.25f ? 0f : 90f) : (r < 0.75f ? 180f : 270f);
         }
@@ -106,7 +106,7 @@ namespace Memorize {
                 placeholders = new GameObject[size];
                 placeholderSprites = new SpriteRenderer[size];
                 keys = new KeyCode[size];
-                // TODO change UI and controls
+
                 float j = -buttons.Length - 1;
                 for (ushort i = 0; i < buttons.Length; i++)
                 {
