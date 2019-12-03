@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class ComboTest : MonoBehaviour
 {
+    public GameObject Fight;
+    public GameObject RoundOne;
+    public GameObject RoundTwo;
+    public GameObject Fatality;
+
     public Image healthBar;
     public Image enemyHealthBar;
     public GameObject displayBox;
@@ -26,9 +31,16 @@ public class ComboTest : MonoBehaviour
     private int randomAnim;
     // private int defended;
     private float nextActionTime = 0.0f;
-
+    private bool gameStart;
+    private int level;
+    [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage;
     private void Start()
     {
+        gameStart = false;
+        level = 1;
+        StartCoroutine(roundCounter());
+        
+
         playerHealth = 100;
         enemyHealth = enemyStartHealth;
 
@@ -50,55 +62,68 @@ public class ComboTest : MonoBehaviour
 
     void Update()
     {
-        if (c.Check())
-        {
-            // do the falcon punch
-            Debug.Log("PUNCH");
-            StartCoroutine(succesfullAttack());
 
-            for (int t = 0; t < buttonOptions.Length; t++)
+        if (gameStart == true)
+        {
+            if (c.Check())
             {
-                string tmp = buttonOptions[t];
-                int r = Random.Range(t, buttonOptions.Length);
-                buttonOptions[t] = buttonOptions[r];
-                buttonOptions[r] = tmp;
+
+                Debug.Log("PUNCH");
+                StartCoroutine(succesfullAttack());
+
+                for (int t = 0; t < buttonOptions.Length; t++)
+                {
+                    string tmp = buttonOptions[t];
+                    int r = Random.Range(t, buttonOptions.Length);
+                    buttonOptions[t] = buttonOptions[r];
+                    buttonOptions[r] = tmp;
+                }
+
+                displayBox.GetComponent<Text>().text = string.Empty;
+
+                for (int i = 0; i < buttonOptions.Length; i++)
+                {
+                    displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
+                }
             }
 
-            displayBox.GetComponent<Text>().text = string.Empty;
-
-            for (int i = 0; i < buttonOptions.Length; i++)
+            if (Time.time > nextActionTime)
             {
-                displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
+                nextActionTime += period;
+                //defended = 1;
+                //generateEnemyButton();
+                StartCoroutine(enemyAttack());
             }
-        }
 
-        if (Time.time > nextActionTime)
-        {
-            nextActionTime += period;
-            //defended = 1;
-            //generateEnemyButton();
-            StartCoroutine(enemyAttack());
-        }
-
-        if(playerHealth <= 0 && loseState == 0)
-        {
-            //some death state
-            loseState = 1;
-            Debug.Log("lost");
-            //restart
-        }
-        if(enemyHealth <= 0 && winState == 0)
-        {
-            //win state
-            winState = 1;
-            Debug.Log("win");
+            if (playerHealth <= 0 && loseState == 0)
+            {
+                //some death state
+                MinigameManager.FinishMinigame(false);
+                loseState = 1;
+                Debug.Log("lost");
+                //restart
+            }
+            if (enemyHealth <= 0 && winState == 0)
+            {
+                //win state
+                winState = 1;
+                level = 2;
+                StartCoroutine(roundCounter());
+                if(enemyHealth <= 0 && level == 2)
+                {
+                    MinigameManager.FinishMinigame(true);
+                }
+                Debug.Log("win");
+            }
         }
     }
-
     IEnumerator succesfullAttack()
     {
+        
         randomAnim = Random.Range(0, 3);
         dealDamage(10);
+
+        AudioManager.instance.PlaySFX(PlayerAttack, 0.65f);
 
         if (randomAnim == 0)
         {
@@ -122,38 +147,37 @@ public class ComboTest : MonoBehaviour
 
     IEnumerator enemyAttack()
     {
-        int qteGen = Random.Range(0, 2);
+        if (gameStart == true)
+        {
 
-        if(qteGen == 0)
-        {
-            enemyAnim.SetBool("attack1", true);
-            yield return new WaitForSeconds(1);
-            enemyAnim.SetBool("attack1", false);
-            takeDamage(10);
-        }
-        if (qteGen == 1)
-        {
-            enemyAnim.SetBool("attack2", true);
-            yield return new WaitForSeconds(1);
-            enemyAnim.SetBool("attack1", false);
-            takeDamage(10);
-        }
-        if (qteGen == 2)
-        {
-            enemyAnim.SetBool("attack1", true);
-            yield return new WaitForSeconds(1);
-            enemyAnim.SetBool("attack1", false);
-            takeDamage(10);
-        }
-        yield return new WaitForSeconds(1);
+            int qteGen = Random.Range(0, 2);
 
+            if (qteGen == 0)
+            {
+                enemyAnim.SetBool("attack1", true);
+                yield return new WaitForSeconds(1);
+                enemyAnim.SetBool("attack1", false);
+                takeDamage(10);
+            }
+            if (qteGen == 1)
+            {
+                enemyAnim.SetBool("attack2", true);
+                yield return new WaitForSeconds(1);
+                enemyAnim.SetBool("attack2", false);
+                takeDamage(10);
+            }
+
+            yield return new WaitForSeconds(1);
+
+        }
     }
-
     IEnumerator enemyHurt()
     {
         enemyAnim.SetBool("Hurt", true);
         yield return new WaitForSeconds(.5f);
         enemyAnim.SetBool("Hurt", false);
+
+        AudioManager.instance.PlaySFX(OnionEnemyDamage, 1.0f);
 
     }
 
@@ -162,30 +186,12 @@ public class ComboTest : MonoBehaviour
         string enemyCharacter = "";
         int qteGen = Random.Range(0, 3);
 
-        if(qteGen == 0)
-        {
-            enemyCharacter = "w";
-            enemyBox.GetComponent<Text>().text = enemyCharacter;
-            return enemyReturnValue = 1;
-            
-        }
-        if (qteGen == 1)
-        {
-            enemyCharacter = "q";
-            enemyBox.GetComponent<Text>().text = enemyCharacter;
-            return enemyReturnValue = 2;
-        }
-        if (qteGen == 2)
-        {
-            enemyCharacter = "e";
-            enemyBox.GetComponent<Text>().text = enemyCharacter;
-            return enemyReturnValue = 3;
 
-        }
+        return -999; //temporary to stop error feel free to change it but it needs to return something. -Kain
 
-        return 0;
     }
 
+   
     public void dealDamage(float amount)
     {
         StartCoroutine(enemyHurt());
@@ -197,5 +203,39 @@ public class ComboTest : MonoBehaviour
     {
         playerHealth -= amount;
         healthBar.fillAmount = playerHealth / startHealth;
+    }
+
+    IEnumerator roundCounter()
+    {
+        if(level == 1)
+        {
+            RoundOne.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            RoundOne.gameObject.SetActive(false);
+            Fight.gameObject.SetActive(true);
+            yield return new WaitForSeconds(.5f);
+            gameStart = true;
+            Fight.gameObject.SetActive(false);
+        }
+        else if(level == 2)
+        {
+            gameStart = false;
+            RoundTwo.gameObject.SetActive(true);
+            enemyHealth = 140;
+            playerHealth = 100;
+            healthBar.fillAmount = playerHealth / startHealth;
+            enemyHealthBar.fillAmount = enemyHealth / startHealth;     
+            yield return new WaitForSeconds(3f);
+            RoundTwo.gameObject.SetActive(false);
+            Fight.gameObject.SetActive(true);
+            yield return new WaitForSeconds(.5f);
+            gameStart = true;
+            Fight.gameObject.SetActive(false);
+        }
+
+    }
+    IEnumerator randomDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
     }
 }
