@@ -33,7 +33,7 @@ public class WizardController : MonoBehaviour
         transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0) * Time.deltaTime * speed;
 
         //initiates a moving spell when user hits space
-        if (Input.GetKeyDown("space"))
+        if (Input.GetButtonDown("Fire1"))
         {
             castSpell();
         }

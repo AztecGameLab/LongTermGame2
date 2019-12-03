@@ -6,6 +6,14 @@ using UnityEditor.SceneManagement;
 
 public class MinigameManager : MonoBehaviour
 {
+    static GameObject gameManager;
+    public GameObject canvas;
+    public GameObject gameOverScreen;
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public GameObject[] hearts;
+    int health;
+
     private static MinigameManager _instance;
     public static float difficulty = 0;
     public static int cutsceneIndex = 0;
@@ -14,6 +22,8 @@ public class MinigameManager : MonoBehaviour
     public int[] frequency;
     public int[] cutsceneIndices;
     public int[] minigameIndices;
+
+    public static bool hasFinishedGame;
     public static MinigameManager Instance
     {
         get
@@ -31,6 +41,8 @@ public class MinigameManager : MonoBehaviour
 
     void Awake()
     {
+        gameManager = GameObject.FindGameObjectWithTag("Manager");
+
         if (_instance && _instance != this)
             Destroy(gameObject);
         else
@@ -41,49 +53,72 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        health = hearts.Length;
+    }
+
     public static void FinishMinigame(bool win)
     {
+        if (hasFinishedGame)
+            return;
+        else
+            hasFinishedGame = true;
+
         if (!_instance)
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+                UnityEditor.EditorApplication.isPlaying = false;
+                hasFinishedGame = false;
+            
             return;
         }
         if (win)
         {
       
-            difficulty += 0.5f;
+            difficulty += 0.2f;
             difficulty = Mathf.Clamp01(difficulty);
-            Instance.nextScene();
+            if (gameManager != null)
+                gameManager.GetComponent<MinigameManager>().resultScreen(true);
+            //Instance.nextScene();
+            //hasFinishedGame = false;
         }
-        else if (difficulty > 0)
+        else
         {
-            difficulty-=0.05f;
-            difficulty = Mathf.Clamp01(difficulty);
-            Instance.nextScene();
+            if (difficulty > 0)
+            {
+                difficulty -= 0.05f;
+                difficulty = Mathf.Clamp01(difficulty);
+            }
+
+            if (gameManager != null)
+                gameManager.GetComponent<MinigameManager>().resultScreen(false);
+            //Instance.nextScene();
+            //hasFinishedGame = false;
         }
-        
+
     }
+
     public static void FinishMinigame()
     {
         if (!_instance)
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+                UnityEditor.EditorApplication.isPlaying = false;
+            
             return;
         }
-            Instance.nextScene();
-        
+        if (gameManager != null)
+        {
+            gameManager.GetComponent<MinigameManager>().resultScreen();
+        }
+        //Instance.nextScene();
+
     }
     public static void FinishCutscene()
     {
         if (!_instance)
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+                UnityEditor.EditorApplication.isPlaying = false;
+            
             return;
         }
         Instance.nextScene();
@@ -145,10 +180,96 @@ public class MinigameManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        gameManager = GameObject.FindGameObjectWithTag("Manager");
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].SetActive(true);
+        }
+        health = hearts.Length;
+
         cutsceneIndex = 0;
         frequencyIndex = 0;
         minigameIndex = 0;
         RandomlyGenerateMinigameSequence();
         SceneManager.LoadScene(0);
     }
+
+    public bool CRrunning;
+    Coroutine lastRoutine;
+    void resultScreen()
+    {
+        if (!CRrunning)
+        {
+            StartCoroutine(resultScreenCR());
+        }
+    }
+    IEnumerator resultScreenCR()
+    {
+        CRrunning = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Instance.nextScene();
+
+        CRrunning = false;
+    }
+
+    void resultScreen(bool win)
+    {
+        if (!CRrunning)
+        {
+            lastRoutine = StartCoroutine(resultScreenCR(win));
+        }
+    }
+    IEnumerator resultScreenCR(bool win)
+    {
+
+        CRrunning = true;
+        yield return new WaitForSeconds(0.2f); //time for result screen to show
+
+        canvas.SetActive(true);
+        if (win)
+            winScreen.SetActive(true);
+        else
+        {
+            loseScreen.SetActive(true);
+
+            health--;
+            yield return new WaitForSeconds(0.3f);
+            for (int i = 0; i < 5; i++)
+            {
+                yield return new WaitForSeconds(0.1f);
+                hearts[health].SetActive(true);
+                yield return new WaitForSeconds(0.1f);
+                hearts[health].SetActive(false);
+            }
+
+            if (health <= 0)
+            {
+                yield return new WaitForSeconds(0.6f);
+                gameOverScreen.SetActive(true);
+                yield return new WaitForSeconds(5f);
+                gameOverScreen.SetActive(false);
+                RestartGame();
+                canvas.SetActive(false);
+                hasFinishedGame = false;
+                CRrunning = false;
+                StopCoroutine(lastRoutine);
+            }
+        }
+        yield return new WaitForSeconds(3); //time to move to next level
+
+        if (win)
+            winScreen.SetActive(false);
+        else
+            loseScreen.SetActive(false);
+        canvas.SetActive(false);
+
+        Instance.nextScene();
+        hasFinishedGame = false;
+
+        CRrunning = false;
+    }
+
 }

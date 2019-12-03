@@ -23,6 +23,7 @@ public class MainMenuController : MonoBehaviour
     public void PlayTest()
     {
         print("Play Button Pressed");
+        MinigameManager.FinishMinigame();
     }
 
     public void showCredits()

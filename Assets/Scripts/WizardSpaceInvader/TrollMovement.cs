@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class TrollMovement : MonoBehaviour
 {
-    public float speed;
+    public float speed = 1.5f;
 
-    private void Start()
-    {
-        speed = 1.0f;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;

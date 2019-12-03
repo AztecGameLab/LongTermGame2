@@ -30,9 +30,20 @@ namespace Potions
         Text scoreText;
         int score;
 
+        float timeBuffer;
+        float bufferStartTime;
+
+        Text timeText;
+        float countdownTime;
+
+        Text PotionsNeededText;
+        int potionsNeeded;
+
         Color targetColor;
 
         public float acceptableRange;
+
+        bool canTakeInput;
 
         Vector3[] RYBtoRGBCube = new Vector3[8]
         {
@@ -52,9 +63,20 @@ namespace Potions
         // Start is called before the first frame update
         void Start()
         {
+            canTakeInput = true;
+            timeBuffer = 0.5f;
+            
             score = 0;
             scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
             scoreText.text = score.ToString();
+
+            countdownTime = 20f;
+            timeText = GameObject.Find("TimeText").GetComponent<Text>();
+            timeText.text = countdownTime.ToString();
+
+            potionsNeeded = 4;
+            PotionsNeededText = GameObject.Find("PotionsNeededText").GetComponent<Text>();
+            PotionsNeededText.text = potionsNeeded.ToString();
 
             filled = 0;
             r = 0;
@@ -75,37 +97,57 @@ namespace Potions
         void Update()
         {
             scoreText.text = score.ToString();
+            countdownTime -= Time.deltaTime;
+            timeText.text = countdownTime.ToString();
 
-            if (Input.GetAxisRaw("Vertical") == -1 || Input.GetKeyDown(KeyCode.Space))
+            if(countdownTime <= 0)
             {
-                DumpPotion();
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Reset();
+                Lose();
             }
 
-            bool isThereInput = Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R) || Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y) || Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B);
-            if (isThereInput && !AudioManager.instance.GetIsSFXPlaying())
-            {
-            AudioManager.instance.PlaySFX(pourSound, 1f, true);
-            }
-            else if (!isThereInput && AudioManager.instance.GetIsSFXPlaying())
-            {
-                AudioManager.instance.StopSFX();
-            }
+            PotionsNeededText.text = potionsNeeded.ToString();
 
-            if (Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R))
+            if (canTakeInput)
             {
-                redAmount += fillRate * Time.deltaTime;
+                if (Input.GetAxisRaw("Vertical") == -1 || Input.GetKeyDown(KeyCode.Space))
+                {
+                    DumpPotion();
+                }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Reset();
+                }
+
+                bool isThereInput = Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R) || Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y) || Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B);
+                if (isThereInput && !AudioManager.instance.GetIsSFXPlaying())
+                {
+                    AudioManager.instance.PlaySFX(pourSound, 1f, true);
+                }
+                else if (!isThereInput && AudioManager.instance.GetIsSFXPlaying())
+                {
+                    AudioManager.instance.StopSFX();
+                }
+
+                if (Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R))
+                {
+                    redAmount += fillRate * Time.deltaTime;
+                }
+                else if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
+                {
+                    yellowAmount += fillRate * Time.deltaTime;
+                }
+                else if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
+                {
+                    blueAmount += fillRate * Time.deltaTime;
+                }
             }
-            else if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
+            else
             {
-                yellowAmount += fillRate * Time.deltaTime;
-            }
-            else if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
-            {
-                blueAmount += fillRate * Time.deltaTime;
+                if(Time.time >= bufferStartTime + timeBuffer)
+                {
+                    CorrectPotion();
+                    canTakeInput = true;
+                }
             }
 
             if (redAmount + yellowAmount + blueAmount > 1)
@@ -123,40 +165,39 @@ namespace Potions
             bluePotency = blueAmount / (redAmount + yellowAmount + blueAmount);
             RYBtoRGB(redPotency, yellowPotency, bluePotency,out r,out g,out b);
 
-            if (Mathf.Abs(r - targetColor.r) <= acceptableRange && Mathf.Abs(g - targetColor.g) <= acceptableRange && Mathf.Abs(b - targetColor.b) <= acceptableRange && filled >= 0.25)
+            if (canTakeInput)
             {
-                score++;
-                instantiatedCelebrationParticles = Instantiate(celebrationParticles, bottleOrigin.transform.position + new Vector3(0,filledSize * filled,0), Quaternion.identity);
-                ParticleSystem.MainModule main = instantiatedCelebrationParticles.GetComponent<ParticleSystem>().main;
-                main.startColor = targetColor;
-                Reset();
+                if (Mathf.Abs(r - targetColor.r) <= acceptableRange && Mathf.Abs(g - targetColor.g) <= acceptableRange && Mathf.Abs(b - targetColor.b) <= acceptableRange && filled >= 0.25)
+                {
+                    score++;
+                    canTakeInput = false;
+                    bufferStartTime = Time.time;
+                    instantiatedCelebrationParticles = Instantiate(celebrationParticles, bottleOrigin.transform.position + new Vector3(0, filledSize * filled, 0), Quaternion.identity);
+                    //ParticleSystem.MainModule main = instantiatedCelebrationParticles.GetComponent<ParticleSystem>().main;
+                    //main.startColor = targetColor;
+                }
             }
 
         }
 
         private void Reset()
         {
-            filled = 0;
-            r = 0;
-            g = 0;
-            b = 0;
-            opaqueness = 1;
-            redAmount = 0;
-            blueAmount = 0;
-            yellowAmount = 0;
-            redPotency = 0;
-            bluePotency = 0;
-            yellowPotency = 0;
-            overflowAmount = 0;
+            DumpPotion();
 
             Destroy(instantiatedColorTarget);
             instantiatedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize, 0), Quaternion.identity);
             targetColor = GetRandomColor();
             instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
+        }
 
-            //print(targetColor.r);
-            //print(targetColor.g);
-            //print(targetColor.b);
+        private void CorrectPotion()
+        {
+            Reset();
+            potionsNeeded--;
+            if (potionsNeeded <= 0)
+            {
+                Win();
+            }
         }
 
         private void DumpPotion()
@@ -240,6 +281,14 @@ namespace Potions
             float r, g, b;
             RYBtoRGB(red, yellow, blue, out r, out g, out b);
             return new Color(r, g, b);
+        }
+        private void Win()
+        {
+            MinigameManager.FinishMinigame(true);
+        }
+        private void Lose()
+        {
+            MinigameManager.FinishMinigame(false);
         }
     }
 }

@@ -701,7 +701,6 @@ GameObject:
   m_Component:
   - component: {fileID: 591904069}
   - component: {fileID: 591904070}
-  - component: {fileID: 591904068}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -709,18 +708,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &591904068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 591904067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2915046cde172054984ef48b01afbfce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &591904069
 Transform:
   m_ObjectHideFlags: 0
@@ -763,8 +750,6 @@ MonoBehaviour:
   enemyStartHealth: 100
   playerHealth: 0
   damageAmount: 0
-  PlayerAttack: {fileID: 8300000, guid: 43704bf37747add4593c04960d9fb1c1, type: 3}
-  OnionEnemyDamage: {fileID: 8300000, guid: 405b193055ce9e14f9c980c34d372160, type: 3}
 --- !u!1 &666621297
 GameObject:
   m_ObjectHideFlags: 0
