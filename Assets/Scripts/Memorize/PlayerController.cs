@@ -134,7 +134,6 @@ namespace Memorize {
                 }
 
                 slider.value = slider.maxValue = absoluteMaxTime;
-                yield return new WaitForSeconds(initialWaitTime);
                 repeatText.enabled = true;
                 slider.gameObject.SetActive(true);
                 // repeat
