@@ -75,6 +75,11 @@ public class AudioManager : MonoBehaviour
         musicSource.pitch = pitch;
     }
 
+    public void SetMusicPitch(float pitch)
+    {
+        musicSource.pitch = pitch;
+    }
+
     public void StopMusic()
     {
         musicSource.Stop();
