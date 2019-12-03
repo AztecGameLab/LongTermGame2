@@ -1,4 +1,5 @@
 ﻿// https://lindenreid.wordpress.com/2018/03/05/heat-distortion-shader-tutorial/
+// TODO fix the vignette
 Shader "Custom/Heat"
 {
     Properties
