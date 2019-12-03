@@ -295,8 +295,9 @@ MonoBehaviour:
   placeholderPrefab: {fileID: 3081946713393475509, guid: 4c60018f060f85a4f95782d0a2c6a436,
     type: 3}
   absoluteMaxTime: 5
-  waitTime: 1.25
-  deltaSpeed: 0.0075
+  initialWaitTime: 1.25
+  waitTime: 3
+  deltaSpeed: 0.005
   correct: {fileID: 8300000, guid: fbe744f65899eba83a0a00a58cc186f5, type: 3}
   incorrect: {fileID: 8300000, guid: c1025931a51e99d62b755c23ef3845d2, type: 3}
   music: {fileID: 8300000, guid: bc971c6632b6ee346ad5ac5cd52016d5, type: 3}

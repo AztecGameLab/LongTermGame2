@@ -7,7 +7,7 @@ namespace Memorize {
     {
         #pragma warning disable 0649
         [SerializeField] GameObject buttonPrefab, placeholderPrefab;
-        [SerializeField] float absoluteMaxTime, waitTime, deltaSpeed;
+        [SerializeField] float absoluteMaxTime, initialWaitTime, waitTime, deltaSpeed;
         [SerializeField] AudioClip correct, incorrect, music;
         [SerializeField] ushort maxButtons, minButtons, loops;
         #pragma warning restore 0649
@@ -91,7 +91,7 @@ namespace Memorize {
         {
             slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
             AudioManager.instance.PlayMusic(music, 1f, speed, true);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(initialWaitTime);
 
             for (int h = 0; h < loops; h++)
             {
@@ -153,7 +153,7 @@ namespace Memorize {
                 {
                     button.SetActive(true);
                 }
-                yield return new WaitForSeconds(absoluteMaxTime);
+                yield return new WaitForSeconds(waitTime);
 
                 // clean up
                 foreach (GameObject button in buttons)
