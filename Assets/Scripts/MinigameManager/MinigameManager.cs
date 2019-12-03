@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class MinigameManager : MonoBehaviour
     public GameObject loseScreen;
     public GameObject[] hearts;
     int health;
+    int score;
+    public TextMeshProUGUI scoreText;
 
     private static MinigameManager _instance;
     public static float difficulty = 0;
@@ -56,6 +60,8 @@ public class MinigameManager : MonoBehaviour
     private void Start()
     {
         health = hearts.Length;
+        score = 0;
+        scoreText.SetText("Score: " + score);
     }
 
     public static void FinishMinigame(bool win)
@@ -187,6 +193,8 @@ public class MinigameManager : MonoBehaviour
             hearts[i].SetActive(true);
         }
         health = hearts.Length;
+        score = 0;
+        scoreText.SetText("Score: " + score);
 
         cutsceneIndex = 0;
         frequencyIndex = 0;
@@ -230,9 +238,14 @@ public class MinigameManager : MonoBehaviour
 
         canvas.SetActive(true);
         if (win)
+        {
+            score++;
+            scoreText.SetText("Score: " + score);
             winScreen.SetActive(true);
+        }
         else
         {
+            scoreText.SetText("Score: " + score);
             loseScreen.SetActive(true);
 
             health--;
