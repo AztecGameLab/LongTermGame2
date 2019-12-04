@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,7 +228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.5, y: 0.4}
+  m_AnchoredPosition: {x: -21.85, y: 0.4}
   m_SizeDelta: {x: 184.5, y: 94.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &103408544
@@ -779,7 +779,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fight: {fileID: 1284924645}
   RoundOne: {fileID: 1377553748}
-  RoundTwo: {fileID: 1297747663}
   Fatality: {fileID: 1332176844}
   healthBar: {fileID: 1850220670}
   enemyHealthBar: {fileID: 2000340721}
@@ -1023,7 +1022,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 4e-45, z: 2.936e-42, w: 1.05e-43}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1278,11 +1277,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1156688514341970521, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
-        type: 3}
-      propertyPath: m_Name
-      value: RedKnight
-      objectReference: {fileID: 0}
     - target: {fileID: -2814278423186415084, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1562,6 +1556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.8068181
+      objectReference: {fileID: 0}
+    - target: {fileID: -1156688514341970521, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
+        type: 3}
+      propertyPath: m_Name
+      value: RedKnight
       objectReference: {fileID: 0}
     - target: {fileID: -4591514971311171377, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
         type: 3}
