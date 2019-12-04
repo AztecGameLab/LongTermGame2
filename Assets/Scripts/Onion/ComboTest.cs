@@ -31,12 +31,10 @@ public class ComboTest : MonoBehaviour
     // private int defended;
     private float nextActionTime = 0.0f;
     private bool gameStart;
-    private int level;
     [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage, OnionPlayerHurt;
     private void Start()
     {
         gameStart = false;
-        level = 1;
         StartCoroutine(roundCounter());
 
         AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
