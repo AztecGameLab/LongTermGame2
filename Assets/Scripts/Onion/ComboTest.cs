@@ -33,12 +33,14 @@ public class ComboTest : MonoBehaviour
     private float nextActionTime = 0.0f;
     private bool gameStart;
     private int level;
-    [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage;
+    [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage, OnionPlayerHurt;
     private void Start()
     {
         gameStart = false;
         level = 1;
         StartCoroutine(roundCounter());
+
+        AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
         
 
         playerHealth = 100;
@@ -124,6 +126,7 @@ public class ComboTest : MonoBehaviour
         dealDamage(10);
 
         AudioManager.instance.PlaySFX(PlayerAttack, 0.65f);
+        AudioManager.instance.PlaySFX(OnionEnemyDamage, 1.0f);
 
         if (randomAnim == 0)
         {
@@ -176,9 +179,6 @@ public class ComboTest : MonoBehaviour
         enemyAnim.SetBool("Hurt", true);
         yield return new WaitForSeconds(.5f);
         enemyAnim.SetBool("Hurt", false);
-
-        AudioManager.instance.PlaySFX(OnionEnemyDamage, 1.0f);
-
     }
 
     public int generateEnemyButton()
@@ -203,6 +203,7 @@ public class ComboTest : MonoBehaviour
     {
         playerHealth -= amount;
         healthBar.fillAmount = playerHealth / startHealth;
+        AudioManager.instance.PlaySFX(OnionPlayerHurt, 1.0f);
     }
 
     IEnumerator roundCounter()
