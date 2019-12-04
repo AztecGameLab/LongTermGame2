@@ -12,12 +12,15 @@ namespace Potions
         public GameObject bottleOrigin;
         public GameObject celebrationParticles;
         public GameObject overflowParticles;
+        public GameObject colorTargetSpawn;
         GameObject instantiatedOverflowParticles;
+        ParticleSystem overflowSystem;
+        ParticleSystem.MainModule overflowMain;
 
         [Range(0, 1)]
         public float filled;
 
-        public float fillRate;
+        float fillRate;
         public float filledSize;
 
         [Range(0, 1)]
@@ -35,6 +38,8 @@ namespace Potions
         float timeBuffer;
         float bufferStartTime;
 
+        float difficulty;
+
         Text timeText;
         float countdownTime;
 
@@ -46,6 +51,8 @@ namespace Potions
         public float acceptableRange;
 
         bool canTakeInput;
+        bool isOverflowing;
+        bool isOverflowSystemPlaying;
 
         Vector3[] RYBtoRGBCube = new Vector3[8]
         {
@@ -65,6 +72,11 @@ namespace Potions
         // Start is called before the first frame update
         void Start()
         {
+            difficulty = MinigameManager.GetDifficulty();
+
+            isOverflowing = false;
+            isOverflowSystemPlaying = false;
+
             canTakeInput = true;
             timeBuffer = 0.5f;
             
@@ -76,9 +88,11 @@ namespace Potions
             timeText = GameObject.Find("TimeText").GetComponent<Text>();
             timeText.text = countdownTime.ToString();
 
-            potionsNeeded = 4;
+            fillRate = Mathf.LerpUnclamped(0.5f, 0.75f, difficulty);
+
+            potionsNeeded = Mathf.RoundToInt(Mathf.LerpUnclamped(4,7,difficulty));
             PotionsNeededText = GameObject.Find("PotionsNeededText").GetComponent<Text>();
-            PotionsNeededText.text = potionsNeeded.ToString();
+            PotionsNeededText.text ="Potions needed: \n" + potionsNeeded.ToString();
 
             filled = 0;
             r = 0;
@@ -86,14 +100,14 @@ namespace Potions
             b = 0;
             opaqueness = 1;
 
-            Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
+            //Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
+
             instantiatedOverflowParticles = Instantiate(overflowParticles, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
-            instantiatedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize,0),Quaternion.identity);
-            targetColor = GetRandomColor();
-            instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
-            print(targetColor.r);
-            print(targetColor.g);
-            print(targetColor.b);
+            overflowSystem = instantiatedOverflowParticles.GetComponent<ParticleSystem>();
+            overflowSystem.Stop();
+            overflowMain = instantiatedOverflowParticles.GetComponent<ParticleSystem>().main;
+
+            NewColorTarget();
         }
 
         // Update is called once per frame
@@ -108,8 +122,24 @@ namespace Potions
                 Lose();
             }
 
-            PotionsNeededText.text = potionsNeeded.ToString();
+            PotionsNeededText.text = "Potions needed: \n" + potionsNeeded.ToString();
 
+            if (isOverflowing && !isOverflowSystemPlaying)
+            {
+                overflowSystem.Play();
+                overflowMain.startColor = new Color(r,g,b);
+                isOverflowSystemPlaying = true;
+            }
+            else if(isOverflowing && isOverflowSystemPlaying)
+            {
+                overflowMain.startColor = new Color(r, g, b);
+            }
+            else if(!isOverflowing && isOverflowSystemPlaying)
+            {
+                overflowSystem.Stop();
+                isOverflowSystemPlaying = false;
+            }
+            
             if (canTakeInput)
             {
                 if (Input.GetAxisRaw("Vertical") == -1 || Input.GetKeyDown(KeyCode.Space))
@@ -155,10 +185,16 @@ namespace Potions
 
             if (redAmount + yellowAmount + blueAmount > 1)
             {
+                isOverflowing = true;
+
                 overflowAmount = redAmount + yellowAmount + blueAmount - 1;
                 redAmount -= overflowAmount * (redAmount / (redAmount + yellowAmount + blueAmount));
                 yellowAmount -= overflowAmount * (yellowAmount / (redAmount + yellowAmount + blueAmount));
                 blueAmount -= overflowAmount * (blueAmount / (redAmount + yellowAmount + blueAmount));
+            }
+            else if (isOverflowing)
+            {
+                isOverflowing = false;
             }
 
             filled = redAmount + yellowAmount + blueAmount;
@@ -170,7 +206,7 @@ namespace Potions
 
             if (canTakeInput)
             {
-                if (Mathf.Abs(r - targetColor.r) <= acceptableRange && Mathf.Abs(g - targetColor.g) <= acceptableRange && Mathf.Abs(b - targetColor.b) <= acceptableRange && filled >= 0.25)
+                if (Mathf.Abs(r - targetColor.r) <= acceptableRange && Mathf.Abs(g - targetColor.g) <= acceptableRange && Mathf.Abs(b - targetColor.b) <= acceptableRange && filled >= 0.5)
                 {
                     score++;
                     canTakeInput = false;
@@ -182,15 +218,20 @@ namespace Potions
             }
 
         }
+        private void NewColorTarget()
+        {
+            instantiatedColorTarget = Instantiate(colorTarget, colorTargetSpawn.transform.position, Quaternion.identity);
+            instantiatedColorTarget.transform.localScale = colorTargetSpawn.transform.localScale;
+            targetColor = GetRandomColor();
+            instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
+        }
 
         private void Reset()
         {
             DumpPotion();
 
             Destroy(instantiatedColorTarget);
-            instantiatedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize, 0), Quaternion.identity);
-            targetColor = GetRandomColor();
-            instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
+            NewColorTarget();
         }
 
         private void CorrectPotion()
