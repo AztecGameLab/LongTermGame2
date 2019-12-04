@@ -66,6 +66,10 @@ public class MinigameManager : MonoBehaviour
 
     public static float GetDifficulty()
     {
+        if (!_instance)
+        {
+            return 0.246f;
+        }
         return difficulty;
     }
 
