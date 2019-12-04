@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Potions
 {
@@ -115,7 +116,7 @@ namespace Potions
         {
             scoreText.text = score.ToString();
             countdownTime -= Time.deltaTime;
-            timeText.text = countdownTime.ToString();
+            timeText.text = Math.Round(countdownTime, 2, MidpointRounding.AwayFromZero).ToString();
 
             if(countdownTime <= 0)
             {
@@ -281,10 +282,10 @@ namespace Potions
         {
             float val1, val2, val3;
             float red, yellow, blue;
-            val1 = Random.Range(0f, 1f);
-            val2 = Random.Range(0f, 1f - val1);
+            val1 = UnityEngine.Random.Range(0f, 1f);
+            val2 = UnityEngine.Random.Range(0f, 1f - val1);
             val3 = 1f - val1 - val2;
-            int sort = Random.Range(0, 5);
+            int sort = UnityEngine.Random.Range(0, 5);
 
             if(sort == 0)
             {
