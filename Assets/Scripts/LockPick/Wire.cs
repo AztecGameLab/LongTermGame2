@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace LockPick{
     public class Wire : MonoBehaviour
     {
-        private Vector2 liftUp = new Vector2(0, 2f);
+        private Vector2 liftUp = new Vector2(0, 3f);
         private Vector2 startPosition;
         private Vector2 successPosition;
 
@@ -66,7 +66,7 @@ namespace LockPick{
         void Update()
         {
 
-            timer += Time.deltaTime;
+            //timer += Time.deltaTime;
             if(timer >= timeLimit)
             {
                 LoseState();
@@ -88,7 +88,7 @@ namespace LockPick{
             if (Input.GetButtonDown("Secondary"))
             {
                 //Success if it's in range
-                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 0.5f)
+                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 0.75f)
                 {
                     
 
@@ -112,7 +112,7 @@ namespace LockPick{
 
                     if (wire_Count < 3)
                     {
-                        Instantiate(secondWire, startPosition + new Vector2(0.5f, 0), Quaternion.identity);
+                        Instantiate(secondWire, startPosition + new Vector2(0.75f, 0), Quaternion.identity);
 
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
@@ -138,7 +138,7 @@ namespace LockPick{
                 }
 
                 //This is to get a position to set parameters for the areas
-                //print(GetComponent<Rigidbody2D>().position.y);
+                print(GetComponent<Rigidbody2D>().position.y);
             }
         }
     }
