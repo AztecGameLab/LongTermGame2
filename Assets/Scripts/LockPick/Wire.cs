@@ -29,6 +29,8 @@ namespace LockPick{
             //uiText.GetComponent<Text>().text = "Nice!";
             //print("We're in!");
 
+            wire_Count = 0;
+
             MinigameManager.FinishMinigame(true);
             /*
              * Probably will add more things.
@@ -39,6 +41,8 @@ namespace LockPick{
 
         private void LoseState()
         {
+            wire_Count = 0;
+
             //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
             MinigameManager.FinishMinigame(false);
         }
