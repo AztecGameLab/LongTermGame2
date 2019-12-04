@@ -7,7 +7,6 @@ public class ComboTest : MonoBehaviour
 {
     public GameObject Fight;
     public GameObject RoundOne;
-    public GameObject RoundTwo;
     public GameObject Fatality;
 
     public Image healthBar;
@@ -88,12 +87,11 @@ public class ComboTest : MonoBehaviour
                     displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
                 }
             }
-            //sample commit
+            
             if (Time.time > nextActionTime)
             {
                 nextActionTime += period;
-                //defended = 1;
-                //generateEnemyButton();
+             
                 StartCoroutine(enemyAttack());
             }
 
@@ -109,10 +107,11 @@ public class ComboTest : MonoBehaviour
             {
                 //win state
                 winState = 1;
-                level = 2;
-                StartCoroutine(roundCounter());
-                if(enemyHealth <= 0 && level == 2)
+
+                if(enemyHealth <= 0 )
                 {
+                    Fatality.gameObject.SetActive(true);
+                    StartCoroutine(randomDelay());
                     MinigameManager.FinishMinigame(true);
                 }
                 Debug.Log("win");
@@ -181,16 +180,6 @@ public class ComboTest : MonoBehaviour
         enemyAnim.SetBool("Hurt", false);
     }
 
-    public int generateEnemyButton()
-    {
-        string enemyCharacter = "";
-        int qteGen = Random.Range(0, 3);
-
-
-        return -999; //temporary to stop error feel free to change it but it needs to return something. -Kain
-
-    }
-
    
     public void dealDamage(float amount)
     {
@@ -208,8 +197,7 @@ public class ComboTest : MonoBehaviour
 
     IEnumerator roundCounter()
     {
-        if(level == 1)
-        {
+        
             RoundOne.gameObject.SetActive(true);
             yield return new WaitForSeconds(1f);
             RoundOne.gameObject.SetActive(false);
@@ -217,26 +205,12 @@ public class ComboTest : MonoBehaviour
             yield return new WaitForSeconds(.5f);
             gameStart = true;
             Fight.gameObject.SetActive(false);
-        }
-        else if(level == 2)
-        {
-            gameStart = false;
-            RoundTwo.gameObject.SetActive(true);
-            enemyHealth = 140;
-            playerHealth = 100;
-            healthBar.fillAmount = playerHealth / startHealth;
-            enemyHealthBar.fillAmount = enemyHealth / startHealth;     
-            yield return new WaitForSeconds(3f);
-            RoundTwo.gameObject.SetActive(false);
-            Fight.gameObject.SetActive(true);
-            yield return new WaitForSeconds(.5f);
-            gameStart = true;
-            Fight.gameObject.SetActive(false);
-        }
+        
+        
 
     }
     IEnumerator randomDelay()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
     }
 }
