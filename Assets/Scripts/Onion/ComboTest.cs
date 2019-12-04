@@ -97,10 +97,12 @@ public class ComboTest : MonoBehaviour
 
             if (playerHealth <= 0 && loseState == 0)
             {
-                //some death state
-                MinigameManager.FinishMinigame(false);
                 loseState = 1;
-                Debug.Log("lost");
+                //some death state
+
+
+                StartCoroutine(endGame());
+                
                 //restart
             }
             if (enemyHealth <= 0 && winState == 0)
@@ -108,12 +110,8 @@ public class ComboTest : MonoBehaviour
                 //win state
                 winState = 1;
 
-                if(enemyHealth <= 0 )
-                {
-                    Fatality.gameObject.SetActive(true);
-                    StartCoroutine(randomDelay());
-                    MinigameManager.FinishMinigame(true);
-                }
+                StartCoroutine(endGame());
+               
                 Debug.Log("win");
             }
         }
@@ -209,8 +207,25 @@ public class ComboTest : MonoBehaviour
         
 
     }
-    IEnumerator randomDelay()
+    IEnumerator endGame()
     {
-        yield return new WaitForSeconds(3f);
+        if (loseState == 1)
+        {
+            anim.enabled = false;  
+
+            Fatality.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            MinigameManager.FinishMinigame(true);
+        }
+        else if (winState == 1)
+        {
+            //win state
+            enemyAnim.enabled = false;
+
+            Fatality.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            MinigameManager.FinishMinigame(true);
+            
+        }
     }
 }

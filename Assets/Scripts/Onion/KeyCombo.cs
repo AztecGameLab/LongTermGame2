@@ -5,7 +5,7 @@ public class KeyCombo
 {
     public GameObject displayBox;
     public string[] buttons;
-    public float allowedTimeBetweenButtons = 0.7f; //tweak as needed
+    public float allowedTimeBetweenButtons = 0.22f; //tweak as needed
 
     private float timeLastButtonPressed;
     private int currentIndex = 0; //moves along the array as buttons are pressed
