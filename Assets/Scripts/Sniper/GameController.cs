@@ -13,7 +13,7 @@ namespace Sniper
         public bool gameOn;
         public float timePenalty;
         public int goodiesKilled;
-        public float difficulty;
+        float difficulty;
 
         int currentBaddies;
         int totalBaddies;
@@ -37,6 +37,8 @@ namespace Sniper
         
         void Start()
         {
+            difficulty = MinigameManager.GetDifficulty();
+
             gameOn = true;
             goodiesKilled = 0;
 
@@ -130,7 +132,7 @@ namespace Sniper
             currentBaddies--;
             if(currentBaddies == 0)
             {
-                EndGame();
+                MinigameManager.FinishMinigame(true);
             }
         }
 
