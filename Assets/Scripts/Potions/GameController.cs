@@ -102,7 +102,7 @@ namespace Potions
 
             //Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
 
-            instantiatedOverflowParticles = Instantiate(overflowParticles, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
+            instantiatedOverflowParticles = Instantiate(overflowParticles, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.Euler(-90, 0, 0));
             overflowSystem = instantiatedOverflowParticles.GetComponent<ParticleSystem>();
             overflowSystem.Stop();
             overflowMain = instantiatedOverflowParticles.GetComponent<ParticleSystem>().main;
