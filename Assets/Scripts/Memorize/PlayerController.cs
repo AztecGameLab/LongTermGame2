@@ -151,6 +151,10 @@ namespace Memorize {
                 inputAllowed = false;
                 slider.gameObject.SetActive(false);
                 repeatText.enabled = false;
+                if (c < buttons.Length)
+                {
+                    isWin = false;
+                }
 
                 // compare results
                 foreach (GameObject button in buttons)

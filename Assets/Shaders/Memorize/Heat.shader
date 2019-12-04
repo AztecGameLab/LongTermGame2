@@ -1,5 +1,4 @@
-﻿// https://lindenreid.wordpress.com/2018/03/05/heat-distortion-shader-tutorial/
-// TODO fix the vignette
+﻿// Modified from https://lindenreid.wordpress.com/2018/03/05/heat-distortion-shader-tutorial/
 Shader "Custom/Heat"
 {
     Properties
@@ -8,6 +7,7 @@ Shader "Custom/Heat"
         _StrengthFilter("Strength Filter", 2D) = "white" {}
         _Strength("Distort Strength", float) = 1.0
         _Speed("Distort Speed", float) = 1.0
+        _BackgroundTexture ("Background Texture", 2D) = "white" {}
     }
 
     SubShader
@@ -16,12 +16,6 @@ Shader "Custom/Heat"
         {
             "Queue" = "Transparent"
             "DisableBatching" = "True"
-        }
-
-        // Grab the screen behind the object into _BackgroundTexture
-        GrabPass
-        {
-            "_BackgroundTexture"
         }
 
         // Render the object with the texture generated above, and invert the colors
