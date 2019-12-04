@@ -8,6 +8,8 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] AudioClip MouseHover;
 
+    [SerializeField] GameObject credits;
+
     void Start()
     {
        
@@ -31,10 +33,15 @@ public class MainMenuController : MonoBehaviour
     public void showCredits()
     {
         print("People made this");
+        if (credits.activeSelf)
+            credits.SetActive(false);
+        else
+            credits.SetActive(true);
     }
 
     public void OnMouseHover()
     {
         AudioManager.instance.PlaySFX(MouseHover, 1.0f);
     }
+
 }

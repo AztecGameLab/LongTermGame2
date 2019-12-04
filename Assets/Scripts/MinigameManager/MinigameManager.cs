@@ -273,7 +273,7 @@ public class MinigameManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.6f);
                 gameOverScreen.SetActive(true);
-                yield return new WaitForSeconds(5f);
+                yield return new WaitForSeconds(3f);
                 gameOverScreen.SetActive(false);
                 RestartGame();
                 canvas.SetActive(false);
