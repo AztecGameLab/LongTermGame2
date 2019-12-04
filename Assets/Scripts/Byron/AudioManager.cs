@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         instance = this;
 
         // Making sure each audio source is assigned to an instance

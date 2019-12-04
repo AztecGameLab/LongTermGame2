@@ -795,6 +795,7 @@ MonoBehaviour:
   damageAmount: 0
   PlayerAttack: {fileID: 8300000, guid: 2040b6c1643b505408cee336115dca36, type: 3}
   OnionEnemyDamage: {fileID: 8300000, guid: d1dffa1e5130dd84aaf346f5fbd987a0, type: 3}
+  OnionPlayerHurt: {fileID: 8300000, guid: 8253d8713ef8a08498b5d28d2c995a9b, type: 3}
 --- !u!1 &666621297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1278,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1156688514341970521, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
+        type: 3}
+      propertyPath: m_Name
+      value: RedKnight
+      objectReference: {fileID: 0}
     - target: {fileID: -2814278423186415084, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1556,11 +1562,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.8068181
-      objectReference: {fileID: 0}
-    - target: {fileID: -1156688514341970521, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
-        type: 3}
-      propertyPath: m_Name
-      value: RedKnight
       objectReference: {fileID: 0}
     - target: {fileID: -4591514971311171377, guid: ff6e4ddb0dc199a469ad33b9cc11a2b3,
         type: 3}

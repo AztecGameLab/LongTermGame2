@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] AudioClip MouseHover;
+
     void Start()
     {
        
@@ -29,5 +31,10 @@ public class MainMenuController : MonoBehaviour
     public void showCredits()
     {
         print("People made this");
+    }
+
+    public void OnMouseHover()
+    {
+        AudioManager.instance.PlaySFX(MouseHover, 1.0f);
     }
 }
