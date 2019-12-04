@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace LockPick{
     public class Wire : MonoBehaviour
     {
-        private Vector2 liftUp = new Vector2(0, 3f);
+        private Vector2 liftUp = new Vector2(0, 2f);
         private Vector2 startPosition;
         private Vector2 successPosition;
 
@@ -19,11 +19,17 @@ namespace LockPick{
 
         public Text uiText;
 
+        //Create a timer and timeLimit
+        private float timer = 0f;
+        private float timeLimit = 16f;
+
 
         private void WinState()
         {
-            uiText.GetComponent<Text>().text = "We're in!";
-            print("We're in!");
+            //uiText.GetComponent<Text>().text = "Nice!";
+            //print("We're in!");
+
+            wire_Count = 0;
 
             MinigameManager.FinishMinigame(true);
             /*
@@ -32,10 +38,21 @@ namespace LockPick{
              * audio plays of a very satisfying, audible "pop"
              */
         }
+
+        private void LoseState()
+        {
+            wire_Count = 0;
+
+            //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
+            MinigameManager.FinishMinigame(false);
+        }
         
         // Start is called before the first frame update
         void Start()
         {
+            float difficulty = MinigameManager.GetDifficulty();
+            timeLimit = Mathf.LerpUnclamped(8f, 16f, difficulty);
+
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
             wire_Count++;
@@ -48,6 +65,12 @@ namespace LockPick{
         // Update is called once per frame
         void Update()
         {
+
+            timer += Time.deltaTime;
+            if(timer >= timeLimit)
+            {
+                LoseState();
+            }
             //Resets the position of pin if it touches top border
             if (GetComponent<Rigidbody2D>().position.y > 2.65)
             {
@@ -72,7 +95,7 @@ namespace LockPick{
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
                     if (wire_Count == 1)
                     {
-                        uiText.GetComponent<Text>().text = "Nice! Time to Stick the nail in";
+                        //uiText.GetComponent<Text>().text = "Nice! Time to Stick the nail in";
                         successPosition.y += .7f;
                         SuccessArea.transform.position = successPosition;
                         
@@ -80,7 +103,7 @@ namespace LockPick{
                     }
                     if (wire_Count == 2)
                     {
-                        uiText.GetComponent<Text>().text = "Just the paperclip now...";
+                        //uiText.GetComponent<Text>().text = "Just the paperclip now...";
                         successPosition.y = 1.4f;
                         SuccessArea.transform.position = successPosition;
                         
@@ -110,7 +133,7 @@ namespace LockPick{
                 //Failure if it's not in range
                 else
                 {
-                    print("Oof, you failed.");
+                    //print("Oof, you failed.");
                     transform.position = startPosition;
                 }
 
