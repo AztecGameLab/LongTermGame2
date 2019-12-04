@@ -62,16 +62,16 @@ namespace RunAwayThief
         {
             if (endCondition == "lose")
             {
-                Canvas.SetActive(true);
+                /*Canvas.SetActive(true);
                 Panel_Lose.SetActive(true);
-                Panel_Win.SetActive(false);
+                Panel_Win.SetActive(false);*/
                 MinigameManager.FinishMinigame(false);
             }
             else if(endCondition == "win")
             {
-                Canvas.SetActive(true);
+                /*Canvas.SetActive(true);
                 Panel_Lose.SetActive(false);
-                Panel_Win.SetActive(true);
+                Panel_Win.SetActive(true);*/
                 MinigameManager.FinishMinigame(true);
             }
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
