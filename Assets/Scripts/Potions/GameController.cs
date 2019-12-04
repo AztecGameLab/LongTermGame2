@@ -11,6 +11,8 @@ namespace Potions
         public GameObject colorTarget;
         public GameObject bottleOrigin;
         public GameObject celebrationParticles;
+        public GameObject overflowParticles;
+        GameObject instantiatedOverflowParticles;
 
         [Range(0, 1)]
         public float filled;
@@ -85,6 +87,7 @@ namespace Potions
             opaqueness = 1;
 
             Instantiate(fillLine, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
+            instantiatedOverflowParticles = Instantiate(overflowParticles, bottleOrigin.transform.position + new Vector3(0, filledSize, 0), Quaternion.identity);
             instantiatedColorTarget = Instantiate(colorTarget, bottleOrigin.transform.position + new Vector3(-5, filledSize,0),Quaternion.identity);
             targetColor = GetRandomColor();
             instantiatedColorTarget.GetComponent<SpriteRenderer>().color = targetColor;
