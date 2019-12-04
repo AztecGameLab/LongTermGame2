@@ -64,8 +64,15 @@ public class MinigameManager : MonoBehaviour
         scoreText.SetText("Score: " + score);
     }
 
+    public static float GetDifficulty()
+    {
+        return difficulty;
+    }
+
     public static void FinishMinigame(bool win)
     {
+        print(win ? "GAME MANAGER: WIN" : "GAME MANAGER: LOSE");
+
         if (hasFinishedGame)
             return;
         else
@@ -81,7 +88,7 @@ public class MinigameManager : MonoBehaviour
         if (win)
         {
       
-            difficulty += 0.2f;
+            difficulty += 0.1f;
             difficulty = Mathf.Clamp01(difficulty);
             if (gameManager != null)
                 gameManager.GetComponent<MinigameManager>().resultScreen(true);
@@ -92,7 +99,7 @@ public class MinigameManager : MonoBehaviour
         {
             if (difficulty > 0)
             {
-                difficulty -= 0.05f;
+                difficulty -= 0.1f;
                 difficulty = Mathf.Clamp01(difficulty);
             }
 
