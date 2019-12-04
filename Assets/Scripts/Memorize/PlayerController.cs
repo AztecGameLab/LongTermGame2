@@ -60,7 +60,12 @@ namespace Memorize {
                 {
                     KeyCheck(KeyCode.RightArrow);
                 }
-                inputAllowed = c < buttons.Length;
+                bool isNotDone = c < buttons.Length;
+                inputAllowed = isNotDone;
+                if (!isNotDone)
+                {
+                    slider.value = slider.minValue;
+                }
             }
             AudioManager.instance.SetMusicPitch(speed += Time.deltaTime * deltaSpeed);
         }
