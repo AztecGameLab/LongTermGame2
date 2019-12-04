@@ -14,6 +14,11 @@ namespace Potions
         public GameObject celebrationParticles;
         public GameObject overflowParticles;
         public GameObject colorTargetSpawn;
+        GameObject redArrow;
+        GameObject yellowArrow;
+        GameObject blueArrow;
+        GameObject trashArrow;
+
         GameObject instantiatedOverflowParticles;
         ParticleSystem overflowSystem;
         ParticleSystem.MainModule overflowMain;
@@ -95,6 +100,11 @@ namespace Potions
             PotionsNeededText = GameObject.Find("PotionsNeededText").GetComponent<Text>();
             PotionsNeededText.text ="Potions needed: \n" + potionsNeeded.ToString();
 
+            redArrow = GameObject.Find("red key");
+            yellowArrow = GameObject.Find("yellow key");
+            blueArrow = GameObject.Find("blue key");
+            trashArrow = GameObject.Find("trash key");
+
             filled = 0;
             r = 0;
             g = 0;
@@ -116,7 +126,17 @@ namespace Potions
         {
             scoreText.text = score.ToString();
             countdownTime -= Time.deltaTime;
-            timeText.text = Math.Round(countdownTime, 2, MidpointRounding.AwayFromZero).ToString();
+            timeText.text = Mathf.Round(countdownTime).ToString();
+            if(countdownTime<= 10.5f && countdownTime > 5.5f)
+            {
+                timeText.color = new Color(1, 1, 0);
+                timeText.fontSize = 65;
+            }
+            else if (countdownTime <= 5.5f)
+            {
+                timeText.color = new Color(1, 0, 0);
+                timeText.fontSize = 70;
+            }
 
             if(countdownTime <= 0)
             {
@@ -146,6 +166,12 @@ namespace Potions
                 if (Input.GetAxisRaw("Vertical") == -1 || Input.GetKeyDown(KeyCode.Space))
                 {
                     DumpPotion();
+
+                    trashArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);
+                }
+                else
+                {
+                    trashArrow.transform.localScale = new Vector3(3f, 3f, 1);
                 }
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -165,14 +191,29 @@ namespace Potions
                 if (Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R))
                 {
                     redAmount += fillRate * Time.deltaTime;
+                    redArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);
+                    yellowArrow.transform.localScale = new Vector3(3f, 3f, 1);
+                    yellowArrow.transform.localScale = new Vector3(3f, 3f, 1);
                 }
                 else if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
                 {
                     yellowAmount += fillRate * Time.deltaTime;
+                    yellowArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);
+                    redArrow.transform.localScale = new Vector3(3f, 3f, 1);
+                    blueArrow.transform.localScale = new Vector3(3f, 3f, 1);
                 }
                 else if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
                 {
                     blueAmount += fillRate * Time.deltaTime;
+                    blueArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);
+                    redArrow.transform.localScale = new Vector3(3f, 3f, 1);
+                    yellowArrow.transform.localScale = new Vector3(3f, 3f, 1);
+                }
+                else
+                {
+                    redArrow.transform.localScale = new Vector3(3f, 3f, 1);
+                    yellowArrow.transform.localScale = new Vector3(3f, 3f, 1);
+                    blueArrow.transform.localScale = new Vector3(3f, 3f, 1);
                 }
             }
             else
