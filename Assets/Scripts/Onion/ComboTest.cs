@@ -34,6 +34,8 @@ public class ComboTest : MonoBehaviour
     [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage, OnionPlayerHurt;
     private void Start()
     {
+
+
         float difficulty = MinigameManager.GetDifficulty();
 
 
@@ -80,6 +82,9 @@ public class ComboTest : MonoBehaviour
             displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
         }
         winState = 0;
+
+        InvokeRepeating("enemyAttackFunction", 3, 3f);
+
     }
 
     void Update()
@@ -106,13 +111,8 @@ public class ComboTest : MonoBehaviour
                     displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
                 }
             }
-            
-            if (Time.time > nextActionTime)
-            {
-                nextActionTime += period;
-             
-                StartCoroutine(enemyAttack());
-            }
+
+
 
             if (playerHealth <= 0 && loseState == 0)
             {
@@ -241,5 +241,9 @@ public class ComboTest : MonoBehaviour
             MinigameManager.FinishMinigame(true);
             
         }
+    }
+    public void enemyAttackFunction()
+    {
+        StartCoroutine(enemyAttack());
     }
 }
