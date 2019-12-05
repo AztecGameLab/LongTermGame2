@@ -20,6 +20,7 @@ public class MinigameManager : MonoBehaviour
 
     private static MinigameManager _instance;
     public static float difficulty = 0;
+    public static bool difficultyUnclamped;
     public static int cutsceneIndex = 0;
     public static int minigameIndex = 0;
     public static int frequencyIndex = 0;
@@ -57,6 +58,23 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.RightBracket) && Input.GetKeyDown(KeyCode.Z))
+            FinishMinigame(true);
+        if (Input.GetKeyDown(KeyCode.LeftBracket) && Input.GetKeyDown(KeyCode.Z))
+            FinishMinigame(false);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKeyDown(KeyCode.Z))
+            SetDifficulty(1);
+        if (Input.GetKeyDown(KeyCode.Alpha5) && Input.GetKeyDown(KeyCode.Z))
+            SetDifficulty(0.5f);
+        if (Input.GetKeyDown(KeyCode.Alpha0) && Input.GetKeyDown(KeyCode.Z))
+            SetDifficulty(0);
+        if (Input.GetKeyDown(KeyCode.Equals) && Input.GetKeyDown(KeyCode.Z))
+            print("GAME MANAGER difficulty Unclamped:" + (difficultyUnclamped = difficultyUnclamped ? false : true));
+    }
+
     private void Start()
     {
         health = hearts.Length;
@@ -71,6 +89,14 @@ public class MinigameManager : MonoBehaviour
             return 0.246f;
         }
         return difficulty;
+    }
+
+    static void SetDifficulty(float diff)
+    {
+        difficulty = diff;
+        if(!difficultyUnclamped)
+            difficulty = Mathf.Clamp01(difficulty);
+        print("GAME MANAGER DIFFICULTY: " + difficulty);
     }
 
     public static void FinishMinigame(bool win)
@@ -91,9 +117,8 @@ public class MinigameManager : MonoBehaviour
         }
         if (win)
         {
-      
-            difficulty += 0.1f;
-            difficulty = Mathf.Clamp01(difficulty);
+
+            SetDifficulty(difficulty + 0.1f);
             if (gameManager != null)
                 gameManager.GetComponent<MinigameManager>().resultScreen(true);
             //Instance.nextScene();
@@ -103,8 +128,7 @@ public class MinigameManager : MonoBehaviour
         {
             if (difficulty > 0)
             {
-                difficulty -= 0.2f;
-                difficulty = Mathf.Clamp01(difficulty);
+                SetDifficulty(difficulty - 0.2f);
             }
 
             if (gameManager != null)
@@ -147,7 +171,6 @@ public class MinigameManager : MonoBehaviour
     }
     private void LoadNextMinigame()
     {
-        print("GAME MANAGER DIFFICULTY: " + difficulty);
         if (minigameIndex == minigameIndices.Length)
         {
             RandomlyGenerateMinigameSequence();
