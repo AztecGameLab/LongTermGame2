@@ -20,9 +20,9 @@ namespace LockPick{
         public Text uiText;
 
         //Create a timer and timeLimit
-        private float timer = 0f;
-        private float timeLimit = 16f;
-        private int displayTimer = 0;
+        private float timer;
+        private float timeLimit;
+        public static float newTimer;
 
         //Audio for Pin push and Unlocking
         public AudioClip pinPush;
@@ -55,16 +55,27 @@ namespace LockPick{
             //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
             MinigameManager.FinishMinigame(false);
         }
-        
+
+
         // Start is called before the first frame update
         void Start()
         {
-            float difficulty = 0;//MinigameManager.GetDifficulty();
-            timeLimit = Mathf.LerpUnclamped(20f, 14f, difficulty);
-            timer = timeLimit;
+            float difficulty = MinigameManager.GetDifficulty();
+            timeLimit = Mathf.LerpUnclamped(16f, 10f, difficulty);
 
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
+
+            if (wire_Count == 0)
+            {
+                print("Wire count is zero");
+                timer = timeLimit;
+            }
+            else
+            {
+                print("Wire count is not zero");
+                timer = newTimer;
+            }
             wire_Count++;
             secondWire.GetComponent<Wire>().SuccessArea = SuccessArea;
             secondWire.GetComponent<Wire>().uiText = uiText;
@@ -77,9 +88,11 @@ namespace LockPick{
         // Update is called once per frame
         void Update()
         {
+            print(newTimer);
+
             timer -= Time.deltaTime;
-            displayTimer = Mathf.RoundToInt(timer);
-            uiText.text = "Time Left: " + displayTimer;
+            newTimer = timer;
+            uiText.text = "Time Left: " + Mathf.RoundToInt(timer);
             if(timer <= 0)
             {
                 LoseState();
@@ -104,6 +117,7 @@ namespace LockPick{
                 if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + .7f)
                 {
                     pushPin.Play();
+                    newTimer = timer;
                     GetComponent<Rigidbody2D>().rotation = -3;
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
@@ -152,7 +166,7 @@ namespace LockPick{
                 }
 
                 //This is to get a position to set parameters for the areas
-                print(GetComponent<Rigidbody2D>().position.y);
+                //print(GetComponent<Rigidbody2D>().position.y);
                 
             }
         }

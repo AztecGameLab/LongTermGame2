@@ -151,6 +151,8 @@ MonoBehaviour:
   - -3.7
   SuccessArea: {fileID: 0}
   uiText: {fileID: 0}
+  timer: 0
+  newTimer: 0
   pinPush: {fileID: 8300000, guid: 33d6bdace06e51b4c8175fa08d6001b4, type: 3}
   unlockLock: {fileID: 8300000, guid: 9ab5d7cb45053d540a576b98f293a484, type: 3}
   pushPin: {fileID: 2870374499874329635}
