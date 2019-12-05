@@ -147,6 +147,7 @@ public class MinigameManager : MonoBehaviour
     }
     private void LoadNextMinigame()
     {
+        print("GAME MANAGER DIFFICULTY: " + difficulty);
         if (minigameIndex == minigameIndices.Length)
         {
             RandomlyGenerateMinigameSequence();
@@ -165,6 +166,10 @@ public class MinigameManager : MonoBehaviour
     }
     public void nextScene()
     {
+        frequencyIndex++;
+        LoadNextMinigame();
+
+        /*
         if (frequency.Length == frequencyIndex)
         {
             RestartGame();
@@ -175,7 +180,7 @@ public class MinigameManager : MonoBehaviour
                 LoadNextMinigame();
             else
                 LoadNextCutscene();
-        }
+        }*/
     }
     private void RandomlyGenerateMinigameSequence()
     {
