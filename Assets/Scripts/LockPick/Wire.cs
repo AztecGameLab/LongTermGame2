@@ -21,7 +21,7 @@ namespace LockPick{
 
         //Create a timer and timeLimit
         private float timer = 0f;
-        private float timeLimit = 8f;
+        private float timeLimit = 16f;
         private int displayTimer = 0;
 
         //Audio for Pin push and Unlocking
@@ -35,7 +35,7 @@ namespace LockPick{
         private void WinState()
         {
             //uiText.GetComponent<Text>().text = "Nice!";
-            //print("We're in!");
+            print("You won");
 
             unlock.Play();
             wire_Count = 0;
@@ -59,8 +59,8 @@ namespace LockPick{
         // Start is called before the first frame update
         void Start()
         {
-            float difficulty = MinigameManager.GetDifficulty();
-            timeLimit = Mathf.LerpUnclamped(4f, 8f, difficulty);
+            float difficulty = 0;//MinigameManager.GetDifficulty();
+            timeLimit = Mathf.LerpUnclamped(20f, 14f, difficulty);
             timer = timeLimit;
 
             startPosition = transform.position;
@@ -101,7 +101,7 @@ namespace LockPick{
             if (Input.GetButtonDown("Secondary"))
             {
                 //Success if it's in range
-                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 1f)
+                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + .7f)
                 {
                     pushPin.Play();
                     GetComponent<Rigidbody2D>().rotation = -3;
@@ -126,7 +126,7 @@ namespace LockPick{
 
                     if (wire_Count < 3)
                     {
-                        Instantiate(secondWire, startPosition + new Vector2(0.75f, 0), Quaternion.identity);
+                        Instantiate(secondWire, startPosition + new Vector2(.75f, 0), Quaternion.identity);
 
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
@@ -152,9 +152,8 @@ namespace LockPick{
                 }
 
                 //This is to get a position to set parameters for the areas
-                //print(GetComponent<Rigidbody2D>().position.y);
-                print(timer);
-                print(displayTimer);
+                print(GetComponent<Rigidbody2D>().position.y);
+                
             }
         }
     }
