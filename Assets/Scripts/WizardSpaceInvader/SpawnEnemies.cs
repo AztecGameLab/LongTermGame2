@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,7 +12,7 @@ public class SpawnEnemies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine( delayedSpawn(0));
+        StartCoroutine(delayedSpawn(0));
     }
 
     //spawns enemy trolls to the scene
@@ -25,7 +23,10 @@ public class SpawnEnemies : MonoBehaviour
         {
             speedIncrement += 0.5f;
             trollCount = 0;
-            delay -= 0.25f;
+            if (delay > 0.25f)
+            {
+                delay -= 0.10f;
+            }
         }
 
         GameObject currTroll = Instantiate(troll, new Vector2(x, 6), Quaternion.identity);

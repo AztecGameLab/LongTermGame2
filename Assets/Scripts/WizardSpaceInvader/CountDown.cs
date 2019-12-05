@@ -30,8 +30,8 @@ public class CountDown : MonoBehaviour
         }
         else
         {
-            print("You Win! :)");
             Time.timeScale = 0;
+            //MinigameManager.FinishMinigame(false);
         }
     }
 }

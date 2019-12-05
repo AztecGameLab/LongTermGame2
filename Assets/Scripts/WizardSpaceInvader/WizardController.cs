@@ -23,7 +23,7 @@ public class WizardController : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
+        //AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
     }
 
     // Update is called once per frame
@@ -32,11 +32,12 @@ public class WizardController : MonoBehaviour
         //player movement with arrow keys
         transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0) * Time.deltaTime * speed;
 
-        //initiates a moving spell when user hits space
-        if (Input.GetButtonDown("Fire1"))
+        //initiates a moving spell when user hits Primary button
+        if (Input.GetButtonDown("Primary"))
         {
             castSpell();
         }
+
     }
     
     //user fires projectiles when spacebar is pressed
@@ -45,6 +46,6 @@ public class WizardController : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y + 1.5f;
         Instantiate(spell, new Vector2(x, y), Quaternion.identity);
-        AudioManager.instance.PlaySFX(spellSound, 1f, Random.Range(pitchMin, pitchMax));
+        //AudioManager.instance.PlaySFX(spellSound, 1f, Random.Range(pitchMin, pitchMax));
     }
 }

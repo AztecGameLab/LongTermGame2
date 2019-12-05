@@ -8,9 +8,8 @@ public class TrollCollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.tag == "Border" || collision.gameObject.tag == "Player")
         {
-            print("You lose :(");
             Destroy(this.gameObject);
-            Time.timeScale = 0;
+            //MinigameManage.FinishMinigame(true);
         }
     }
 }
