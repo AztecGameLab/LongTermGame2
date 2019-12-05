@@ -234,6 +234,10 @@ public class MinigameManager : MonoBehaviour
         health = hearts.Length;
         score = 0;
         scoreText.SetText("Score: " + score);
+        SetDifficulty(0);
+
+        loseScreen.SetActive(false);
+        winScreen.SetActive(false);
 
         cutsceneIndex = 0;
         frequencyIndex = 0;
