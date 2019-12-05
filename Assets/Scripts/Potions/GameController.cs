@@ -95,7 +95,7 @@ namespace Potions
 
             fillRate = Mathf.LerpUnclamped(0.5f, 0.75f, difficulty);
 
-            potionsNeeded = Mathf.RoundToInt(Mathf.LerpUnclamped(4,7,difficulty));
+            potionsNeeded = Mathf.RoundToInt(Mathf.LerpUnclamped(2,5,difficulty));
             PotionsNeededText = GameObject.Find("PotionsNeededText").GetComponent<Text>();
             PotionsNeededText.text ="Potions needed: \n" + potionsNeeded.ToString();
 
