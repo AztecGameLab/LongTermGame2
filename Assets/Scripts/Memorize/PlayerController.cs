@@ -30,13 +30,13 @@ namespace Memorize {
             repeatText = texts[1];
 
             deltaButtons = maxButtons - minButtons;
-            maxTime = absoluteMaxTime;
             isWin = true;
             speed = 1f;
         }
 
         void Start()
         {
+            maxTime = (absoluteMaxTime - 1f) * (1f - MinigameManager.GetDifficulty()) + 1f;
             StartCoroutine(GameLoop());
         }
 
@@ -183,7 +183,6 @@ namespace Memorize {
                 // up the ante
                 maxButtons++;
                 minButtons++;
-                maxTime--;
                 yield return null;
             }
             

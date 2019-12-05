@@ -303,7 +303,7 @@ MonoBehaviour:
   deltaSpeed: 0.005
   maxButtons: 4
   minButtons: 3
-  loops: 4
+  loops: 3
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0
