@@ -117,7 +117,7 @@ namespace LockPick{
                 if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + .7f)
                 {
                     pushPin.Play();
-                    newTimer = timer;
+                    newTimer = timer + 2f;
                     GetComponent<Rigidbody2D>().rotation = -3;
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
