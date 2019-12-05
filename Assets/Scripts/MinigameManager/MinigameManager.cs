@@ -103,7 +103,7 @@ public class MinigameManager : MonoBehaviour
         {
             if (difficulty > 0)
             {
-                difficulty -= 0.1f;
+                difficulty -= 0.2f;
                 difficulty = Mathf.Clamp01(difficulty);
             }
 
