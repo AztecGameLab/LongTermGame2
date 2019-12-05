@@ -36,6 +36,7 @@ public class ComboTest : MonoBehaviour
     {
         float difficulty = MinigameManager.GetDifficulty();
 
+
         gameStart = false;
         StartCoroutine(roundCounter());
 
@@ -47,6 +48,7 @@ public class ComboTest : MonoBehaviour
         {
             enemyStartHealth = 60;
             enemyHealth = enemyStartHealth;
+
         }
         else if (difficulty > .25f && difficulty < .50)
         {
@@ -87,8 +89,6 @@ public class ComboTest : MonoBehaviour
         {
             if (c.Check())
             {
-
-                Debug.Log("PUNCH");
                 StartCoroutine(succesfullAttack());
 
                 for (int t = 0; t < buttonOptions.Length; t++)
@@ -131,7 +131,6 @@ public class ComboTest : MonoBehaviour
 
                 StartCoroutine(endGame());
                
-                Debug.Log("win");
             }
         }
     }
@@ -196,13 +195,11 @@ public class ComboTest : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         enemyAnim.SetBool("Hurt", false);
     }
-
-   
     public void dealDamage(float amount)
     {
         StartCoroutine(enemyHurt());
         enemyHealth -= amount;
-        enemyHealthBar.fillAmount = enemyHealth / startHealth;
+        enemyHealthBar.fillAmount = enemyHealth / enemyStartHealth;
     }
 
     public void takeDamage(float amount)
@@ -223,8 +220,6 @@ public class ComboTest : MonoBehaviour
             gameStart = true;
             Fight.gameObject.SetActive(false);
         
-        
-
     }
     IEnumerator endGame()
     {
