@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace LockPick{
     public class Wire : MonoBehaviour
     {
-        private Vector2 liftUp = new Vector2(0, 3f);
+        private Vector2 liftUp = new Vector2(0, 2f);
         private Vector2 startPosition;
         private Vector2 successPosition;
 
@@ -51,7 +51,7 @@ namespace LockPick{
         void Start()
         {
             float difficulty = MinigameManager.GetDifficulty();
-            timeLimit = Mathf.LerpUnclamped(8f, 16f, difficulty);
+            timeLimit = Mathf.LerpUnclamped(6f, 10f, difficulty);
 
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
@@ -66,7 +66,7 @@ namespace LockPick{
         void Update()
         {
 
-            //timer += Time.deltaTime;
+            timer += Time.deltaTime;
             if(timer >= timeLimit)
             {
                 LoseState();
@@ -88,9 +88,9 @@ namespace LockPick{
             if (Input.GetButtonDown("Secondary"))
             {
                 //Success if it's in range
-                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 0.75f)
+                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 1f)
                 {
-                    
+                    GetComponent<Rigidbody2D>().rotation = -3;
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
                     if (wire_Count == 1)
