@@ -21,8 +21,6 @@ Shader "Custom/Heat"
         // Render the object with the texture generated above, and invert the colors
         Pass
         {
-            // ZTest Always
-
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -65,15 +63,17 @@ Shader "Custom/Heat"
                 output.grabPos.x += cos(noise*_Time.x*_Speed) * filt * _Strength;
                 output.grabPos.y += sin(noise*_Time.x*_Speed) * filt * _Strength;
 
-                // flip vertical for direct3d
-                if (_ProjectionParams.x < 0)
-                    output.grabPos.y = 1 - output.grabPos.y;
-
                 return output;
             }
 
             float4 frag(vertexOutput input) : COLOR
             {
+                // flip vertical for direct3d https://docs.unity3d.com/Manual/SL-PlatformDifferences.html
+                #if UNITY_UV_STARTS_AT_TOP
+                if (_BackgroundTexture.y < 0)
+                    input.grabPos.y = 1 - input.grabPos.y;
+                #endif
+
                 return tex2Dproj(_BackgroundTexture, input.grabPos);
             }
 
