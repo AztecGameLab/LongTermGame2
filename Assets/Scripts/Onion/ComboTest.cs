@@ -229,7 +229,7 @@ public class ComboTest : MonoBehaviour
 
             Fatality.gameObject.SetActive(true);
             yield return new WaitForSeconds(3f);
-            MinigameManager.FinishMinigame(true);
+            MinigameManager.FinishMinigame(false);
         }
         else if (winState == 1)
         {
