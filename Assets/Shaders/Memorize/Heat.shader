@@ -21,7 +21,7 @@ Shader "Custom/Heat"
         // Render the object with the texture generated above, and invert the colors
         Pass
         {
-            ZTest Always
+            // ZTest Always
 
             CGPROGRAM
             #pragma vertex vert
