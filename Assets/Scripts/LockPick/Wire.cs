@@ -72,7 +72,7 @@ namespace LockPick{
                 LoseState();
             }
             //Resets the position of pin if it touches top border
-            if (GetComponent<Rigidbody2D>().position.y > 2.65)
+            if (GetComponent<Rigidbody2D>().position.y > -.16)
             {
                 transform.position = startPosition;
                 print("You broke the lock!");
@@ -96,7 +96,7 @@ namespace LockPick{
                     if (wire_Count == 1)
                     {
                         //uiText.GetComponent<Text>().text = "Nice! Time to Stick the nail in";
-                        successPosition.y += .7f;
+                        successPosition.y = 2.1f;
                         SuccessArea.transform.position = successPosition;
                         
 
@@ -104,7 +104,7 @@ namespace LockPick{
                     if (wire_Count == 2)
                     {
                         //uiText.GetComponent<Text>().text = "Just the paperclip now...";
-                        successPosition.y = 1.4f;
+                        successPosition.y = .5f;
                         SuccessArea.transform.position = successPosition;
                         
                     }
