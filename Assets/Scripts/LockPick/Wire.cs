@@ -24,12 +24,20 @@ namespace LockPick{
         private float timeLimit = 8f;
         private int displayTimer = 0;
 
+        //Audio for Pin push and Unlocking
+        public AudioClip pinPush;
+        public AudioClip unlockLock;
+
+        public AudioSource pushPin;
+        public AudioSource unlock;
+
 
         private void WinState()
         {
             //uiText.GetComponent<Text>().text = "Nice!";
             //print("We're in!");
 
+            unlock.Play();
             wire_Count = 0;
 
             MinigameManager.FinishMinigame(true);
@@ -61,6 +69,8 @@ namespace LockPick{
             secondWire.GetComponent<Wire>().SuccessArea = SuccessArea;
             secondWire.GetComponent<Wire>().uiText = uiText;
 
+            unlock.clip = unlockLock;
+            pushPin.clip = pinPush;
 
         }
 
@@ -93,6 +103,7 @@ namespace LockPick{
                 //Success if it's in range
                 if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 1f)
                 {
+                    pushPin.Play();
                     GetComponent<Rigidbody2D>().rotation = -3;
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
