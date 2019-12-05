@@ -34,7 +34,7 @@ public class ComboTest : MonoBehaviour
     [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage, OnionPlayerHurt;
     private void Start()
     {
-        float difficulty = MinigameManager.GetDifficulty();
+        float difficulty = .75f;
 
 
         gameStart = false;
@@ -50,17 +50,17 @@ public class ComboTest : MonoBehaviour
             enemyHealth = enemyStartHealth;
 
         }
-        else if (difficulty > .25f && difficulty < .50)
+        else if (difficulty >= .25f && difficulty < .50)
         {
             enemyStartHealth = 70;
             enemyHealth = enemyStartHealth;
         }
-        else if (difficulty > .50f &&  difficulty < .75)
+        else if (difficulty >= .50f &&  difficulty < .75)
         {
             enemyStartHealth = 80;
             enemyHealth = enemyStartHealth;
         }
-        else if (difficulty > .75f)
+        else if (difficulty >= .75f)
         {
             enemyStartHealth = 100;
             enemyHealth = enemyStartHealth;
