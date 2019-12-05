@@ -41,32 +41,27 @@ public class ComboTest : MonoBehaviour
 
         AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
         
-
         playerHealth = 100;
 
         if(difficulty < .25f)
         {
             enemyStartHealth = 60;
             enemyHealth = enemyStartHealth;
-            enemyHealthBar.fillAmount = enemyHealth / startHealth;
         }
         else if (difficulty > .25f && difficulty < .50)
         {
             enemyStartHealth = 70;
             enemyHealth = enemyStartHealth;
-            enemyHealthBar.fillAmount = enemyHealth / startHealth;
         }
         else if (difficulty > .50f &&  difficulty < .75)
         {
             enemyStartHealth = 80;
             enemyHealth = enemyStartHealth;
-            enemyHealthBar.fillAmount = enemyHealth / startHealth;
         }
         else if (difficulty > .75f)
         {
             enemyStartHealth = 100;
             enemyHealth = enemyStartHealth;
-            enemyHealthBar.fillAmount = enemyHealth / startHealth;
         }
 
         for (int t = 0; t < buttonOptions.Length; t++)
