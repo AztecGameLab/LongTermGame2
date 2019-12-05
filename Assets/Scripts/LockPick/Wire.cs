@@ -21,7 +21,8 @@ namespace LockPick{
 
         //Create a timer and timeLimit
         private float timer = 0f;
-        private float timeLimit = 16f;
+        private float timeLimit = 8f;
+        private int displayTimer = 0;
 
 
         private void WinState()
@@ -51,7 +52,8 @@ namespace LockPick{
         void Start()
         {
             float difficulty = MinigameManager.GetDifficulty();
-            timeLimit = Mathf.LerpUnclamped(6f, 10f, difficulty);
+            timeLimit = Mathf.LerpUnclamped(4f, 8f, difficulty);
+            timer = timeLimit;
 
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
@@ -65,9 +67,10 @@ namespace LockPick{
         // Update is called once per frame
         void Update()
         {
-
-            timer += Time.deltaTime;
-            if(timer >= timeLimit)
+            timer -= Time.deltaTime;
+            displayTimer = Mathf.RoundToInt(timer);
+            uiText.text = "Time Left: " + displayTimer;
+            if(timer <= 0)
             {
                 LoseState();
             }
@@ -138,7 +141,9 @@ namespace LockPick{
                 }
 
                 //This is to get a position to set parameters for the areas
-                print(GetComponent<Rigidbody2D>().position.y);
+                //print(GetComponent<Rigidbody2D>().position.y);
+                print(timer);
+                print(displayTimer);
             }
         }
     }
