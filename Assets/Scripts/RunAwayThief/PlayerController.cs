@@ -60,7 +60,7 @@ namespace RunAwayThief
         {
             if (collision.gameObject.tag == "Ground")
             {
-                Debug.Log("is grounded");
+                //Debug.Log("is grounded");
                 isGrounded = true;
                 AudioManager.instance.PlaySFX(FootSteps, 0.7f);
                 AudioManager.instance.SetSFXPitch(0.8f, 1.0f);
@@ -71,7 +71,7 @@ namespace RunAwayThief
         {
             if (collision.gameObject.tag == "Ground")
             {
-                Debug.Log("is not grounded");
+                //Debug.Log("is not grounded");
                 isGrounded = false;
             }
         }
