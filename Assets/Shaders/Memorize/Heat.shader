@@ -65,6 +65,10 @@ Shader "Custom/Heat"
                 output.grabPos.x += cos(noise*_Time.x*_Speed) * filt * _Strength;
                 output.grabPos.y += sin(noise*_Time.x*_Speed) * filt * _Strength;
 
+                // flip vertical for direct3d
+                if (_ProjectionParams.x < 0)
+                    output.grabPos.y = 1 - output.grabPos.y;
+
                 return output;
             }
 
