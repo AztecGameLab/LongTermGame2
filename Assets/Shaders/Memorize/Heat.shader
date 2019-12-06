@@ -50,9 +50,7 @@ Shader "Custom/Heat"
                 vertexOutput output;
                 
                 // face camera
-                float4 pos = input.vertex;
-                pos = mul(UNITY_MATRIX_P, mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1)) + float4(pos.x, pos.z, 0, 0));
-                output.pos = pos;                
+                output.pos =  mul(UNITY_MATRIX_P, mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1)) + float4(input.vertex.x, input.vertex.z, 0, 0));
 
                 // use ComputeGrabScreenPos function from UnityCG.cginc to get the correct texture coordinate
                 output.grabPos = ComputeGrabScreenPos(output.pos);
@@ -60,20 +58,14 @@ Shader "Custom/Heat"
                 // distort based on noise & strength filter
                 float noise = tex2Dlod(_Noise, float4(input.texCoord, 0)).rgb;
                 float3 filt = tex2Dlod(_StrengthFilter, float4(input.texCoord, 0)).rgb;
-                output.grabPos.x += cos(noise*_Time.x*_Speed) * filt * _Strength;
-                output.grabPos.y += sin(noise*_Time.x*_Speed) * filt * _Strength;
+                output.grabPos.x += cos(noise * _Time.x * _Speed) * filt * _Strength;
+                output.grabPos.y += sin(noise * _Time.x * _Speed) * filt * _Strength;
 
                 return output;
             }
 
             float4 frag(vertexOutput input) : COLOR
             {
-                // flip vertical for direct3d https://docs.unity3d.com/Manual/SL-PlatformDifferences.html
-                #if UNITY_UV_STARTS_AT_TOP
-                if (_BackgroundTexture.y < 0)
-                    input.grabPos.y = 1 - input.grabPos.y;
-                #endif
-
                 return tex2Dproj(_BackgroundTexture, input.grabPos);
             }
 

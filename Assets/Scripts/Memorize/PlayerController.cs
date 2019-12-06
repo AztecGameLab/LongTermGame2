@@ -2,46 +2,74 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO change UI and controls
 namespace Memorize {
     public class PlayerController : MonoBehaviour
     {
-        #pragma warning disable 0649
-        [SerializeField] GameObject buttonPrefab, placeholderPrefab;
-        [SerializeField] AudioClip correct, incorrect, music;
-        [SerializeField] float absoluteMaxTime, initialWaitTime, waitTime, deltaSpeed;
-        [SerializeField] ushort maxButtons, minButtons, loops;
-        #pragma warning restore 0649
-
         struct ControlStick
         {
-            float x, y;
+            public float x, y;
 
             public ControlStick(float x, float y)
             {
                 this.x = x;
                 this.y = y;
             }
+
+            public static bool operator ==(ControlStick cs1, ControlStick cs2)
+            {
+                return cs1.x == cs2.x && cs1.y == cs2.y;
+            }
+
+            public static bool operator !=(ControlStick cs1, ControlStick cs2)
+            {
+                return !(cs1 == cs2);
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is ControlStick && this == (ControlStick)obj;
+            }
+
+            public override int GetHashCode() 
+            {
+                return x.GetHashCode() ^ y.GetHashCode();
+            }
         };
+
+        const float absoluteMaxTime = 5f;
+        const float initialWaitTime = 0.5f;
+        const float waitTime = 3f;
+        const float deltaSpeed = 0.005f;
+
+        #pragma warning disable 0649
+        [SerializeField] GameObject buttonPrefab, placeholderPrefab;
+        [SerializeField] AudioClip correct, incorrect, music;
+        [SerializeField] float threshold;
+        #pragma warning restore 0649
 
         GameObject[] buttons, placeholders;
         SpriteRenderer[] placeholderSprites;
-        KeyCode[] keys;
+        ControlStick[] inputBuffer, keys, identityStick;
         Text memorizeText, repeatText;
         Slider slider;
-        ControlStick[] inputBuffer;
         float maxTime, deltaButtons, speed;
-        bool inputAllowed, isWin;
-        ushort c;
+        bool isInputAllowed, isWin;
+        ushort c, minButtons;
 
         void Awake()
         {
-            inputBuffer = new ControlStick[2];
             slider = GetComponentInChildren<Slider>();
             Text[] texts = GetComponentsInChildren<Text>();
             memorizeText = texts[0];
             repeatText = texts[1];
-            deltaButtons = maxButtons - minButtons;
+            inputBuffer = new ControlStick[2];
+            identityStick = new ControlStick[4];
+            identityStick[0] = new ControlStick(-1f, 0f); // left
+            identityStick[1] = new ControlStick(0f, -1f); // down
+            identityStick[2] = new ControlStick(1f, 0f); // right
+            identityStick[3] = new ControlStick(0f, 1f); // up
+            minButtons = 3;
+            deltaButtons = 1;
             isWin = true;
             speed = 1f;
         }
@@ -49,19 +77,35 @@ namespace Memorize {
         void Start()
         {
             maxTime = (absoluteMaxTime - 1f) * (1f - MinigameManager.GetDifficulty()) + 1f;
-            StartCoroutine(GameLoop());
+            StartCoroutine(GameLoop(3));
         }
 
         void Update()
         {
-            inputBuffer[1] = inputBuffer[0];
+            inputBuffer[1] = inputBuffer[0]; // shift
             inputBuffer[0] = new ControlStick(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-            if (inputAllowed)
+            // clamp
+            inputBuffer[0] = new ControlStick(inputBuffer[0].x > threshold ? 1f : (inputBuffer[0].x < -threshold ? -1f : 0f), inputBuffer[0].y > threshold ? 1f : (inputBuffer[0].y < -threshold ? -1f : 0f));
+            
+            if (isInputAllowed)
             {
-
+                // not diagonal, centered, or the same input
+                if (Mathf.Abs(inputBuffer[0].x) != Mathf.Abs(inputBuffer[0].y) && inputBuffer[0] != inputBuffer[1])
+                {
+                    if (keys[c] == inputBuffer[0])
+                    {
+                        placeholderSprites[c].color = Color.green;
+                        AudioManager.instance.PlaySFX(correct, 1f);
+                    }
+                    else
+                    {
+                        isWin = false;
+                        AudioManager.instance.PlaySFX(incorrect, 1f);
+                    }
+                    placeholders[c++].SetActive(true);
+                }
                 bool isNotDone = c < buttons.Length;
-                inputAllowed = isNotDone;
+                isInputAllowed = isNotDone;
                 if (!isNotDone)
                 {
                     slider.value = slider.minValue;
@@ -70,35 +114,20 @@ namespace Memorize {
             AudioManager.instance.SetMusicPitch(speed += Time.deltaTime * deltaSpeed);
         }
 
-        void KeyCheck(KeyCode code)
-        {
-            if (keys[c] == code)
-            {
-                placeholderSprites[c].color = Color.green;
-                AudioManager.instance.PlaySFX(correct, 1f);
-            }
-            else
-            {
-                isWin = false;
-                AudioManager.instance.PlaySFX(incorrect, 1f);
-            }
-            placeholders[c++].SetActive(true);
-        }
-
         float RandomDirection(ushort i)
         {
-            float r = Random.value;
-            keys[i] = r < 0.5f ? (r < 0.25f ? KeyCode.UpArrow : KeyCode.LeftArrow) : (r < 0.75f ? KeyCode.DownArrow : KeyCode.RightArrow);
-            return r < 0.5f ? (r < 0.25f ? 0f : 90f) : (r < 0.75f ? 180f : 270f);
+            int r = Random.Range(0, 4);
+            keys[i] = identityStick[r];
+            return r * 90f;
         }
 
-        IEnumerator GameLoop()
+        IEnumerator GameLoop(ushort loops)
         {
             slider.gameObject.SetActive(memorizeText.enabled = repeatText.enabled = false);
             AudioManager.instance.PlayMusic(music, 1f, speed, true);
             yield return new WaitForSeconds(initialWaitTime);
 
-            for (int h = 0; h < loops; h++)
+            for (ushort h = 0; h < loops; h++)
             {
                 c = 0;
                 slider.maxValue = maxTime;
@@ -110,7 +139,7 @@ namespace Memorize {
                 buttons = new GameObject[size];
                 placeholders = new GameObject[size];
                 placeholderSprites = new SpriteRenderer[size];
-                keys = new KeyCode[size];
+                keys = new ControlStick[size];
 
                 float j = -buttons.Length - 1;
                 for (ushort i = 0; i < buttons.Length; i++)
@@ -142,13 +171,13 @@ namespace Memorize {
                 repeatText.enabled = true;
                 slider.gameObject.SetActive(true);
                 // repeat
-                inputAllowed = true;
+                isInputAllowed = true;
                 while (slider.value > slider.minValue)
                 {
                     slider.value -= Time.deltaTime;
                     yield return null; // yields for Update()
                 }
-                inputAllowed = false;
+                isInputAllowed = false;
                 slider.gameObject.SetActive(false);
                 repeatText.enabled = false;
                 if (c < buttons.Length)
@@ -181,7 +210,6 @@ namespace Memorize {
                 }
                 
                 // up the ante
-                maxButtons++;
                 minButtons++;
                 yield return null;
             }
