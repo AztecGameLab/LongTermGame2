@@ -277,12 +277,13 @@ namespace Potions
 
         private void CorrectPotion()
         {
-            Reset();
             potionsNeeded--;
             if (potionsNeeded <= 0)
             {
                 Win();
             }
+
+            Reset();
         }
 
         private void DumpPotion()
