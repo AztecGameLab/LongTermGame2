@@ -48,7 +48,7 @@ namespace Memorize {
         #pragma warning disable 0649
         [SerializeField] GameObject buttonPrefab;
         [SerializeField] AudioClip correct, incorrect, music;
-        [SerializeField] Transform bgTransform;
+        [SerializeField] Transform bgTransform, panTransform;
         #pragma warning restore 0649
 
         GameObject[] buttons;
@@ -56,8 +56,8 @@ namespace Memorize {
         ControlStick[] inputBuffer, keys, identityStick;
         Text memorizeText, repeatText;
         Slider slider;
-        Vector3 initialBGPosition;
-        float maxTime, deltaButtons, speed, timer;
+        Vector3 initialBGPosition, initialPanPosition;
+        float maxTime, deltaButtons, speed, timer, panDisplacement;
         bool isInputAllowed, isWin;
         ushort c, minButtons;
 
@@ -77,11 +77,13 @@ namespace Memorize {
             deltaButtons = 1f;
             isWin = true;
             speed = 1f;
+            panDisplacement = 2f;
         }
 
         void Start()
         {
             initialBGPosition = bgTransform.position;
+            initialPanPosition = panTransform.position;
             maxTime = (absoluteMaxTime - 1f) * (1f - MinigameManager.GetDifficulty()) + 1f;
             StartCoroutine(GameLoop(3));
         }
@@ -90,6 +92,8 @@ namespace Memorize {
         {
             inputBuffer[1] = inputBuffer[0]; // shift
             inputBuffer[0] = new ControlStick(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            // pan movement
+            panTransform.position = new Vector3(initialPanPosition.x + inputBuffer[0].x * panDisplacement, initialPanPosition.y + inputBuffer[0].y * panDisplacement);
             // clamp
             inputBuffer[0] = new ControlStick(inputBuffer[0].x > threshold ? 1f : (inputBuffer[0].x < -threshold ? -1f : 0f), inputBuffer[0].y > threshold ? 1f : (inputBuffer[0].y < -threshold ? -1f : 0f));
             
