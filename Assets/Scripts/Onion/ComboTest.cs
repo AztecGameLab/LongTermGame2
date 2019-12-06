@@ -34,8 +34,10 @@ public class ComboTest : MonoBehaviour
     [SerializeField] AudioClip PlayerAttack, OnionEnemyDamage, OnionPlayerHurt;
     private void Start()
     {
-        float difficulty = MinigameManager.GetDifficulty();
 
+
+        float difficulty = MinigameManager.GetDifficulty();
+     
 
         gameStart = false;
         StartCoroutine(roundCounter());
@@ -44,27 +46,8 @@ public class ComboTest : MonoBehaviour
         
         playerHealth = 100;
 
-        if(difficulty < .25f)
-        {
-            enemyStartHealth = 60;
-            enemyHealth = enemyStartHealth;
-
-        }
-        else if (difficulty > .25f && difficulty < .50)
-        {
-            enemyStartHealth = 70;
-            enemyHealth = enemyStartHealth;
-        }
-        else if (difficulty > .50f &&  difficulty < .75)
-        {
-            enemyStartHealth = 80;
-            enemyHealth = enemyStartHealth;
-        }
-        else if (difficulty > .75f)
-        {
-            enemyStartHealth = 100;
-            enemyHealth = enemyStartHealth;
-        }
+        enemyStartHealth = Mathf.LerpUnclamped(60, 100, difficulty);
+        enemyHealth = enemyStartHealth;
 
         for (int t = 0; t < buttonOptions.Length; t++)
         {
@@ -80,6 +63,9 @@ public class ComboTest : MonoBehaviour
             displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
         }
         winState = 0;
+
+        InvokeRepeating("enemyAttackFunction", 3, 3f);
+
     }
 
     void Update()
@@ -106,13 +92,8 @@ public class ComboTest : MonoBehaviour
                     displayBox.GetComponent<Text>().text += buttonOptions[i] + " ";
                 }
             }
-            
-            if (Time.time > nextActionTime)
-            {
-                nextActionTime += period;
-             
-                StartCoroutine(enemyAttack());
-            }
+
+
 
             if (playerHealth <= 0 && loseState == 0)
             {
@@ -241,5 +222,9 @@ public class ComboTest : MonoBehaviour
             MinigameManager.FinishMinigame(true);
             
         }
+    }
+    public void enemyAttackFunction()
+    {
+        StartCoroutine(enemyAttack());
     }
 }

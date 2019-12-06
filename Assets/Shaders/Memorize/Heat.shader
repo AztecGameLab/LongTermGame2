@@ -21,8 +21,6 @@ Shader "Custom/Heat"
         // Render the object with the texture generated above, and invert the colors
         Pass
         {
-            // ZTest Always
-
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -52,9 +50,7 @@ Shader "Custom/Heat"
                 vertexOutput output;
                 
                 // face camera
-                float4 pos = input.vertex;
-                pos = mul(UNITY_MATRIX_P, mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1)) + float4(pos.x, pos.z, 0, 0));
-                output.pos = pos;                
+                output.pos =  mul(UNITY_MATRIX_P, mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1)) + float4(input.vertex.x, input.vertex.z, 0, 0));
 
                 // use ComputeGrabScreenPos function from UnityCG.cginc to get the correct texture coordinate
                 output.grabPos = ComputeGrabScreenPos(output.pos);
@@ -62,8 +58,8 @@ Shader "Custom/Heat"
                 // distort based on noise & strength filter
                 float noise = tex2Dlod(_Noise, float4(input.texCoord, 0)).rgb;
                 float3 filt = tex2Dlod(_StrengthFilter, float4(input.texCoord, 0)).rgb;
-                output.grabPos.x += cos(noise*_Time.x*_Speed) * filt * _Strength;
-                output.grabPos.y += sin(noise*_Time.x*_Speed) * filt * _Strength;
+                output.grabPos.x += cos(noise * _Time.x * _Speed) * filt * _Strength;
+                output.grabPos.y += sin(noise * _Time.x * _Speed) * filt * _Strength;
 
                 return output;
             }

@@ -12,24 +12,56 @@ namespace LockPick{
 
         public GameObject secondWire;
 
-        public static int wire_Count = 0;
-        public float[] pinHeight;
+        //Management of new "wires"
+        public static int wire_Count = -1;
+        private float[] pinHeight = new float[] {-1.1f, -2.05f, -3.65f };
+        private float[] spriteLocation = new float[] { 3f, 2.1f, .5f };
+        public static int[] remaining = new int[] {0, 1, 2};
+
+        private int pinSpriteIndex;
 
         public GameObject SuccessArea;
 
         public Text uiText;
 
         //Create a timer and timeLimit
-        private float timer = 0f;
-        private float timeLimit = 16f;
+        private float timer;
+        private float timeLimit;
+        public static float newTimer;
 
+        //Audio for Pin push and Unlocking
+        public AudioClip pinPush;
+        public AudioClip unlockLock;
+
+        public AudioSource pushPin;
+        public AudioSource unlock;
+
+
+        private int FindPinSpriteIndex()
+        {
+            int result = 0;
+            int rand = Random.Range(0, 3);
+            if(remaining[rand] == -1)
+            {
+                print("Index should be changing");
+                FindPinSpriteIndex();
+            }
+            else
+            {
+                result = rand;
+            }
+
+
+            return result;
+        }
 
         private void WinState()
         {
             //uiText.GetComponent<Text>().text = "Nice!";
-            //print("We're in!");
+            print("You won");
 
-            wire_Count = 0;
+            unlock.Play();
+            wire_Count = -1;
 
             MinigameManager.FinishMinigame(true);
             /*
@@ -41,33 +73,57 @@ namespace LockPick{
 
         private void LoseState()
         {
-            wire_Count = 0;
+            wire_Count = -1;
 
             //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
             MinigameManager.FinishMinigame(false);
         }
-        
+
+
         // Start is called before the first frame update
         void Start()
         {
             float difficulty = MinigameManager.GetDifficulty();
-            timeLimit = Mathf.LerpUnclamped(6f, 10f, difficulty);
+            timeLimit = Mathf.LerpUnclamped(16f, 10f, difficulty);
 
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
+
+            if (wire_Count == -1)
+            {
+                timer = timeLimit;
+            }
+            else
+            {
+                timer = newTimer;
+            }
             wire_Count++;
+
+            pinSpriteIndex = FindPinSpriteIndex();
+            if(remaining[pinSpriteIndex] == -1)
+            {
+                FindPinSpriteIndex();
+                successPosition.y = spriteLocation[pinSpriteIndex];
+                SuccessArea.transform.position = successPosition;
+            }
+            successPosition.y = spriteLocation[pinSpriteIndex];
+            SuccessArea.transform.position = successPosition;
+
             secondWire.GetComponent<Wire>().SuccessArea = SuccessArea;
             secondWire.GetComponent<Wire>().uiText = uiText;
 
+            unlock.clip = unlockLock;
+            pushPin.clip = pinPush;
 
         }
 
         // Update is called once per frame
         void Update()
         {
-
-            timer += Time.deltaTime;
-            if(timer >= timeLimit)
+            timer -= Time.deltaTime;
+            newTimer = timer;
+            uiText.text = "Time Left: " + Mathf.RoundToInt(timer);
+            if(timer <= 0)
             {
                 LoseState();
             }
@@ -84,35 +140,47 @@ namespace LockPick{
                 GetComponent<Rigidbody2D>().velocity = liftUp;            
             }
 
+            if (remaining[pinSpriteIndex] == -1)
+            {
+                FindPinSpriteIndex();
+                successPosition.y = spriteLocation[pinSpriteIndex];
+                SuccessArea.transform.position = successPosition;
+            }
+
             //Presses button at a certain point to see if the lock pick actually works
             if (Input.GetButtonDown("Secondary"))
             {
+                print("pin height is " + pinHeight[pinSpriteIndex]);
+                print("remaining spriteIndex is " + remaining[pinSpriteIndex]);
                 //Success if it's in range
-                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + 1f)
+                if(GetComponent<Rigidbody2D>().position.y > pinHeight[pinSpriteIndex/*wire_Count*/] && GetComponent<Rigidbody2D>().position.y < pinHeight[pinSpriteIndex/*wire_Count*/] + .7f)
                 {
+                    remaining[pinSpriteIndex] = -1;
+                    pushPin.Play();
+                    newTimer = timer + 2f;
                     GetComponent<Rigidbody2D>().rotation = -3;
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
-                    if (wire_Count == 1)
+                    successPosition.y = spriteLocation[pinSpriteIndex];
+                    SuccessArea.transform.position = successPosition;
+                    /*if (wire_Count == 0)
                     {
-                        //uiText.GetComponent<Text>().text = "Nice! Time to Stick the nail in";
                         successPosition.y = 2.1f;
                         SuccessArea.transform.position = successPosition;
                         
 
                     }
-                    if (wire_Count == 2)
+                    if (wire_Count == 1)
                     {
-                        //uiText.GetComponent<Text>().text = "Just the paperclip now...";
                         successPosition.y = .5f;
                         SuccessArea.transform.position = successPosition;
                         
                     }
+                    */
 
-
-                    if (wire_Count < 3)
+                    if (wire_Count < 2)
                     {
-                        Instantiate(secondWire, startPosition + new Vector2(0.75f, 0), Quaternion.identity);
+                        Instantiate(secondWire, startPosition + new Vector2(.75f, 0), Quaternion.identity);
 
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
@@ -138,7 +206,8 @@ namespace LockPick{
                 }
 
                 //This is to get a position to set parameters for the areas
-                print(GetComponent<Rigidbody2D>().position.y);
+                //print(GetComponent<Rigidbody2D>().position.y);
+                
             }
         }
     }
