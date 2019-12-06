@@ -14,7 +14,7 @@ namespace LockPick{
 
         //Management of new "wires"
         public static int wire_Count = -1;
-        private float[] pinHeight = new float[] {-1.1f, -2.05f, -3.6f };
+        private float[] pinHeight = new float[] {-1.1f, -2.05f, -3.65f };
         private float[] spriteLocation = new float[] { 3f, 2.1f, .5f };
         public static int[] remaining = new int[] {0, 1, 2};
 
@@ -43,6 +43,7 @@ namespace LockPick{
             int rand = Random.Range(0, 3);
             if(remaining[rand] == -1)
             {
+                print("Index should be changing");
                 FindPinSpriteIndex();
             }
             else
@@ -90,12 +91,10 @@ namespace LockPick{
 
             if (wire_Count == -1)
             {
-                print("Wire count is zero");
                 timer = timeLimit;
             }
             else
             {
-                print("Wire count is not zero");
                 timer = newTimer;
             }
             wire_Count++;
@@ -104,8 +103,9 @@ namespace LockPick{
             if(remaining[pinSpriteIndex] == -1)
             {
                 FindPinSpriteIndex();
+                successPosition.y = spriteLocation[pinSpriteIndex];
+                SuccessArea.transform.position = successPosition;
             }
-            print("pinsprite index is " + pinSpriteIndex);
             successPosition.y = spriteLocation[pinSpriteIndex];
             SuccessArea.transform.position = successPosition;
 
@@ -138,6 +138,13 @@ namespace LockPick{
             if (Input.GetButton("Primary"))
             {
                 GetComponent<Rigidbody2D>().velocity = liftUp;            
+            }
+
+            if (remaining[pinSpriteIndex] == -1)
+            {
+                FindPinSpriteIndex();
+                successPosition.y = spriteLocation[pinSpriteIndex];
+                SuccessArea.transform.position = successPosition;
             }
 
             //Presses button at a certain point to see if the lock pick actually works
