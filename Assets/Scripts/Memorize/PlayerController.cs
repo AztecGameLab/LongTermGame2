@@ -13,22 +13,34 @@ namespace Memorize {
         [SerializeField] ushort maxButtons, minButtons, loops;
         #pragma warning restore 0649
 
+        struct ControlStick
+        {
+            float x, y;
+
+            public ControlStick(float x, float y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        };
+
         GameObject[] buttons, placeholders;
         SpriteRenderer[] placeholderSprites;
         KeyCode[] keys;
         Text memorizeText, repeatText;
         Slider slider;
+        ControlStick[] inputBuffer;
         float maxTime, deltaButtons, speed;
         bool inputAllowed, isWin;
         ushort c;
 
         void Awake()
         {
+            inputBuffer = new ControlStick[2];
             slider = GetComponentInChildren<Slider>();
             Text[] texts = GetComponentsInChildren<Text>();
             memorizeText = texts[0];
             repeatText = texts[1];
-
             deltaButtons = maxButtons - minButtons;
             isWin = true;
             speed = 1f;
@@ -42,24 +54,12 @@ namespace Memorize {
 
         void Update()
         {
+            inputBuffer[1] = inputBuffer[0];
+            inputBuffer[0] = new ControlStick(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
             if (inputAllowed)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    KeyCheck(KeyCode.UpArrow);
-                }
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    KeyCheck(KeyCode.DownArrow);
-                }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    KeyCheck(KeyCode.LeftArrow);
-                }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    KeyCheck(KeyCode.RightArrow);
-                }
+
                 bool isNotDone = c < buttons.Length;
                 inputAllowed = isNotDone;
                 if (!isNotDone)
