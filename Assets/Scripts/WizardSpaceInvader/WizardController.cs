@@ -7,11 +7,11 @@ public class WizardController : MonoBehaviour
     public GameObject spell;
     public float speed = 1.0f;
 
-    #pragma warning disable 0649
+#pragma warning disable 0649
     [SerializeField] AudioClip WizardSpaceInvaderClip;
     [SerializeField] AudioClip spellSound;
     [SerializeField] float pitchRange;
-    #pragma warning restore 0649
+#pragma warning restore 0649
 
     float pitchMin, pitchMax;
 

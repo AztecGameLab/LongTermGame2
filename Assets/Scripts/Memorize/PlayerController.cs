@@ -95,7 +95,7 @@ namespace Memorize {
             inputBuffer[1] = inputBuffer[0]; // shift
             inputBuffer[0] = new ControlStick(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             // pan movement
-            panTransform.position = new Vector3(initialPanPosition.x + inputBuffer[0].x * panDisplacement, initialPanPosition.y + inputBuffer[0].y * panDisplacement);
+            panTransform.position = new Vector3(initialPanPosition.x + inputBuffer[0].x * panDisplacement, initialPanPosition.y + inputBuffer[0].y * panDisplacement, initialPanPosition.z);
             // clamp
             inputBuffer[0] = new ControlStick(inputBuffer[0].x > threshold ? 1f : (inputBuffer[0].x < -threshold ? -1f : 0f), inputBuffer[0].y > threshold ? 1f : (inputBuffer[0].y < -threshold ? -1f : 0f));
             

@@ -5926,6 +5926,8 @@ MonoBehaviour:
   frequency: 000000000000000000000000
   cutsceneIndices: 
   minigameIndices: 010000000200000003000000040000000500000006000000
+  winSound: {fileID: 8300000, guid: 481ae1b70989d9248a64e445c0377591, type: 3}
+  loseSound: {fileID: 8300000, guid: 8caa593b72024c246b59dbf4e01a7f93, type: 3}
   CRrunning: 0
 --- !u!4 &586281827
 Transform:

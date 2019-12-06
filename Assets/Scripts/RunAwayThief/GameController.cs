@@ -29,7 +29,8 @@ namespace RunAwayThief
             playerCollider = player.GetComponent<Collider2D>();
             enemyCollider = enemy.GetComponent<Collider2D>();
             groundCollider = ground.GetComponent<Collider2D>();
-            changeSpeed = Mathf.LerpUnclamped(1, 2, difficultyModifier);
+            difficultyModifier = MinigameManager.GetDifficulty();
+            changeSpeed = Mathf.LerpUnclamped(1, 3, difficultyModifier);
             player.SetMoveForward(changeSpeed);
             nextActionTime = Time.time + period;
             AudioManager.instance.PlayMusic(RunAwayThiefMusic, 0.9f, 1.0f, true);

@@ -6,6 +6,7 @@ using TMPro;
 
 public class CountDown : MonoBehaviour
 {
+    bool donezo;
     float timeLeft;
     public TextMeshProUGUI timer;
     // Start is called before the first frame update
@@ -13,25 +14,33 @@ public class CountDown : MonoBehaviour
     {
         timeLeft = 30;
         timer.text = "00:" + timeLeft;
+        donezo = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeLeft -= Time.deltaTime;
+        if (timeLeft > 0f)
+        {
+            timeLeft -= Time.deltaTime;
 
-        if (timeLeft >= 10)
-        {
-            timer.text = "00:" + ((int)timeLeft);
-        }
-        else if (timeLeft > 0)
-        {
-            timer.text = "00:0" + ((int)timeLeft);
-        }
-        else
-        {
-            Time.timeScale = 0;
+            if (timeLeft >= 10)
+            {
+                timer.text = "00:" + ((int)timeLeft);
+            }
+            else
+            {
+                timer.text = "00:0" + ((int)timeLeft);
+            }
+
+        } else {
+            if (!donezo){
+            // Time.timeScale = 0;
             MinigameManager.FinishMinigame(true);
+
+            donezo = true;
+            }
+            
         }
     }
 }

@@ -29,6 +29,7 @@ public class MinigameManager : MonoBehaviour
     public int[] minigameIndices;
 
     public static AudioClip WinMusic, LoseMusic;
+    public AudioClip winSound, loseSound;
 
     public static bool hasFinishedGame;
     public static MinigameManager Instance
@@ -49,6 +50,8 @@ public class MinigameManager : MonoBehaviour
     void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("Manager");
+        WinMusic = winSound;
+        LoseMusic = loseSound;
 
         if (_instance && _instance != this)
             Destroy(gameObject);
@@ -136,6 +139,7 @@ public class MinigameManager : MonoBehaviour
 
             if (gameManager != null)
                 gameManager.GetComponent<MinigameManager>().resultScreen(false);
+            AudioManager.instance.PlayMusic(LoseMusic, 1.0f);
             //Instance.nextScene();
             //hasFinishedGame = false;
         }
