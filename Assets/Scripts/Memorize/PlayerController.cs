@@ -41,16 +41,18 @@ namespace Memorize {
         const float waitTime = 3f;
         const float deltaSpeed = 0.005f;
         const float threshold = 0.333f;
+        const float magnitude = 0.25f;
+        const float duration = 0.1f;
+        const float dampening = 0.5f;
 
         #pragma warning disable 0649
-        [SerializeField] GameObject buttonPrefab, placeholderPrefab;
+        [SerializeField] GameObject buttonPrefab;
         [SerializeField] AudioClip correct, incorrect, music;
         [SerializeField] Transform bgTransform;
-        [SerializeField] float duration, magnitude, dampening;
         #pragma warning restore 0649
 
-        GameObject[] buttons, placeholders;
-        SpriteRenderer[] placeholderSprites;
+        GameObject[] buttons;
+        SpriteRenderer[] buttonSprites;
         ControlStick[] inputBuffer, keys, identityStick;
         Text memorizeText, repeatText;
         Slider slider;
@@ -98,16 +100,17 @@ namespace Memorize {
                 {
                     if (keys[c] == inputBuffer[0])
                     {
-                        placeholderSprites[c].color = Color.green;
+                        buttonSprites[c].color = Color.green;
                         AudioManager.instance.PlaySFX(correct, 1f);
                     }
                     else
                     {
                         isWin = false;
+                        buttonSprites[c].color = Color.red;
                         AudioManager.instance.PlaySFX(incorrect, 1f);
                         timer = duration;
                     }
-                    placeholders[c++].SetActive(true);
+                    buttons[c++].SetActive(true);
                 }
                 bool isNotDone = c < buttons.Length;
                 isInputAllowed = isNotDone;
@@ -152,18 +155,15 @@ namespace Memorize {
                 // generate new set of buttons and placeholders
                 int size = Mathf.RoundToInt(Random.value * deltaButtons) + minButtons;
                 buttons = new GameObject[size];
-                placeholders = new GameObject[size];
-                placeholderSprites = new SpriteRenderer[size];
+                buttonSprites = new SpriteRenderer[size];
                 keys = new ControlStick[size];
 
                 float j = -buttons.Length - 1;
                 for (ushort i = 0; i < buttons.Length; i++)
                 {
                     j += 2;
-                    placeholders[i] = Instantiate(placeholderPrefab, new Vector3(j, -1.5f, 0f), Quaternion.Euler(0f, 0f, 0f));
-                    placeholders[i].SetActive(false);
-                    placeholderSprites[i] = placeholders[i].GetComponent<SpriteRenderer>();
                     buttons[i] = Instantiate(buttonPrefab, new Vector3(j, 0f, 0f), Quaternion.Euler(0f, 0f, RandomDirection(i)));
+                    buttonSprites[i] = buttons[i].GetComponent<SpriteRenderer>();
                 }
 
                 slider.gameObject.SetActive(true);
@@ -211,10 +211,6 @@ namespace Memorize {
                 foreach (GameObject button in buttons)
                 {
                     Destroy(button);
-                }
-                foreach (GameObject placeholder in placeholders)
-                {
-                    Destroy(placeholder);
                 }
 
                 if (!isWin)
