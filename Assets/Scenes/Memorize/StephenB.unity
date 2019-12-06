@@ -292,15 +292,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 844593196040894702, guid: e75ca2e233bfe57c6b696653908a17a9,
     type: 3}
-  placeholderPrefab: {fileID: 3081946713393475509, guid: 4c60018f060f85a4f95782d0a2c6a436,
-    type: 3}
   correct: {fileID: 8300000, guid: fbe744f65899eba83a0a00a58cc186f5, type: 3}
   incorrect: {fileID: 8300000, guid: c1025931a51e99d62b755c23ef3845d2, type: 3}
   music: {fileID: 8300000, guid: bc971c6632b6ee346ad5ac5cd52016d5, type: 3}
   bgTransform: {fileID: 176467146}
-  duration: 0.1
-  magnitude: 0.25
-  dampening: 0.5
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,13 +844,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722547071}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: -3, z: 1}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &901348846
 GameObject:
   m_ObjectHideFlags: 0
