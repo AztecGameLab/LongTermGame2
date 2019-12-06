@@ -64,10 +64,10 @@ namespace Memorize {
             repeatText = texts[1];
             inputBuffer = new ControlStick[2];
             identityStick = new ControlStick[4];
-            identityStick[0] = new ControlStick(-1f, 0f); // left
-            identityStick[1] = new ControlStick(0f, -1f); // down
-            identityStick[2] = new ControlStick(1f, 0f); // right
-            identityStick[3] = new ControlStick(0f, 1f); // up
+            identityStick[0] = new ControlStick(0f, 1f); // up
+            identityStick[1] = new ControlStick(-1f, 0f); // left
+            identityStick[2] = new ControlStick(0f, -1f); // down
+            identityStick[3] = new ControlStick(1f, 0f); // right
             minButtons = 3;
             deltaButtons = 1;
             isWin = true;
