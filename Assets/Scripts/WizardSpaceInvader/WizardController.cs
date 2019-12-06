@@ -23,7 +23,7 @@ public class WizardController : MonoBehaviour
 
     void Start()
     {
-        //AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.6f, 1.0f, true);
+        AudioManager.instance.PlayMusic(WizardSpaceInvaderClip, 0.55f, 1.0f, true);
     }
 
     // Update is called once per frame
@@ -46,6 +46,6 @@ public class WizardController : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y + 1.5f;
         Instantiate(spell, new Vector2(x, y), Quaternion.identity);
-        AudioManager.instance.PlaySFX(spellSound, 1f, Random.Range(pitchMin, pitchMax));
+        AudioManager.instance.PlaySFX(spellSound, 0.75f, Random.Range(pitchMin, pitchMax));
     }
 }
