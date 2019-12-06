@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
+#endif
 using UnityEngine.UI;
 using TMPro;
 
@@ -115,7 +117,9 @@ public class MinigameManager : MonoBehaviour
 
         if (!_instance)
         {
+            #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
+                #endif
                 hasFinishedGame = false;
             
             return;
@@ -150,7 +154,9 @@ public class MinigameManager : MonoBehaviour
     {
         if (!_instance)
         {
+            #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
+                #endif
             
             return;
         }
@@ -165,7 +171,9 @@ public class MinigameManager : MonoBehaviour
     {
         if (!_instance)
         {
+            #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
+                #endif
             
             return;
         }
@@ -183,10 +191,12 @@ public class MinigameManager : MonoBehaviour
             RandomlyGenerateMinigameSequence();
             minigameIndex = 0;
         }
+        #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
             SceneManager.LoadScene(minigameIndices[minigameIndex++]);
         else if (!UnityEditor.EditorApplication.isPlaying)
             EditorSceneManager.OpenScene(SceneManager.GetSceneAt(minigameIndices[minigameIndex++]).name);
+            #endif
     }
     private void LoadNextCutscene()
     {
