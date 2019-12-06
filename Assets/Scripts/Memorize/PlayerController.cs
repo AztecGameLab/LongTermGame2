@@ -40,11 +40,13 @@ namespace Memorize {
         const float initialWaitTime = 0.5f;
         const float waitTime = 3f;
         const float deltaSpeed = 0.005f;
+        const float threshold = 0.333f;
 
         #pragma warning disable 0649
         [SerializeField] GameObject buttonPrefab, placeholderPrefab;
         [SerializeField] AudioClip correct, incorrect, music;
-        [SerializeField] float threshold;
+        [SerializeField] Transform bgTransform;
+        [SerializeField] float duration, magnitude, dampening;
         #pragma warning restore 0649
 
         GameObject[] buttons, placeholders;
@@ -52,7 +54,8 @@ namespace Memorize {
         ControlStick[] inputBuffer, keys, identityStick;
         Text memorizeText, repeatText;
         Slider slider;
-        float maxTime, deltaButtons, speed;
+        Vector3 initialBGPosition;
+        float maxTime, deltaButtons, speed, timer;
         bool isInputAllowed, isWin;
         ushort c, minButtons;
 
@@ -69,13 +72,14 @@ namespace Memorize {
             identityStick[2] = new ControlStick(0f, -1f); // down
             identityStick[3] = new ControlStick(1f, 0f); // right
             minButtons = 3;
-            deltaButtons = 1;
+            deltaButtons = 1f;
             isWin = true;
             speed = 1f;
         }
 
         void Start()
         {
+            initialBGPosition = bgTransform.position;
             maxTime = (absoluteMaxTime - 1f) * (1f - MinigameManager.GetDifficulty()) + 1f;
             StartCoroutine(GameLoop(3));
         }
@@ -101,6 +105,7 @@ namespace Memorize {
                     {
                         isWin = false;
                         AudioManager.instance.PlaySFX(incorrect, 1f);
+                        timer = duration;
                     }
                     placeholders[c++].SetActive(true);
                 }
@@ -111,7 +116,17 @@ namespace Memorize {
                     slider.value = slider.minValue;
                 }
             }
+
             AudioManager.instance.SetMusicPitch(speed += Time.deltaTime * deltaSpeed);
+            if (timer > 0f)
+            {
+                bgTransform.position = initialBGPosition + Random.insideUnitSphere * magnitude;
+                timer -= Time.deltaTime * dampening;
+            }
+            else
+            {
+                bgTransform.position = initialBGPosition;
+            }
         }
 
         float RandomDirection(ushort i)
