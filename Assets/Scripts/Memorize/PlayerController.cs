@@ -43,10 +43,11 @@ namespace Memorize {
         const float threshold = 0.333f;
         const float magnitude = 0.25f;
         const float duration = 0.1f;
+        const float foodDuration = 2f;
         const float dampening = 0.5f;
 
         #pragma warning disable 0649
-        [SerializeField] GameObject buttonPrefab;
+        [SerializeField] GameObject buttonPrefab, food;
         [SerializeField] AudioClip correct, incorrect, music;
         [SerializeField] Transform bgTransform, panTransform;
         #pragma warning restore 0649
@@ -57,7 +58,7 @@ namespace Memorize {
         Text memorizeText, repeatText;
         Slider slider;
         Vector3 initialBGPosition, initialPanPosition;
-        float maxTime, deltaButtons, speed, timer, panDisplacement;
+        float maxTime, deltaButtons, speed, timer, foodTimer, panDisplacement;
         bool isInputAllowed, isWin;
         ushort c, minButtons;
 
@@ -82,6 +83,7 @@ namespace Memorize {
 
         void Start()
         {
+            food.SetActive(false);
             initialBGPosition = bgTransform.position;
             initialPanPosition = panTransform.position;
             maxTime = (absoluteMaxTime - 1f) * (1f - MinigameManager.GetDifficulty()) + 1f;
@@ -106,6 +108,8 @@ namespace Memorize {
                     {
                         buttonSprites[c].color = Color.green;
                         AudioManager.instance.PlaySFX(correct, 1f);
+                        food.SetActive(true);
+                        foodTimer = foodDuration;
                     }
                     else
                     {
@@ -113,6 +117,8 @@ namespace Memorize {
                         buttonSprites[c].color = Color.red;
                         AudioManager.instance.PlaySFX(incorrect, 1f);
                         timer = duration;
+                        food.SetActive(false);
+                        foodTimer = 0f;
                     }
                     buttons[c++].SetActive(true);
                 }
@@ -133,6 +139,14 @@ namespace Memorize {
             else
             {
                 bgTransform.position = initialBGPosition;
+            }
+            if (foodTimer > 0f)
+            {
+                foodTimer -= Time.deltaTime;
+            }
+            else
+            {
+                food.SetActive(false);
             }
         }
 
