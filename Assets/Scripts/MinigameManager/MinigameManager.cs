@@ -28,6 +28,8 @@ public class MinigameManager : MonoBehaviour
     public int[] cutsceneIndices;
     public int[] minigameIndices;
 
+    public static AudioClip WinMusic, LoseMusic;
+
     public static bool hasFinishedGame;
     public static MinigameManager Instance
     {
@@ -121,6 +123,7 @@ public class MinigameManager : MonoBehaviour
             SetDifficulty(difficulty + 0.1f);
             if (gameManager != null)
                 gameManager.GetComponent<MinigameManager>().resultScreen(true);
+            AudioManager.instance.PlayMusic(WinMusic, 1.0f);
             //Instance.nextScene();
             //hasFinishedGame = false;
         }
