@@ -31,7 +31,7 @@ public class CountDown : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-            //MinigameManager.FinishMinigame(false);
+            MinigameManager.FinishMinigame(true);
         }
     }
 }

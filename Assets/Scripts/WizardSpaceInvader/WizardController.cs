@@ -46,6 +46,6 @@ public class WizardController : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y + 1.5f;
         Instantiate(spell, new Vector2(x, y), Quaternion.identity);
-        //AudioManager.instance.PlaySFX(spellSound, 1f, Random.Range(pitchMin, pitchMax));
+        AudioManager.instance.PlaySFX(spellSound, 1f, Random.Range(pitchMin, pitchMax));
     }
 }
