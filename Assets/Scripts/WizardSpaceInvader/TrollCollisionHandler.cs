@@ -9,7 +9,7 @@ public class TrollCollisionHandler : MonoBehaviour
         if (collision.gameObject.tag == "Border" || collision.gameObject.tag == "Player")
         {
             Destroy(this.gameObject);
-            //MinigameManage.FinishMinigame(true);
+            MinigameManage.FinishMinigame(false);
         }
     }
 }
