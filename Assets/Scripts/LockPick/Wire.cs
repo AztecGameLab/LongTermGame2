@@ -44,7 +44,7 @@ namespace LockPick{
             if(remaining[rand] == -1)
             {
                 print("Index should be changing");
-                FindPinSpriteIndex();
+                return FindPinSpriteIndex();
             }
             else
             {
