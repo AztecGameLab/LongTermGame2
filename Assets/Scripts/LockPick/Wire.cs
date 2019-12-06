@@ -14,8 +14,8 @@ namespace LockPick{
 
         //Management of new "wires"
         public static int wire_Count = -1;
-        private float[] pinHeight = new float[] {-1.05f, -2.05f, -3.6f };
-        private float[] spriteLocation = new float[] { 3, 2.1f, .5f };
+        private float[] pinHeight = new float[] {-1.1f, -2.05f, -3.6f };
+        private float[] spriteLocation = new float[] { 3f, 2.1f, .5f };
         public static int[] remaining = new int[] {0, 1, 2};
 
         private int pinSpriteIndex;
