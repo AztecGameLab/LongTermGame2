@@ -12,8 +12,13 @@ namespace LockPick{
 
         public GameObject secondWire;
 
-        public static int wire_Count = 0;
-        public float[] pinHeight;
+        //Management of new "wires"
+        public static int wire_Count = -1;
+        private float[] pinHeight = new float[] {-1.05f, -2.05f, -3.6f };
+        private float[] spriteLocation = new float[] { 3, 2.1f, .5f };
+        public static int[] remaining = new int[] {0, 1, 2};
+
+        private int pinSpriteIndex;
 
         public GameObject SuccessArea;
 
@@ -32,13 +37,30 @@ namespace LockPick{
         public AudioSource unlock;
 
 
+        private int FindPinSpriteIndex()
+        {
+            int result = 0;
+            int rand = Random.Range(0, 3);
+            if(remaining[rand] == -1)
+            {
+                FindPinSpriteIndex();
+            }
+            else
+            {
+                result = rand;
+            }
+
+
+            return result;
+        }
+
         private void WinState()
         {
             //uiText.GetComponent<Text>().text = "Nice!";
             print("You won");
 
             unlock.Play();
-            wire_Count = 0;
+            wire_Count = -1;
 
             MinigameManager.FinishMinigame(true);
             /*
@@ -50,7 +72,7 @@ namespace LockPick{
 
         private void LoseState()
         {
-            wire_Count = 0;
+            wire_Count = -1;
 
             //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
             MinigameManager.FinishMinigame(false);
@@ -66,7 +88,7 @@ namespace LockPick{
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
 
-            if (wire_Count == 0)
+            if (wire_Count == -1)
             {
                 print("Wire count is zero");
                 timer = timeLimit;
@@ -77,6 +99,16 @@ namespace LockPick{
                 timer = newTimer;
             }
             wire_Count++;
+
+            pinSpriteIndex = FindPinSpriteIndex();
+            if(remaining[pinSpriteIndex] == -1)
+            {
+                FindPinSpriteIndex();
+            }
+            print("pinsprite index is " + pinSpriteIndex);
+            successPosition.y = spriteLocation[pinSpriteIndex];
+            SuccessArea.transform.position = successPosition;
+
             secondWire.GetComponent<Wire>().SuccessArea = SuccessArea;
             secondWire.GetComponent<Wire>().uiText = uiText;
 
@@ -88,8 +120,6 @@ namespace LockPick{
         // Update is called once per frame
         void Update()
         {
-            print(newTimer);
-
             timer -= Time.deltaTime;
             newTimer = timer;
             uiText.text = "Time Left: " + Mathf.RoundToInt(timer);
@@ -113,32 +143,35 @@ namespace LockPick{
             //Presses button at a certain point to see if the lock pick actually works
             if (Input.GetButtonDown("Secondary"))
             {
+                print("pin height is " + pinHeight[pinSpriteIndex]);
+                print("remaining spriteIndex is " + remaining[pinSpriteIndex]);
                 //Success if it's in range
-                if(GetComponent<Rigidbody2D>().position.y > pinHeight[wire_Count] && GetComponent<Rigidbody2D>().position.y < pinHeight[wire_Count] + .7f)
+                if(GetComponent<Rigidbody2D>().position.y > pinHeight[pinSpriteIndex/*wire_Count*/] && GetComponent<Rigidbody2D>().position.y < pinHeight[pinSpriteIndex/*wire_Count*/] + .7f)
                 {
+                    remaining[pinSpriteIndex] = -1;
                     pushPin.Play();
                     newTimer = timer + 2f;
                     GetComponent<Rigidbody2D>().rotation = -3;
 
                     //Shift the SuccessArea Sprite to go along with the new Areas to stop the Wire
-                    if (wire_Count == 1)
+                    successPosition.y = spriteLocation[pinSpriteIndex];
+                    SuccessArea.transform.position = successPosition;
+                    /*if (wire_Count == 0)
                     {
-                        //uiText.GetComponent<Text>().text = "Nice! Time to Stick the nail in";
                         successPosition.y = 2.1f;
                         SuccessArea.transform.position = successPosition;
                         
 
                     }
-                    if (wire_Count == 2)
+                    if (wire_Count == 1)
                     {
-                        //uiText.GetComponent<Text>().text = "Just the paperclip now...";
                         successPosition.y = .5f;
                         SuccessArea.transform.position = successPosition;
                         
                     }
+                    */
 
-
-                    if (wire_Count < 3)
+                    if (wire_Count < 2)
                     {
                         Instantiate(secondWire, startPosition + new Vector2(.75f, 0), Quaternion.identity);
 
