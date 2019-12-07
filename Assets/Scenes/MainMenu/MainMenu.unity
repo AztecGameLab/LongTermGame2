@@ -787,7 +787,7 @@ RectTransform:
   m_Children:
   - {fileID: 1428144612}
   m_Father: {fileID: 1750153233}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5976,7 +5976,7 @@ RectTransform:
   - {fileID: 1097351337}
   - {fileID: 1185507370}
   m_Father: {fileID: 1750153233}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7125,7 +7125,7 @@ MonoBehaviour:
 
     Art Director: Naseem Tahbaz
 
-    Music & Technical Audio: Byron Beasley, Stephen Barrack
+    Music & Technical Audio: Byron Beasley, Stephen Barrack, Marilynn Do
 
 
     Programmers: Archer Hovey, Daniel Kenton, Jacob Barger, Sam Hilliard, Timothy
@@ -7181,7 +7181,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 482
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7205,12 +7205,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1097351338}
-    characterCount: 478
+    characterCount: 491
     spriteCount: 0
-    spaceCount: 65
-    wordCount: 63
+    spaceCount: 67
+    wordCount: 65
     linkCount: 0
-    lineCount: 13
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -7794,7 +7794,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1428144614}
   m_TextComponent: {fileID: 343174771}
   m_materialReferenceIndex: 1
@@ -7973,8 +7973,8 @@ RectTransform:
   - {fileID: 1095979368}
   - {fileID: 278433414}
   - {fileID: 186208376}
-  - {fileID: 734543765}
   - {fileID: 343174770}
+  - {fileID: 734543765}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
