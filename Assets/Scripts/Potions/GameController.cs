@@ -163,7 +163,7 @@ namespace Potions
             
             if (canTakeInput)
             {
-                if (Input.GetAxisRaw("Vertical") == -1 || Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetAxisRaw("Vertical") <= -0.8f || Input.GetKeyDown(KeyCode.Space))
                 {
                     DumpPotion();
 
@@ -178,7 +178,7 @@ namespace Potions
                     Reset();
                 }
 
-                bool isThereInput = Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R) || Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y) || Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B);
+                bool isThereInput = Input.GetAxisRaw("Horizontal") <= -0.8f || Input.GetKey(KeyCode.R) || Input.GetAxisRaw("Vertical") >= 0.8f || Input.GetKey(KeyCode.Y) || Input.GetAxisRaw("Horizontal") >= 0.8f || Input.GetKey(KeyCode.B);
                 if (isThereInput && !AudioManager.instance.GetIsSFXPlaying())
                 {
                     AudioManager.instance.PlaySFX(pourSound, 1f, true);
@@ -188,21 +188,21 @@ namespace Potions
                     AudioManager.instance.StopSFX();
                 }
 
-                if (Input.GetAxisRaw("Horizontal") == -1 || Input.GetKey(KeyCode.R))
+                if (Input.GetAxisRaw("Horizontal") <= -0.8f || Input.GetKey(KeyCode.R))
                 {
                     redAmount += fillRate * Time.deltaTime;
                     redArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);
                     yellowArrow.transform.localScale = new Vector3(3f, 3f, 1);
                     yellowArrow.transform.localScale = new Vector3(3f, 3f, 1);
                 }
-                else if (Input.GetAxisRaw("Vertical") == 1 || Input.GetKey(KeyCode.Y))
+                else if (Input.GetAxisRaw("Vertical") >= 0.8f || Input.GetKey(KeyCode.Y))
                 {
                     yellowAmount += fillRate * Time.deltaTime;
                     yellowArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);
                     redArrow.transform.localScale = new Vector3(3f, 3f, 1);
                     blueArrow.transform.localScale = new Vector3(3f, 3f, 1);
                 }
-                else if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetKey(KeyCode.B))
+                else if (Input.GetAxisRaw("Horizontal") >= 0.8f || Input.GetKey(KeyCode.B))
                 {
                     blueAmount += fillRate * Time.deltaTime;
                     blueArrow.transform.localScale = new Vector3(3.5f, 3.5f, 1);

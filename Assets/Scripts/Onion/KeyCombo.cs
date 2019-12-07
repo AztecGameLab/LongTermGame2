@@ -22,10 +22,10 @@ public class KeyCombo
         {
             if (currentIndex < buttons.Length)
             {
-                if ((buttons[currentIndex] == "Down" && Input.GetAxisRaw("Vertical") == -1) ||
-                (buttons[currentIndex] == "Up" && Input.GetAxisRaw("Vertical") == 1) ||
-                (buttons[currentIndex] == "Left" && Input.GetAxisRaw("Horizontal") == -1) ||
-                (buttons[currentIndex] == "Right" && Input.GetAxisRaw("Horizontal") == 1) ||
+                if ((buttons[currentIndex] == "Down" && Input.GetAxisRaw("Vertical") <= -0.8f) ||
+                (buttons[currentIndex] == "Up" && Input.GetAxisRaw("Vertical") >= 0.8f) ||
+                (buttons[currentIndex] == "Left" && Input.GetAxisRaw("Horizontal") <= -0.8f) ||
+                (buttons[currentIndex] == "Right" && Input.GetAxisRaw("Horizontal") >= 0.8f) ||
                 (buttons[currentIndex] != "Down" && buttons[currentIndex] != "Up" && buttons[currentIndex] != "Left" && buttons[currentIndex] != "Right" && Input.GetButtonDown(buttons[currentIndex])))
                 {
                     timeLastButtonPressed = Time.time;

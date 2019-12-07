@@ -208,9 +208,11 @@ public class MinigameManager : MonoBehaviour
         #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
             SceneManager.LoadScene(minigameIndices[minigameIndex++]);
-        else if (!UnityEditor.EditorApplication.isPlaying)
+        else
             EditorSceneManager.OpenScene(SceneManager.GetSceneAt(minigameIndices[minigameIndex++]).name);
-            #endif
+        #else
+        SceneManager.LoadScene(minigameIndices[minigameIndex++]);
+        #endif
     }
     private void LoadNextCutscene()
     {
