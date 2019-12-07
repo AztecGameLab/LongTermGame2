@@ -9,9 +9,14 @@ public class SpawnEnemies : MonoBehaviour
     int trollCount = 0;
     float delay = 2.0f;
 
+    float delayMult = 1;
+    float speedMult = 1;
+
     // Start is called before the first frame update
     void Start()
     {
+        delayMult = Mathf.Lerp(1, 0.6f, MinigameManager.GetDifficulty());
+        speedMult = Mathf.Lerp(1, 1.3f, MinigameManager.GetDifficulty());
         StartCoroutine(delayedSpawn(0));
     }
 
@@ -21,7 +26,7 @@ public class SpawnEnemies : MonoBehaviour
 
         if (trollCount > 2)
         {
-            speedIncrement += 0.5f;
+            speedIncrement += 0.5f * speedMult;
             trollCount = 0;
             if (delay > 0.25f)
             {
@@ -35,7 +40,7 @@ public class SpawnEnemies : MonoBehaviour
 
     IEnumerator delayedSpawn(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time * delayMult);
         float randX = Random.Range(-8f, 8f);
         trollCount++;
         SpawnEnemy(randX);

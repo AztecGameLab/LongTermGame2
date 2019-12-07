@@ -4958,6 +4958,7 @@ GameObject:
   - component: {fileID: 167165787}
   - component: {fileID: 167165786}
   - component: {fileID: 167165789}
+  - component: {fileID: 167165790}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5051,6 +5052,20 @@ MonoBehaviour:
   music: {fileID: 8300000, guid: bc971c6632b6ee346ad5ac5cd52016d5, type: 3}
   bgTransform: {fileID: 176467146}
   panTransform: {fileID: 722547073}
+--- !u!114 &167165790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167165785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a7845856649254193b2d4ce355bd9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wantedAspectRatio: 1.7777
+  landscapeModeOnly: 1
 --- !u!1 &170892584
 GameObject:
   m_ObjectHideFlags: 0

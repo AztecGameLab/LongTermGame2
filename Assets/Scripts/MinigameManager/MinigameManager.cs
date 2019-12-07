@@ -127,7 +127,7 @@ public class MinigameManager : MonoBehaviour
         if (win)
         {
 
-            SetDifficulty(difficulty + 0.1f);
+            SetDifficulty(difficulty + 0.07f);
             if (gameManager != null)
                 gameManager.GetComponent<MinigameManager>().resultScreen(true);
             AudioManager.instance.PlayMusic(WinMusic, 1.0f);
@@ -138,7 +138,7 @@ public class MinigameManager : MonoBehaviour
         {
             if (difficulty > 0)
             {
-                SetDifficulty(difficulty - 0.2f);
+                SetDifficulty(difficulty - 0.3f);
             }
 
             if (gameManager != null)

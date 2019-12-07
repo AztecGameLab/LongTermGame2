@@ -14,6 +14,7 @@ namespace RunAwayThief
         public float period = 0.1f;
         [SerializeField]
         private float changeSpeed;
+        private float enemySpeed;
         [Range(0, 1)] public float difficultyModifier;
         float nextActionTime = 0.0f;
 
@@ -30,7 +31,8 @@ namespace RunAwayThief
             enemyCollider = enemy.GetComponent<Collider2D>();
             groundCollider = ground.GetComponent<Collider2D>();
             difficultyModifier = MinigameManager.GetDifficulty();
-            changeSpeed = Mathf.LerpUnclamped(1, 3, difficultyModifier);
+            changeSpeed = 1.5f;
+            enemySpeed = Mathf.LerpUnclamped(1, 3.8f, difficultyModifier);
             player.SetMoveForward(changeSpeed);
             nextActionTime = Time.time + period;
             AudioManager.instance.PlayMusic(RunAwayThiefMusic, 0.9f, 1.0f, true);
@@ -43,7 +45,7 @@ namespace RunAwayThief
                 EndGame("lose");
                 end = true;
             }
-            else if (player.transform.position.x >= 11.5)
+            else if (player.transform.position.x >= 9.8f)
             {
                 EndGame("win");
                 end = true;
@@ -54,7 +56,8 @@ namespace RunAwayThief
                 if (Time.time/**Time.deltaTime*/ > nextActionTime)
                 {
                     nextActionTime += period;
-                    enemy.EnemyRun(changeSpeed);
+                    enemy.EnemyRun(enemySpeed);
+                    //enemy.EnemyRun(changeSpeed);
                 }
             }
         }

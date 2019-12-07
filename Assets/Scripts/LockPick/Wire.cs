@@ -7,6 +7,7 @@ namespace LockPick{
     public class Wire : MonoBehaviour
     {
         private Vector2 liftUp = new Vector2(0, 2f);
+        float liftUpSpeedMult = 1;
         private Vector2 startPosition;
         private Vector2 successPosition;
 
@@ -60,6 +61,7 @@ namespace LockPick{
             //uiText.GetComponent<Text>().text = "Nice!";
             print("You won");
 
+            unlock.clip = unlockLock;
             unlock.Play();
             wire_Count = -1;
 
@@ -84,7 +86,9 @@ namespace LockPick{
         void Start()
         {
             float difficulty = MinigameManager.GetDifficulty();
-            timeLimit = Mathf.LerpUnclamped(16f, 10f, difficulty);
+            timeLimit = Mathf.LerpUnclamped(16f, 2f, difficulty);
+            liftUpSpeedMult = Mathf.LerpUnclamped(1, 5, difficulty);
+            GetComponent<Rigidbody2D>().gravityScale = Mathf.LerpUnclamped(1, 5, difficulty);
 
             startPosition = transform.position;
             successPosition = SuccessArea.transform.position;
@@ -137,7 +141,7 @@ namespace LockPick{
             //This is how to move the "wire" up.
             if (Input.GetButton("Primary"))
             {
-                GetComponent<Rigidbody2D>().velocity = liftUp;            
+                GetComponent<Rigidbody2D>().velocity = liftUp * liftUpSpeedMult;            
             }
 
             if (remaining[pinSpriteIndex] == -1)

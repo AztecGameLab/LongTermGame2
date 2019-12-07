@@ -46,7 +46,7 @@ public class ComboTest : MonoBehaviour
         
         playerHealth = 100;
 
-        enemyStartHealth = Mathf.LerpUnclamped(60, 100, difficulty);
+        enemyStartHealth = Mathf.LerpUnclamped(60, 200, MinigameManager.GetDifficulty());
         enemyHealth = enemyStartHealth;
 
         for (int t = 0; t < buttonOptions.Length; t++)
