@@ -86,7 +86,7 @@ namespace Memorize {
             food.SetActive(false);
             initialBGPosition = bgTransform.position;
             initialPanPosition = panTransform.position;
-            maxTime = (absoluteMaxTime - 1f) * (1f - MinigameManager.GetDifficulty()) + 1f;
+            maxTime = Mathf.Lerp(5f, 1f, MinigameManager.GetDifficulty());
             StartCoroutine(GameLoop(3));
         }
 
