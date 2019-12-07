@@ -6,6 +6,10 @@ using UnityEngine.UI;
 namespace LockPick{
     public class Wire : MonoBehaviour
     {
+        bool minigameOver;
+
+        public static bool firstStarted;
+
         private Vector2 liftUp = new Vector2(0, 2f);
         float liftUpSpeedMult = 1;
         private Vector2 startPosition;
@@ -40,7 +44,9 @@ namespace LockPick{
 
         private int FindPinSpriteIndex()
         {
-            int result = 0;
+
+
+        int result = 0;
             int rand = Random.Range(0, 3);
             if(remaining[rand] == -1)
             {
@@ -58,33 +64,46 @@ namespace LockPick{
 
         private void WinState()
         {
-            //uiText.GetComponent<Text>().text = "Nice!";
-            print("You won");
+            if (!minigameOver)
+            {
 
-            unlock.clip = unlockLock;
-            unlock.Play();
-            wire_Count = -1;
+                //uiText.GetComponent<Text>().text = "Nice!";
+                print("You won");
 
-            MinigameManager.FinishMinigame(true);
-            /*
-             * Probably will add more things.
-             * Lock Background image should be changed as popped open instead of still closed
-             * audio plays of a very satisfying, audible "pop"
-             */
+                unlock.clip = unlockLock;
+                unlock.Play();
+                wire_Count = -1;
+
+                remaining = new int[] { 0, 1, 2 };
+                minigameOver = true;
+                MinigameManager.FinishMinigame(true);
+                /*
+                 * Probably will add more things.
+                 * Lock Background image should be changed as popped open instead of still closed
+                 * audio plays of a very satisfying, audible "pop"
+                 */
+            }
         }
 
         private void LoseState()
         {
-            wire_Count = -1;
+            if (!minigameOver)
+            {
 
-            //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
-            MinigameManager.FinishMinigame(false);
+                wire_Count = -1;
+
+                //uiText.GetComponent<Text>().text = "Oof. Maybe next time";
+                remaining = new int[] { 0, 1, 2 };
+                minigameOver = true;
+                MinigameManager.FinishMinigame(false);
+            }
         }
 
 
         // Start is called before the first frame update
         void Start()
         {
+
             float difficulty = MinigameManager.GetDifficulty();
             timeLimit = Mathf.LerpUnclamped(16f, 2f, difficulty);
             liftUpSpeedMult = Mathf.LerpUnclamped(1, 5, difficulty);
@@ -103,8 +122,9 @@ namespace LockPick{
             }
             wire_Count++;
 
+            if(!minigameOver)
             pinSpriteIndex = FindPinSpriteIndex();
-            if(remaining[pinSpriteIndex] == -1)
+            if(remaining[pinSpriteIndex] == -1 && !minigameOver)
             {
                 FindPinSpriteIndex();
                 successPosition.y = spriteLocation[pinSpriteIndex];
@@ -139,12 +159,12 @@ namespace LockPick{
             }
             
             //This is how to move the "wire" up.
-            if (Input.GetButton("Primary"))
+            if (Input.GetButton("Primary") && !minigameOver)
             {
                 GetComponent<Rigidbody2D>().velocity = liftUp * liftUpSpeedMult;            
             }
 
-            if (remaining[pinSpriteIndex] == -1)
+            if (remaining[pinSpriteIndex] == -1 && !minigameOver)
             {
                 FindPinSpriteIndex();
                 successPosition.y = spriteLocation[pinSpriteIndex];
@@ -152,7 +172,7 @@ namespace LockPick{
             }
 
             //Presses button at a certain point to see if the lock pick actually works
-            if (Input.GetButtonDown("Secondary"))
+            if (Input.GetButtonDown("Secondary") && !minigameOver)
             {
                 print("pin height is " + pinHeight[pinSpriteIndex]);
                 print("remaining spriteIndex is " + remaining[pinSpriteIndex]);

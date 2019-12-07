@@ -89,7 +89,8 @@ namespace Potions
             scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
             scoreText.text = score.ToString();
 
-            countdownTime = 20f;
+            //countdownTime = 20f;
+            countdownTime = Mathf.LerpUnclamped(30f, 20, difficulty);
             timeText = GameObject.Find("TimeText").GetComponent<Text>();
             timeText.text = countdownTime.ToString();
 
