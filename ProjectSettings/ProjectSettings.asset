@@ -124,15 +124,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-<<<<<<< HEAD
-<<<<<<< HEAD
   bundleVersion: 0.2
-=======
-  bundleVersion: 1.0
->>>>>>> d79b46befc143f17aae0a60f67a6e1444076298f
-=======
-  bundleVersion: 1.0
->>>>>>> d79b46befc143f17aae0a60f67a6e1444076298f
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
