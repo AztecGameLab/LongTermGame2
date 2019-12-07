@@ -79,7 +79,21 @@ public class MinigameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0) && Input.GetKeyDown(KeyCode.Z))
             SetDifficulty(0);
         if (Input.GetKeyDown(KeyCode.Equals) && Input.GetKeyDown(KeyCode.Z))
+        {
             print("GAME MANAGER difficulty Unclamped:" + (difficultyUnclamped = difficultyUnclamped ? false : true));
+            if(difficultyUnclamped)
+                for (int i = 0; i < hearts.Length; i++)
+                {
+                    hearts[i].GetComponent<Image>().color = Color.black;
+                }
+            else
+                for (int i = 0; i < hearts.Length; i++)
+                {
+                    hearts[i].GetComponent<Image>().color = new Color(200, 189, 189, 255);
+                }
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace) && Input.GetKeyDown(KeyCode.Z))
+            SetDifficulty(GetDifficulty() + 0.1f);
     }
 
     private void Start()
